@@ -1,0 +1,90 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-serif: "Georgia", "Times New Roman", serif;
+  --font-sans: "Inter", "Avenir Next", "Segoe UI", system-ui, sans-serif;
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  background: #06111f;
+}
+
+body {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 82% 18%, rgba(184, 111, 82, 0.14), transparent 24rem),
+    linear-gradient(180deg, #06111f 0%, #091827 46%, #06111f 100%);
+  color: #f4f0e8;
+  font-family: var(--font-sans);
+}
+
+::selection {
+  background: #d7c5a5;
+  color: #06111f;
+}
+
+.prose-coast {
+  color: #d8e3e8;
+  font-size: 1.08rem;
+  line-height: 1.9;
+}
+
+.prose-coast > * + * {
+  margin-top: 1.45rem;
+}
+
+.prose-coast h2,
+.prose-coast h3 {
+  color: #f4f0e8;
+  font-family: var(--font-serif);
+  line-height: 1.2;
+}
+
+.prose-coast h2 {
+  margin-top: 3rem;
+  font-size: clamp(2rem, 4vw, 3rem);
+}
+
+.prose-coast h3 {
+  margin-top: 2.25rem;
+  font-size: clamp(1.45rem, 3vw, 2rem);
+}
+
+.prose-coast a {
+  color: #d7c5a5;
+  text-decoration: underline;
+  text-underline-offset: 0.25em;
+}
+
+.prose-coast ul {
+  list-style: disc;
+  padding-left: 1.4rem;
+}
+
+.prose-coast li + li {
+  margin-top: 0.55rem;
+}
+
+.prose-coast blockquote {
+  border-left: 1px solid #d7c5a5;
+  color: #f4f0e8;
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  line-height: 1.45;
+  margin: 2.6rem 0;
+  padding-left: 1.5rem;
+}
+
+.prose-coast img {
+  width: 100%;
+  margin: 2.5rem 0;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}

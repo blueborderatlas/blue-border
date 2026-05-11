@@ -3,6 +3,7 @@ title: "Cheap Islands You Can Reach from Germany"
 slug: "cheap-islands-you-can-reach-from-germany"
 date: "2026-04-20"
 category: "From Germany"
+tags: ["Transport", "Beaches", "Stays"]
 coverImage: "https://images.unsplash.com/photo-1510414842594-a61c69b5ae57?auto=format&fit=crop&w=1600&q=80"
 excerpt: "A starting list for low-cost island trips from Germany, with a focus on shoulder season, simple bags and realistic airport math."
 featured: false

@@ -3,13 +3,15 @@ import { ArrowUpRight, CircleDollarSign, Fish, ShipWheel, Waves } from "lucide-r
 import { CategoryLink } from "@/components/category-link";
 import { PostCard } from "@/components/post-card";
 import { SectionHeading } from "@/components/section-heading";
-import { categories, getFeaturedPosts } from "@/lib/posts";
+import { destinations, getTopicSlug, topics } from "@/lib/archive";
+import { categories, formatPostDate, getFeaturedPosts, getLatestPosts } from "@/lib/posts";
 
 const heroImage =
   "https://images.unsplash.com/photo-1516483638261-f4dbaf036963?auto=format&fit=crop&w=2200&q=85";
 
 export default function HomePage() {
   const featuredPosts = getFeaturedPosts();
+  const latestPosts = getLatestPosts(4);
 
   return (
     <main>
@@ -63,6 +65,39 @@ export default function HomePage() {
       </section>
 
       <section className="border-y border-white/10 bg-white/[0.025] px-5 py-20 sm:px-8">
+        <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.85fr_1.15fr]">
+          <SectionHeading
+            eyebrow="Destinations"
+            title="A slow archive of islands, ports and coastlines."
+            copy="A light structure for places that will keep gathering field notes: no heavy map, just regions, towns and sea edges to return to."
+          />
+          <div className="grid gap-px overflow-hidden border border-white/10 bg-white/10 sm:grid-cols-2">
+            {destinations.map((destination) => (
+              <Link
+                key={destination.slug}
+                href={`/destinations/${destination.slug}`}
+                className="group bg-deep p-5 transition hover:bg-tide/80"
+              >
+                <div className="flex items-start justify-between gap-4">
+                  <h3 className="font-serif text-2xl text-foam">
+                    {destination.name}
+                  </h3>
+                  <ArrowUpRight
+                    className="mt-1 text-mist transition group-hover:text-sand"
+                    size={17}
+                    aria-hidden="true"
+                  />
+                </div>
+                <p className="mt-4 text-sm leading-7 text-mist">
+                  {destination.places.slice(0, 4).join(" · ")}
+                </p>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="border-y border-white/10 bg-white/[0.025] px-5 py-20 sm:px-8">
         <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.9fr_1.1fr]">
           <SectionHeading
             eyebrow="Explore"
@@ -72,6 +107,64 @@ export default function HomePage() {
           <div className="grid content-start gap-3 sm:grid-cols-2">
             {categories.map((category) => (
               <CategoryLink key={category} category={category} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="px-5 py-20 sm:px-8">
+        <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.8fr_1.2fr]">
+          <SectionHeading
+            eyebrow="Topics"
+            title="Small recurring things along the coast."
+            copy="Beach texture, harbor fishing, cheap transport, coffee stops, sunset walks and the quiet details that make places stay in memory."
+          />
+          <div className="flex flex-wrap content-start gap-3">
+            {topics.map((topic) => (
+              <Link
+                key={topic}
+                href={`/topics/${getTopicSlug(topic)}`}
+                className="inline-flex min-h-12 items-center border border-white/12 bg-white/[0.03] px-4 text-sm text-mist transition hover:border-sand/80 hover:text-foam"
+              >
+                {topic}
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="border-y border-white/10 bg-white/[0.025] px-5 py-20 sm:px-8">
+        <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.8fr_1.2fr]">
+          <SectionHeading
+            eyebrow="Latest notes"
+            title="Recently added to the archive."
+            copy="Short entries and draft observations are allowed here. The archive can grow slowly without every place becoming a finished guide."
+          />
+          <div className="grid gap-px overflow-hidden border border-white/10 bg-white/10">
+            {latestPosts.map((post) => (
+              <Link
+                key={post.slug}
+                href={`/journal/${post.slug}`}
+                className="group grid gap-4 bg-deep p-5 transition hover:bg-tide/80 sm:grid-cols-[1fr_auto]"
+              >
+                <div>
+                  <p className="text-xs uppercase tracking-[0.16em] text-sand">
+                    {post.destination ?? post.region ?? post.category}
+                  </p>
+                  <h3 className="mt-2 font-serif text-2xl leading-tight text-foam group-hover:text-sand">
+                    {post.title}
+                  </h3>
+                  <p className="mt-3 text-sm leading-7 text-mist">
+                    {post.excerpt}
+                  </p>
+                </div>
+                <time
+                  dateTime={post.date}
+                  className="text-sm text-mist sm:pt-1 sm:text-right"
+                >
+                  {formatPostDate(post.date)}
+                </time>
+              </Link>
             ))}
           </div>
         </div>

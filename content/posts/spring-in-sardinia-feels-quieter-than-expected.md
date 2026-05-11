@@ -1,9 +1,13 @@
 ---
 title: "Sardinia Already Felt Like Summer in May"
+slug: "spring-in-sardinia-feels-quieter-than-expected"
 date: "2025-05-09"
 excerpt: "Flying from rainy Germany to southern Sardinia felt like arriving in summer earlier than expected."
 coverImage: "/images/sardinia-spring.jpg"
 category: "Beaches"
+region: "Italy"
+destination: "Sardinia"
+tags: ["Beaches", "Stays", "Fishing", "Sunsets"]
 readingTime: "5 min read"
 ---
 

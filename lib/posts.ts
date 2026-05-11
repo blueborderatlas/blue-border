@@ -19,6 +19,9 @@ export type Post = {
   slug: string;
   date: string;
   category: Category;
+  region?: string;
+  destination?: string;
+  tags: string[];
   coverImage: string;
   excerpt: string;
   featured?: boolean;
@@ -69,6 +72,9 @@ function normalizePost(fileName: string): Post {
     slug: String(data.slug ?? fallbackSlug),
     date: String(data.date ?? new Date().toISOString()),
     category,
+    region: data.region ? String(data.region) : undefined,
+    destination: data.destination ? String(data.destination) : undefined,
+    tags: Array.isArray(data.tags) ? data.tags.map(String) : [],
     coverImage: String(data.coverImage ?? ""),
     excerpt: String(data.excerpt ?? ""),
     featured: Boolean(data.featured),
@@ -88,6 +94,10 @@ export function getFeaturedPosts() {
   return featured.length > 0 ? featured : getAllPosts().slice(0, 3);
 }
 
+export function getLatestPosts(count = 4) {
+  return getAllPosts().slice(0, count);
+}
+
 export function getPostBySlug(slug: string) {
   return getAllPosts().find((post) => post.slug === slug);
 }
@@ -98,6 +108,18 @@ export function getPostsByCategory(category?: string) {
   }
 
   return getAllPosts().filter((post) => post.category === category);
+}
+
+export function getPostsByRegion(region: string) {
+  return getAllPosts().filter((post) => post.region === region);
+}
+
+export function getPostsByTopic(topic: string) {
+  const normalizedTopic = topic.toLowerCase();
+
+  return getAllPosts().filter((post) =>
+    post.tags.some((tag) => tag.toLowerCase() === normalizedTopic),
+  );
 }
 
 export function formatPostDate(date: string) {

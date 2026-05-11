@@ -3,6 +3,9 @@ title: "Trapani Feels Like a Half-Asleep Coastal Town"
 slug: "trapani-feels-like-a-half-asleep-coastal-town"
 date: "2026-04-02"
 category: "Coastal Towns"
+region: "Italy"
+destination: "Sicily"
+tags: ["Walking", "Coffee", "Fishing", "Sunsets"]
 coverImage: "https://images.unsplash.com/photo-1533104816931-20fa691ff6ca?auto=format&fit=crop&w=1600&q=80"
 excerpt: "Trapani is not sleepy because nothing happens. It is sleepy because the sea keeps its own pace around the edges of town."
 featured: true

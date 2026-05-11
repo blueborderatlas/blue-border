@@ -3,6 +3,9 @@ title: "Can Tourists Fish in Sicily?"
 slug: "can-tourists-fish-in-sicily"
 date: "2026-03-24"
 category: "Fishing"
+region: "Italy"
+destination: "Sicily"
+tags: ["Fishing", "Walking", "Transport"]
 coverImage: "https://images.unsplash.com/photo-1516298773066-c48f8e9bd92b?auto=format&fit=crop&w=1600&q=80"
 excerpt: "A cautious field note on shoreline fishing in Sicily, local rules, harbor etiquette and why tourists should ask before casting."
 featured: true

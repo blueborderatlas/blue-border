@@ -3,7 +3,7 @@ title: "Spring in Sardinia Feels Slower Than Most People Expect"
 date: "2026-05-10"
 excerpt: "Spring in Sardinia feels quieter, windier, and far less crowded than most Mediterranean islands."
 coverImage: "/images/sardinia-spring.jpg"
-category: "Sardinia"
+category: "Coastal"
 readingTime: "4 min read"
 ---
 

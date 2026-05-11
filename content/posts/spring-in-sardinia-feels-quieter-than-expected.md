@@ -1,68 +1,50 @@
 ---
-title: "Sardinia Already Felt Like Summer in May"
-slug: "spring-in-sardinia-feels-quieter-than-expected"
+title: "Sardinia’s Southeast Coast Felt Like Early Summer"
 date: "2025-05-09"
-excerpt: "Flying from rainy Germany to southern Sardinia felt like arriving in summer earlier than expected."
-coverImage: "/images/sardinia-spring.jpg"
-category: "Beaches"
+excerpt: "A slow coastal trip around Cagliari, Villasimius and Costa Rei with beaches, buses, sea wind and quiet evenings."
+coverImage: "/images/sardinia/IMG_8067.JPG"
+category: "Islands"
 region: "Italy"
 destination: "Sardinia"
-tags: ["Beaches", "Stays", "Fishing", "Sunsets"]
-readingTime: "5 min read"
+readingTime: "5 min"
+tags:
+  - sardinia
+  - italy
+  - beaches
+  - slow travel
+  - mediterranean
+  - swimming
+  - coastal life
 ---
 
-On May 9th, 2025, we flew from Düsseldorf to southern Sardinia for around 40 euros round trip.
+# 🇮🇹 Sardinia’s Southeast Coast Felt Like Early Summer
 
-What surprised me most was not the price, but the feeling after arriving.
+When we flew from Germany to Sardinia in May, it already felt like summer had started early.
 
-Back in Germany, the weather was still cold and unstable.
-Rain, wind, and sudden temperature changes had already become normal.
+This trip was based mostly around the southeast coast near Cagliari. Instead of trying to visit as many places as possible, we spent most days slowly moving between beaches, swimming, walking and staying by the sea until sunset.
 
-But after landing in Cagliari, everything immediately felt different.
+Compared to the usual fast-paced city trips, this felt more like living near the Mediterranean for a few days.
 
-The sunlight looked warmer.
-The air near the coast felt softer.
-For a moment, it almost felt like summer had already arrived on the island earlier than expected.
+We didn’t rent a car and mostly relied on local buses and walking. Public transport in the southeast part of Sardinia is not extremely frequent, but if you travel slowly, it actually works quite well.
 
-Even though the real tourist season had not started yet, the temperature during the middle of the day already felt comfortable.
-Especially under the sun, there were moments when the island felt much closer to summer than spring.
+Many of the quieter and more beautiful beaches require taking a bus first and then walking another 5–10 minutes. The last part of the walk is usually just rocks, dry plants and the sound of the sea getting closer.
 
-We eventually decided to swim in the sea as well.
+At first it sometimes felt a little far, but once the water finally appeared in front of us, the walk always felt worth it. Moving slowly through these small coastal roads somehow made the entire trip feel calmer.
 
-The water felt slightly cold at first, but after a few minutes it became surprisingly comfortable.
-Compared to Germany in May, simply being able to walk into the sea under warm sunlight already felt special.
+Most of the places we liked were around Villasimius and Costa Rei.
 
-We stayed in a small guesthouse on a hillside facing the bay.
-It was a room inside a villa with a swimming pool, owned by a very friendly local host.
+Spiaggia di Mari Pintau had some of the clearest water I’ve ever seen. On sunny days the sea almost looked unreal, somewhere between glass and light blue jelly. In many places you could see straight to the bottom.
 
-He had two small chihuahuas quietly walking around the garden most of the time.
+Porto Giunco felt softer and brighter, especially in the evening light. Compared to many Mediterranean islands in summer, Sardinia in May still felt relatively quiet. Sometimes we stayed on the beach for hours without doing much at all.
 
-Near the pool, there was also a heated outdoor jacuzzi.
-At night, after returning from the beach, sitting there while looking toward the coastline felt unbelievably relaxing.
+The coastline around Costa Rei felt less like a tourist attraction and more like somewhere to spend an entire slow afternoon. Sometimes we would simply sit near the rocks watching local people fish while listening to the waves.
 
-The beach itself was around 10 to 15 minutes away by foot.
+One afternoon while snorkeling, we found a live sea urchin resting quietly between the rocks. It was the first time I had ever seen one so closely in the sea. I picked it up gently for a moment before putting it back into the water and letting it continue its quiet little life underwater.
 
-Some afternoons, local people were fishing near the rocks while the sea stayed completely calm.
-The water in Sardinia sometimes looks unreal in photos, but seeing it in person feels even more impressive.
+We stayed in a villa on a small hillside facing the bay. The owner was a very relaxed Italian man who spoke slowly and lived with two small chihuahuas. The villa had a swimming pool and a heated jacuzzi outside. After coming back from the beach in the evening, sitting there in the warm water with the sea wind around us made time feel strangely slow.
 
-What I liked most was the atmosphere.
+For a few days we did almost nothing productive. Every morning started with the same simple plan: find a beach, swim, lie in the sun and stay there for as long as possible.
 
-Nothing felt rushed.
-There was no pressure to constantly move between places.
-Even simple things like buying groceries in the evening and slowly walking back uphill to the villa felt peaceful.
+At some point I realized that maybe this is actually the best way to experience Sardinia.
 
-We stayed there for five days, and almost every day felt calm.
-
-The only difficulty was transportation.
-
-Public transport on the island exists, but buses can be infrequent, especially outside larger towns.
-Without a car, some beautiful coastal areas are difficult to reach.
-
-At first, we did not rent one because we were unfamiliar with local driving rules.
-Later, we learned that many foreigners can rent cars using their original driving license together with an international driving translation.
-
-If I return to Sardinia one day, I would probably rent a car and explore smaller coastal roads around the island.
-
-Still, even without driving, the trip felt worth it.
-
-Compared to many crowded Mediterranean destinations, Sardinia in spring felt quieter, slower, and much more real.
+Not as a checklist of attractions, but as a place to slow down and quietly live beside the sea for a while.

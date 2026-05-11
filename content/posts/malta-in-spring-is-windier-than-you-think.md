@@ -3,7 +3,7 @@ title: "Malta in Spring Is Windier Than You Think"
 slug: "malta-in-spring-is-windier-than-you-think"
 date: "2026-04-12"
 category: "Beaches"
-coverImage: "https://images.unsplash.com/photo-1539650116574-75c0c6d73f6e?auto=format&fit=crop&w=1600&q=80"
+coverImage: "/images/malta-spring.jpg"
 excerpt: "Spring in Malta can look warm in photos and feel restless on the ground. The wind decides more than the forecast suggests."
 featured: false
 ---

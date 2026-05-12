@@ -69,6 +69,12 @@ export default async function ArticlePage({ params }: PageProps) {
               <span className="h-1 w-1 rounded-full bg-sand/70" />
               <time dateTime={post.date}>{formatPostDate(post.date)}</time>
               <span className="h-1 w-1 rounded-full bg-sand/70" />
+              {post.travelDate ? (
+                <>
+                  <span>Travel date {formatPostDate(post.travelDate)}</span>
+                  <span className="h-1 w-1 rounded-full bg-sand/70" />
+                </>
+              ) : null}
               <span>{post.readingTime}</span>
             </div>
             <h1 className="mt-5 max-w-5xl font-serif text-5xl leading-tight text-foam sm:text-7xl">

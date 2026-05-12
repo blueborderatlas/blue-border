@@ -1,6 +1,7 @@
 ---
 title: "A Quiet Stay Near the Sea in Southern Sardinia"
-date: "2025-05-09"
+date: "2026-05-12"
+travelDate: "2025-05-09"
 excerpt: "A peaceful stay near Margine Rosso with a pool, jacuzzi, sea views, and one of the kindest Airbnb hosts we met in Sardinia."
 coverImage: "/images/sardinia-stay/sardinia-stay-cover.JPG"
 

@@ -18,6 +18,7 @@ export type Post = {
   title: string;
   slug: string;
   date: string;
+  travelDate?: string;
   category: Category;
   region?: string;
   destination?: string;
@@ -72,6 +73,7 @@ function normalizePost(fileName: string): Post {
     title: String(data.title ?? fallbackSlug),
     slug: String(data.slug ?? fallbackSlug),
     date: String(data.date ?? new Date().toISOString()),
+    travelDate: data.travelDate ? String(data.travelDate) : undefined,
     category,
     region: data.region ? String(data.region) : undefined,
     destination: data.destination ? String(data.destination) : undefined,

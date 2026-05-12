@@ -36,6 +36,18 @@ We didn’t rent a car and mostly relied on local buses and walking. Public tran
 
 Many of the quieter and more beautiful beaches require taking a bus first and then walking another 5–10 minutes. The last part of the walk is usually just rocks, dry plants and the sound of the sea getting closer.
 
+<figure className="my-10 overflow-hidden rounded-[6px] border border-white/10 bg-deep">
+  <video
+    className="w-full"
+    controls
+    playsInline
+    preload="metadata"
+  >
+    <source src="/videos/sardinia-bus.mov" type="video/quicktime" />
+    Your browser does not support the video tag.
+  </video>
+</figure>
+
 At first it sometimes felt a little far, but once the water finally appeared in front of us, the walk always felt worth it. Moving slowly through these small coastal roads somehow made the entire trip feel calmer.
 
 Most of the places we liked were around Villasimius and Costa Rei.

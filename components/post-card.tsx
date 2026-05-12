@@ -20,7 +20,7 @@ export function PostCard({
           src={post.coverImage}
           alt=""
           loading={priority ? "eager" : "lazy"}
-          className="absolute inset-0 h-full w-full object-contain opacity-85 transition duration-700 group-hover:scale-[1.02] group-hover:opacity-95"
+          className="absolute inset-0 h-full w-full object-cover opacity-80 transition duration-700 group-hover:scale-105 group-hover:opacity-95"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-ink/70 via-ink/10 to-transparent" />
       </Link>

@@ -11,7 +11,7 @@ type PageProps = {
   params: Promise<{ slug: string }>;
 };
 
-const imageExtensions = new Set([".jpg", ".jpeg", ".png", ".webp", ".gif", ".heic"]);
+const imageExtensions = new Set([".jpg", ".jpeg", ".png", ".webp"]);
 
 function getSardiniaGalleryImages() {
   const galleryDirectory = path.join(process.cwd(), "public/images/sardinia");

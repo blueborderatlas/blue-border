@@ -2,7 +2,7 @@
 title: "Sardinia’s Southeast Coast Felt Like Early Summer"
 date: "2025-05-09"
 excerpt: "A slow coastal trip around Cagliari, Villasimius and Costa Rei with beaches, buses, sea wind and quiet evenings."
-coverImage: "/images/sardinia/IMG_8067.JPG"
+coverImage: "/images/sardinia/sardinia-cover.jpg"
 category: "Islands"
 region: "Italy"
 destination: "Sardinia"

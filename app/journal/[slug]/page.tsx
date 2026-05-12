@@ -1,5 +1,3 @@
-import fs from "node:fs";
-import path from "node:path";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { MDXRemote } from "next-mdx-remote/rsc";
@@ -10,22 +8,6 @@ import { formatPostDate, getAllPosts, getPostBySlug } from "@/lib/posts";
 type PageProps = {
   params: Promise<{ slug: string }>;
 };
-
-const imageExtensions = new Set([".jpg", ".jpeg", ".png", ".webp"]);
-
-function getSardiniaGalleryImages() {
-  const galleryDirectory = path.join(process.cwd(), "public/images/sardinia");
-
-  if (!fs.existsSync(galleryDirectory)) {
-    return [];
-  }
-
-  return fs
-    .readdirSync(galleryDirectory)
-    .filter((fileName) => imageExtensions.has(path.extname(fileName).toLowerCase()))
-    .sort((a, b) => a.localeCompare(b))
-    .map((fileName) => `/images/sardinia/${encodeURIComponent(fileName)}`);
-}
 
 export function generateStaticParams() {
   return getAllPosts().map((post) => ({
@@ -71,11 +53,6 @@ export default async function ArticlePage({ params }: PageProps) {
     notFound();
   }
 
-  const galleryImages =
-    post.slug === "spring-in-sardinia-feels-quieter-than-expected"
-      ? getSardiniaGalleryImages()
-      : [];
-
   return (
     <main>
       <article>
@@ -103,7 +80,7 @@ export default async function ArticlePage({ params }: PageProps) {
           </div>
         </header>
 
-        <ImageGallery images={galleryImages} label={`${post.title} photo gallery`} />
+        <ImageGallery images={post.gallery} label={`${post.title} photo gallery`} />
 
         <div className="px-5 py-16 sm:px-8">
           <div className="prose-coast mx-auto max-w-3xl">

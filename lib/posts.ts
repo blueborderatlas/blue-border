@@ -22,6 +22,7 @@ export type Post = {
   region?: string;
   destination?: string;
   tags: string[];
+  gallery: string[];
   coverImage: string;
   excerpt: string;
   featured?: boolean;
@@ -75,6 +76,7 @@ function normalizePost(fileName: string): Post {
     region: data.region ? String(data.region) : undefined,
     destination: data.destination ? String(data.destination) : undefined,
     tags: Array.isArray(data.tags) ? data.tags.map(String) : [],
+    gallery: Array.isArray(data.gallery) ? data.gallery.map(String) : [],
     coverImage: String(data.coverImage ?? ""),
     excerpt: String(data.excerpt ?? ""),
     featured: Boolean(data.featured),

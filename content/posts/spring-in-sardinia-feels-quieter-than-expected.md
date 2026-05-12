@@ -36,14 +36,14 @@ We didn’t rent a car and mostly relied on local buses and walking. Public tran
 
 Many of the quieter and more beautiful beaches require taking a bus first and then walking another 5–10 minutes. The last part of the walk is usually just rocks, dry plants and the sound of the sea getting closer.
 
-<figure className="my-10 overflow-hidden rounded-[6px] border border-white/10 bg-deep">
+<figure className="my-10 aspect-video w-full overflow-hidden rounded-[6px] border border-white/10 bg-deep">
   <video
-    className="w-full"
+    className="h-full w-full object-cover"
     controls
     playsInline
     preload="metadata"
   >
-    <source src="/videos/sardinia-bus.mov" type="video/quicktime" />
+    <source src="/videos/sardinia-bus.mp4" type="video/mp4" />
     Your browser does not support the video tag.
   </video>
 </figure>

@@ -86,7 +86,11 @@ export default async function ArticlePage({ params }: PageProps) {
           </div>
         </header>
 
-        <ImageGallery images={post.gallery} label={`${post.title} photo gallery`} />
+        <ImageGallery
+          images={post.gallery}
+          label={`${post.title} photo gallery`}
+          fit={post.slug === "dubrovnik-after-the-bright-hours" ? "contain" : "cover"}
+        />
 
         <div className="px-5 py-16 sm:px-8">
           <div className="prose-coast mx-auto max-w-3xl">

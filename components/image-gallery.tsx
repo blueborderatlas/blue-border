@@ -5,9 +5,11 @@ import { useState } from "react";
 export function ImageGallery({
   images,
   label,
+  fit = "cover",
 }: {
   images: string[];
   label: string;
+  fit?: "cover" | "contain";
 }) {
   const [failedImages, setFailedImages] = useState<string[]>([]);
   const visibleImages = images.filter((image) => !failedImages.includes(image));
@@ -38,7 +40,9 @@ export function ImageGallery({
                 src={image}
                 alt=""
                 loading={index === 0 ? "eager" : "lazy"}
-                className="h-full w-full object-cover object-center"
+                className={`h-full w-full object-center ${
+                  fit === "contain" ? "object-contain" : "object-cover"
+                }`}
                 onError={() =>
                   setFailedImages((current) =>
                     current.includes(image) ? current : [...current, image],

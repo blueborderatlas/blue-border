@@ -1,3 +1,7 @@
+"use client";
+
+import { useState } from "react";
+
 export function ImageGallery({
   images,
   label,
@@ -5,7 +9,10 @@ export function ImageGallery({
   images: string[];
   label: string;
 }) {
-  if (images.length === 0) {
+  const [failedImages, setFailedImages] = useState<string[]>([]);
+  const visibleImages = images.filter((image) => !failedImages.includes(image));
+
+  if (visibleImages.length === 0) {
     return null;
   }
 
@@ -16,25 +23,28 @@ export function ImageGallery({
           <p className="text-xs uppercase tracking-[0.2em] text-sand">
             Photo notes
           </p>
-          <p className="text-xs text-mist">{images.length} images</p>
+          <p className="text-xs text-mist">{visibleImages.length} images</p>
         </div>
         <div
           className="flex snap-x gap-4 overflow-x-auto pb-3 [-webkit-overflow-scrolling:touch]"
           aria-label={label}
         >
-          {images.map((image, index) => (
+          {visibleImages.map((image, index) => (
             <figure
               key={image}
-              className="min-w-[82vw] snap-start border border-white/10 bg-deep sm:min-w-[520px] lg:min-w-[620px]"
+              className="h-[260px] w-[78vw] max-w-[460px] shrink-0 snap-start overflow-hidden rounded-[6px] border border-white/10 bg-deep sm:h-[360px] sm:w-[560px] sm:max-w-none lg:w-[640px]"
             >
-              <div className="aspect-[4/3] w-full">
-                <img
-                  src={image}
-                  alt=""
-                  loading={index === 0 ? "eager" : "lazy"}
-                  className="h-full w-full object-contain"
-                />
-              </div>
+              <img
+                src={image}
+                alt=""
+                loading={index === 0 ? "eager" : "lazy"}
+                className="h-full w-full object-cover object-center"
+                onError={() =>
+                  setFailedImages((current) =>
+                    current.includes(image) ? current : [...current, image],
+                  )
+                }
+              />
             </figure>
           ))}
         </div>

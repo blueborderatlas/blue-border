@@ -17,6 +17,9 @@ export function SiteFooter() {
           <Link className="transition hover:text-foam" href="/journal">
             Journal
           </Link>
+          <Link className="transition hover:text-foam" href="/recommended">
+            Recommended
+          </Link>
           <Link className="transition hover:text-foam" href="/categories">
             Categories
           </Link>

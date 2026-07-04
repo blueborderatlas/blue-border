@@ -2,6 +2,7 @@ import Link from "next/link";
 
 const navItems = [
   { href: "/journal", label: "Journal" },
+  { href: "/recommended", label: "Recommended" },
   { href: "/categories", label: "Categories" },
   { href: "/about", label: "About" },
 ];

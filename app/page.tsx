@@ -31,33 +31,42 @@ export default function HomePage() {
         <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(6,17,31,0.94),rgba(6,17,31,0.55),rgba(6,17,31,0.24)),linear-gradient(0deg,rgba(6,17,31,0.95),transparent_42%)]" />
         <div className="relative mx-auto w-full max-w-7xl">
           <p className="text-xs uppercase tracking-[0.26em] text-sand">
-            Trusted travel connections
+            Blue for Chinese independent travelers
           </p>
-          <h1 className="mt-5 max-w-5xl font-serif text-6xl leading-[0.95] text-foam sm:text-8xl lg:text-9xl">
-            Blue
+          <h1 className="mt-5 max-w-5xl font-serif text-5xl leading-[1.02] text-foam sm:text-7xl lg:text-8xl">
+            Trusted local connections for independent travel.
           </h1>
           <p className="mt-6 max-w-3xl text-lg leading-8 text-foam/88 sm:text-xl">
-            Blue helps Chinese travelers find trusted local recommendations
-            around the world, from stays and restaurants to guides, transport
-            and small independent services.
+            Blue connects Chinese travelers with carefully selected local
+            businesses around the world, through editorial recommendations,
+            real travel context and direct contact.
           </p>
-          <p className="mt-4 max-w-2xl text-base leading-7 text-mist">
-            Blue is not a booking platform and does not process payments. It is
-            an editorial trust layer for independent travelers and reliable
-            local businesses.
-          </p>
+          <div className="mt-7 grid max-w-4xl gap-3 sm:grid-cols-3">
+            {[
+              "Human curated recommendations",
+              "Authentic travel experience",
+              "No booking, no payment, direct connection",
+            ].map((point) => (
+              <div
+                key={point}
+                className="border border-white/14 bg-deep/42 px-4 py-3 text-sm leading-6 text-foam/86 backdrop-blur"
+              >
+                {point}
+              </div>
+            ))}
+          </div>
           <div className="mt-9 flex flex-wrap gap-3">
             <Link
-              href="/journal"
+              href="/destinations"
               className="inline-flex min-h-12 items-center gap-2 bg-foam px-5 text-sm uppercase tracking-[0.16em] text-ink transition hover:bg-sand"
             >
-              Read travel notes <ArrowUpRight size={16} aria-hidden="true" />
+              Explore destinations <ArrowUpRight size={16} aria-hidden="true" />
             </Link>
             <Link
-              href="/destinations"
+              href="/about"
               className="inline-flex min-h-12 items-center border border-white/24 px-5 text-sm uppercase tracking-[0.16em] text-foam transition hover:border-sand hover:text-sand"
             >
-              Explore destinations
+              Work with Blue
             </Link>
           </div>
         </div>

@@ -20,7 +20,7 @@ import { destinations } from "@/lib/archive";
 import { formatPostDate, getFeaturedPosts, getLatestPosts } from "@/lib/posts";
 
 const heroImage =
-  "https://images.unsplash.com/photo-1516483638261-f4dbaf036963?auto=format&fit=crop&w=2200&q=85";
+  "https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=2200&q=85";
 
 const destinationImages: Record<string, string> = {
   "canary-islands":
@@ -81,51 +81,51 @@ export default function HomePage() {
 
   return (
     <main>
-      <section className="relative flex min-h-[88svh] items-center overflow-hidden px-5 py-28 sm:px-8 lg:py-32">
+      <section className="relative flex min-h-[88svh] items-center overflow-hidden px-5 py-32 sm:px-8 lg:py-36">
         <img
           src={heroImage}
           alt=""
-          className="absolute inset-0 h-full w-full object-cover opacity-72"
+          className="absolute inset-0 h-full w-full object-cover opacity-64"
         />
-        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(6,17,31,0.96),rgba(6,17,31,0.72),rgba(6,17,31,0.34)),linear-gradient(0deg,rgba(6,17,31,0.96),transparent_46%)]" />
-        <div className="relative mx-auto grid w-full max-w-7xl items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]">
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(6,17,31,0.97),rgba(6,17,31,0.76),rgba(6,17,31,0.46)),linear-gradient(0deg,rgba(6,17,31,0.97),rgba(6,17,31,0.24)_54%,rgba(6,17,31,0.78))]" />
+        <div className="relative mx-auto grid w-full max-w-7xl items-center gap-16 lg:grid-cols-[1.02fr_0.78fr]">
           <div>
             <p className="text-xs uppercase tracking-[0.26em] text-sand">
-              Blue for Chinese independent travelers
+              Trust · Connection · Worldwide
             </p>
-            <h1 className="mt-5 max-w-4xl font-serif text-5xl leading-[1.02] text-foam sm:text-7xl lg:text-8xl">
-              Trusted local connections for independent travel.
+            <h1 className="mt-7 max-w-4xl font-serif text-5xl leading-[1.02] text-foam sm:text-7xl lg:text-8xl">
+              Trusted travel connections for Chinese travelers worldwide.
             </h1>
-            <p className="mt-6 max-w-2xl text-lg leading-8 text-foam/88 sm:text-xl">
-              Blue connects Chinese travelers with carefully selected local
-              businesses around the world through editorial recommendations,
-              real travel context and direct contact.
+            <p className="mt-7 max-w-2xl text-lg leading-8 text-foam/88 sm:text-xl">
+              Blue connects independent Chinese travelers with reliable local
+              businesses through editorial curation, real feedback and direct
+              contact. No booking engine. No payment layer.
             </p>
-            <div className="mt-8 flex flex-wrap gap-3">
+            <div className="mt-10 flex flex-wrap gap-3">
               <Link
                 href="/destinations"
-                className="inline-flex min-h-12 items-center gap-2 bg-foam px-5 text-sm uppercase tracking-[0.16em] text-ink transition hover:bg-sand"
+                className="inline-flex min-h-12 items-center gap-2 bg-foam px-6 text-sm uppercase tracking-[0.16em] text-ink transition hover:bg-sand"
               >
                 Explore destinations{" "}
                 <ArrowUpRight size={16} aria-hidden="true" />
               </Link>
               <Link
                 href="/about"
-                className="inline-flex min-h-12 items-center border border-white/24 px-5 text-sm uppercase tracking-[0.16em] text-foam transition hover:border-sand hover:text-sand"
+                className="inline-flex min-h-12 items-center border border-white/24 px-6 text-sm uppercase tracking-[0.16em] text-foam transition hover:border-sand hover:text-sand"
               >
                 Work with Blue
               </Link>
             </div>
-            <div className="mt-8 grid max-w-2xl gap-3 text-sm leading-6 text-foam/86 sm:grid-cols-3">
+            <div className="mt-12 flex flex-wrap gap-x-6 gap-y-3 text-xs uppercase tracking-[0.16em] text-mist">
               {[
-                "Human curated recommendations",
-                "Authentic travel experience",
-                "No booking or payment",
+                "Editorial",
+                "Independent travel",
+                "Direct local connection",
               ].map((point) => (
-                <div key={point} className="flex gap-2">
+                <div key={point} className="flex items-center gap-2">
                   <CheckCircle2
-                    className="mt-0.5 shrink-0 text-sand"
-                    size={16}
+                    className="shrink-0 text-sand"
+                    size={14}
                     strokeWidth={1.8}
                     aria-hidden="true"
                   />
@@ -137,25 +137,29 @@ export default function HomePage() {
 
           <div className="relative lg:pl-8">
             <div className="absolute -inset-4 border border-white/10 bg-white/[0.03] blur-2xl" />
-            <div className="relative overflow-hidden border border-white/14 bg-ink/72 p-6 shadow-coast backdrop-blur sm:p-7">
-              <div className="flex items-center justify-between gap-4 border-b border-white/10 pb-5">
+            <div className="relative overflow-hidden border border-white/14 bg-ink/78 p-6 shadow-coast backdrop-blur sm:p-7">
+              <div className="flex items-start justify-between gap-4 border-b border-white/10 pb-6">
                 <div>
                   <p className="text-xs uppercase tracking-[0.2em] text-sand">
-                    Blue Trust Card
+                    Blue Trust Preview
                   </p>
                   <h2 className="mt-2 font-serif text-3xl text-foam">
-                    Aegean family stay
+                    Independent city guide
                   </h2>
+                  <p className="mt-3 max-w-sm text-sm leading-6 text-mist">
+                    A locally run experience reviewed for clarity, reliability
+                    and traveler fit.
+                  </p>
                 </div>
                 <BadgeCheck className="text-sand" size={30} strokeWidth={1.5} />
               </div>
-              <div className="mt-6 grid gap-4">
+              <div className="mt-7 grid gap-4">
                 {[
-                  ["Verified by Blue", "Traveler feedback checked"],
-                  ["Category", "Stay"],
-                  ["Location", "Crete, Greece"],
+                  ["Verified by Blue", "Manual editorial review"],
+                  ["Category", "Local Guide"],
+                  ["Location", "Worldwide"],
                   ["Trust Status", "Recommended"],
-                  ["Direct Contact", "Message the owner"],
+                  ["Connection", "Traveler contacts business directly"],
                 ].map(([label, value]) => (
                   <div
                     key={label}
@@ -170,8 +174,8 @@ export default function HomePage() {
               </div>
               <div className="mt-7 border border-sand/25 bg-sand/10 p-4">
                 <p className="text-sm leading-6 text-foam/88">
-                  No checkout here. Blue helps travelers understand who to trust
-                  before speaking directly with the local business.
+                  Blue is a curated trust layer. Recommendations can change as
+                  real traveler feedback accumulates over time.
                 </p>
               </div>
             </div>

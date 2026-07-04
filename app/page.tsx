@@ -48,6 +48,33 @@ const recommendationTypes = [
   { title: "Local Guide", icon: MapPinned },
 ];
 
+const trustStatuses = [
+  {
+    indicator: "🟢",
+    title: "Verified Partner",
+    copy: "Long-term trusted partner.",
+    accent: "border-emerald-300/35 bg-emerald-300/10",
+  },
+  {
+    indicator: "🔵",
+    title: "Recommended",
+    copy: "Recommended by Blue after review.",
+    accent: "border-sky-300/35 bg-sky-300/10",
+  },
+  {
+    indicator: "🟡",
+    title: "Under Review",
+    copy: "Currently being evaluated.",
+    accent: "border-amber-300/35 bg-amber-300/10",
+  },
+  {
+    indicator: "🔴",
+    title: "Paused",
+    copy: "Recommendation paused due to quality concerns.",
+    accent: "border-rose-300/35 bg-rose-300/10",
+  },
+];
+
 export default function HomePage() {
   const featuredPosts = getFeaturedPosts();
   const latestPosts = getLatestPosts(4);
@@ -352,6 +379,68 @@ export default function HomePage() {
                 </div>
               );
             })}
+          </div>
+        </div>
+      </section>
+
+      <section className="border-y border-white/10 bg-white/[0.025] px-5 py-20 sm:px-8">
+        <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.85fr_1.15fr]">
+          <div>
+            <p className="text-xs uppercase tracking-[0.22em] text-sand">
+              Blue Trust System
+            </p>
+            <h2 className="mt-4 max-w-2xl font-serif text-4xl leading-tight text-foam sm:text-5xl">
+              Trust is earned, reviewed and never permanent.
+            </h2>
+            <p className="mt-6 max-w-2xl text-base leading-8 text-mist">
+              Blue manually selects local businesses and keeps recommendations
+              under continuous review. Businesses are not permanently
+              recommended, and Blue is not a public review website.
+            </p>
+            <div className="mt-8 grid gap-3">
+              {[
+                "Only travelers who actually connected with a business through Blue can submit feedback.",
+                "Long-term real feedback helps Blue upgrade, maintain, pause or remove recommendations.",
+                "The system is designed for accountability between travelers, businesses and Blue.",
+              ].map((item) => (
+                <div
+                  key={item}
+                  className="flex gap-3 border-l border-sand/35 pl-4 text-sm leading-7 text-foam/86"
+                >
+                  <CheckCircle2
+                    className="mt-1 shrink-0 text-sand"
+                    size={16}
+                    strokeWidth={1.8}
+                    aria-hidden="true"
+                  />
+                  <span>{item}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="grid gap-4 sm:grid-cols-2">
+            {trustStatuses.map((status) => (
+              <div
+                key={status.title}
+                className={`border bg-deep p-6 transition duration-300 hover:-translate-y-1 hover:bg-white/[0.045] ${status.accent}`}
+              >
+                <div className="flex items-start justify-between gap-4">
+                  <span className="text-2xl" aria-hidden="true">
+                    {status.indicator}
+                  </span>
+                  <span className="text-xs uppercase tracking-[0.16em] text-mist">
+                    Trust status
+                  </span>
+                </div>
+                <h3 className="mt-8 font-serif text-3xl leading-tight text-foam">
+                  {status.title}
+                </h3>
+                <p className="mt-3 text-sm leading-7 text-mist">
+                  {status.copy}
+                </p>
+              </div>
+            ))}
           </div>
         </div>
       </section>

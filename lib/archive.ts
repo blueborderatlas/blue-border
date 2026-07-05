@@ -1,33 +1,38 @@
 export const destinations = [
   {
-    name: "Canary Islands",
-    slug: "canary-islands",
-    places: ["Tenerife", "Lanzarote", "Fuerteventura"],
+    name: "Europe",
+    slug: "europe",
+    places: ["France", "Italy", "Spain", "Greece", "Portugal"],
   },
   {
-    name: "Greece",
-    slug: "greece",
-    places: ["Crete", "Santorini", "Zakynthos"],
+    name: "China",
+    slug: "china",
+    places: ["Shanghai", "Beijing", "Yunnan", "Chengdu", "Hong Kong"],
   },
   {
-    name: "Italy",
-    slug: "italy",
-    places: ["Sardinia", "Sicily", "Genoa", "Nice"],
+    name: "Japan",
+    slug: "japan",
+    places: ["Tokyo", "Kyoto", "Osaka", "Hokkaido", "Okinawa"],
   },
   {
-    name: "Croatia",
-    slug: "croatia",
-    places: ["Dubrovnik"],
+    name: "Southeast Asia",
+    slug: "southeast-asia",
+    places: ["Thailand", "Vietnam", "Indonesia", "Malaysia", "Philippines"],
   },
   {
-    name: "Turkey",
-    slug: "turkey",
-    places: ["Fethiye"],
+    name: "Middle East",
+    slug: "middle-east",
+    places: ["United Arab Emirates", "Turkey", "Egypt", "Jordan", "Oman"],
   },
   {
-    name: "Egypt",
-    slug: "egypt",
-    places: ["Red Sea", "Hurghada", "Sharm El Sheikh", "Cairo", "Marsa Matruh"],
+    name: "Islands",
+    slug: "islands",
+    places: ["Sardinia", "Sicily", "Malta", "Canary Islands", "Bali"],
+  },
+  {
+    name: "Remote Places",
+    slug: "remote-places",
+    places: ["Patagonia", "Faroe Islands", "Iceland", "Mongolia", "Arctic routes"],
   },
 ] as const;
 

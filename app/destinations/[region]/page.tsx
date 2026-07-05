@@ -47,7 +47,7 @@ export default async function DestinationRegionPage({ params }: PageProps) {
         <SectionHeading
           eyebrow="Destination"
           title={destination.name}
-          copy={`Notes from ${destination.places.join(", ")} and the coastal routes around them.`}
+          copy={`Notes from ${destination.places.join(", ")} and the local routes around them.`}
         />
 
         <div className="mt-8 flex flex-wrap gap-2 text-sm text-mist">

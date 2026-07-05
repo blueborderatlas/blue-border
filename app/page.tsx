@@ -23,18 +23,20 @@ const heroImage =
   "https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=2200&q=85";
 
 const destinationImages: Record<string, string> = {
-  "canary-islands":
-    "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80",
-  greece:
-    "https://images.unsplash.com/photo-1533105079780-92b9be482077?auto=format&fit=crop&w=1200&q=80",
-  italy:
-    "https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?auto=format&fit=crop&w=1200&q=80",
-  croatia:
-    "https://images.unsplash.com/photo-1555990538-c48dbe9c236b?auto=format&fit=crop&w=1200&q=80",
-  turkey:
-    "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?auto=format&fit=crop&w=1200&q=80",
-  egypt:
-    "https://images.unsplash.com/photo-1539650116574-75c0c6d73f6e?auto=format&fit=crop&w=1200&q=80",
+  europe:
+    "https://images.unsplash.com/photo-1467269204594-9661b134dd2b?auto=format&fit=crop&w=1200&q=80",
+  china:
+    "https://images.unsplash.com/photo-1508804185872-d7badad00f7d?auto=format&fit=crop&w=1200&q=80",
+  japan:
+    "https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=1200&q=80",
+  "southeast-asia":
+    "https://images.unsplash.com/photo-1508009603885-50cf7c579365?auto=format&fit=crop&w=1200&q=80",
+  "middle-east":
+    "https://images.unsplash.com/photo-1512632578888-169bbbc64f33?auto=format&fit=crop&w=1200&q=80",
+  islands:
+    "https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&fit=crop&w=1200&q=80",
+  "remote-places":
+    "https://images.unsplash.com/photo-1476610182048-b716b8518aae?auto=format&fit=crop&w=1200&q=80",
 };
 
 const recommendationTypes = [
@@ -188,7 +190,7 @@ export default function HomePage() {
           <SectionHeading
             eyebrow="Explore destinations"
             title="Start with places, then find the people who make them easier to trust."
-            copy="A growing global archive for Chinese travelers, beginning with Europe, islands and coastal cities."
+            copy="A growing world archive for Chinese travelers, international visitors, remote workers and long-term independent travelers."
           />
           <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {destinations.map((destination) => (

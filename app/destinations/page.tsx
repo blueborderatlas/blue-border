@@ -40,10 +40,16 @@ const destinationGroups = [
       "https://images.unsplash.com/photo-1512632578888-169bbbc64f33?auto=format&fit=crop&w=1200&q=80",
   },
   {
-    name: "Remote Islands",
-    copy: "Farther places for slow arrivals, simple stays, practical routes and rare local knowledge.",
+    name: "Islands",
+    copy: "Island bases, local stays, practical routes and slower travel between sea and city.",
     image:
       "https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&fit=crop&w=1200&q=80",
+  },
+  {
+    name: "Remote Places",
+    copy: "Farther routes for long-term travelers, open landscapes and rare local knowledge.",
+    image:
+      "https://images.unsplash.com/photo-1476610182048-b716b8518aae?auto=format&fit=crop&w=1200&q=80",
   },
 ];
 

@@ -9,8 +9,8 @@ export function SiteFooter() {
             Blue Border
           </Link>
           <p className="mt-4 max-w-xl leading-7">
-            Hidden islands, quiet coasts and low-cost sea escapes across
-            Europe. Field notes for people who like the edge of the map.
+            Editorial travel discovery for trusted local places, people and
+            experiences around the world.
           </p>
         </div>
         <div className="flex flex-wrap items-start gap-5 md:justify-end">
@@ -23,7 +23,7 @@ export function SiteFooter() {
           <Link className="transition hover:text-foam" href="/journal">
             Journal
           </Link>
-          <Link className="transition hover:text-foam" href="#">
+          <Link className="transition hover:text-foam" href="/guides">
             Guides
           </Link>
           <Link className="transition hover:text-foam" href="/recommended">

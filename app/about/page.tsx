@@ -8,18 +8,26 @@ export const metadata: Metadata = {
     "About Blue Border, a personal coastal travel journal for hidden European islands, slow travel, low-cost routes and quiet seaside towns.",
 };
 
-const principles = [
-  "Human judgment before scale.",
-  "Context over ranking.",
-  "Long-term trust over quick exposure.",
-  "Clear separation between recommendation and payment.",
+const blueDoes = [
+  "Editorial travel stories that give places human context.",
+  "Practical guides for planning, moving, staying and adapting.",
+  "Trusted local recommendations for people, businesses and experiences.",
+  "Long-term quality review after a recommendation goes live.",
 ];
 
 const notBlue = [
-  "Not Google Maps: Blue is curated, not exhaustive.",
-  "Not Reddit: Blue is edited, not an open thread.",
-  "Not Xiaohongshu: Blue avoids trend-first recommendations.",
-  "Not a traditional travel blog: Blue connects stories, guides and trusted local businesses.",
+  "Not a booking platform.",
+  "Not Google Maps.",
+  "Not TripAdvisor.",
+  "Not Xiaohongshu.",
+  "Not a public review website.",
+];
+
+const trustStatuses = [
+  "Recommended",
+  "Verified",
+  "Under Review",
+  "Paused",
 ];
 
 export default function AboutPage() {
@@ -31,11 +39,12 @@ export default function AboutPage() {
             About Blue
           </p>
           <h1 className="mt-5 max-w-5xl font-serif text-6xl leading-[0.98] text-foam sm:text-8xl">
-            Travel recommendations built on trust.
+            A trusted way to discover the world.
           </h1>
           <p className="mt-8 max-w-3xl text-xl leading-9 text-mist">
-            Blue exists to help independent travelers find local places, people
-            and experiences that feel worth trusting before they arrive.
+            Blue connects travelers with reliable local people, businesses and
+            experiences through editorial curation, practical knowledge and
+            long-term trust.
           </p>
         </div>
       </section>
@@ -47,12 +56,16 @@ export default function AboutPage() {
           </p>
           <div className="max-w-4xl">
             <h2 className="font-serif text-4xl leading-tight text-foam sm:text-5xl">
-              Online travel advice is abundant. Trust is not.
+              Travel information is everywhere. Trust is harder to find.
             </h2>
             <p className="mt-6 text-lg leading-9 text-mist">
-              Search results, social posts and public reviews often blur
-              personal taste, paid visibility and real quality. Blue is built
-              for travelers who need fewer signals, but better ones.
+              Modern travelers move through fake reviews, SEO articles,
+              sponsored influencers and unreliable recommendations. Blue exists
+              to reduce uncertainty before a trip begins.
+            </p>
+            <p className="mt-6 text-lg leading-9 text-mist">
+              The goal is simple: help people discover places and people they
+              can genuinely trust.
             </p>
           </div>
         </div>
@@ -61,15 +74,10 @@ export default function AboutPage() {
       <section className="px-5 py-20 sm:px-8">
         <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.75fr_1.25fr]">
           <p className="text-xs uppercase tracking-[0.22em] text-sand">
-            How Blue works
+            What Blue does
           </p>
           <div className="grid gap-px overflow-hidden border border-white/10 bg-white/10 sm:grid-cols-2">
-            {[
-              "We look for local businesses and people with real usefulness for travelers.",
-              "We explain who each recommendation is suitable for.",
-              "We listen to feedback from travelers who actually connected through Blue.",
-              "We can maintain, upgrade, pause or remove recommendations over time.",
-            ].map((item) => (
+            {blueDoes.map((item) => (
               <div key={item} className="flex gap-3 bg-deep p-6">
                 <CheckCircle2
                   className="mt-1 shrink-0 text-sand"
@@ -87,14 +95,20 @@ export default function AboutPage() {
       <section className="border-y border-white/10 bg-white/[0.025] px-5 py-20 sm:px-8">
         <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.75fr_1.25fr]">
           <p className="text-xs uppercase tracking-[0.22em] text-sand">
-            What Blue is NOT
+            What makes Blue different
           </p>
-          <div className="grid gap-4">
-            {notBlue.map((item) => (
-              <div key={item} className="border border-white/10 bg-deep p-6">
-                <p className="text-lg leading-8 text-foam">{item}</p>
-              </div>
-            ))}
+          <div>
+            <h2 className="max-w-4xl font-serif text-4xl leading-tight text-foam sm:text-5xl">
+              Blue is a curated recommendation network, not another noisy
+              listing site.
+            </h2>
+            <div className="mt-10 grid gap-px overflow-hidden border border-white/10 bg-white/10 sm:grid-cols-2">
+              {notBlue.map((item) => (
+                <div key={item} className="bg-deep p-6">
+                  <p className="text-lg leading-8 text-foam">{item}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -102,16 +116,26 @@ export default function AboutPage() {
       <section className="px-5 py-20 sm:px-8">
         <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.75fr_1.25fr]">
           <p className="text-xs uppercase tracking-[0.22em] text-sand">
-            Our principles
+            The Blue Trust System
           </p>
-          <div className="grid gap-px overflow-hidden border border-white/10 bg-white/10 sm:grid-cols-2">
-            {principles.map((item) => (
-              <div key={item} className="bg-deep p-6">
-                <p className="font-serif text-2xl leading-tight text-foam">
-                  {item}
-                </p>
-              </div>
-            ))}
+          <div>
+            <h2 className="max-w-4xl font-serif text-4xl leading-tight text-foam sm:text-5xl">
+              Trust is earned over time, not purchased.
+            </h2>
+            <p className="mt-6 max-w-3xl text-lg leading-9 text-mist">
+              Recommendations are continuously reviewed. A local business can
+              move between trust stages as real feedback and long-term
+              observation accumulate.
+            </p>
+            <div className="mt-10 grid gap-px overflow-hidden border border-white/10 bg-white/10 sm:grid-cols-2 lg:grid-cols-4">
+              {trustStatuses.map((item) => (
+                <div key={item} className="bg-deep p-6">
+                  <p className="font-serif text-2xl leading-tight text-foam">
+                    {item}
+                  </p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>

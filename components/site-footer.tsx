@@ -14,14 +14,23 @@ export function SiteFooter() {
           </p>
         </div>
         <div className="flex flex-wrap items-start gap-5 md:justify-end">
+          <Link className="transition hover:text-foam" href="/">
+            Home
+          </Link>
+          <Link className="transition hover:text-foam" href="/destinations">
+            Destinations
+          </Link>
           <Link className="transition hover:text-foam" href="/journal">
             Journal
+          </Link>
+          <Link className="transition hover:text-foam" href="#">
+            Guides
           </Link>
           <Link className="transition hover:text-foam" href="/recommended">
             Recommended
           </Link>
-          <Link className="transition hover:text-foam" href="/categories">
-            Categories
+          <Link className="transition hover:text-foam" href="#">
+            Work With Blue
           </Link>
           <Link className="transition hover:text-foam" href="/about">
             About

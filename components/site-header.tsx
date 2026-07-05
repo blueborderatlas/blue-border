@@ -1,9 +1,12 @@
 import Link from "next/link";
 
 const navItems = [
+  { href: "/", label: "Home" },
+  { href: "/destinations", label: "Destinations" },
   { href: "/journal", label: "Journal" },
+  { href: "#", label: "Guides" },
   { href: "/recommended", label: "Recommended" },
-  { href: "/categories", label: "Categories" },
+  { href: "#", label: "Work With Blue" },
   { href: "/about", label: "About" },
 ];
 
@@ -21,7 +24,7 @@ export function SiteHeader() {
         <nav className="flex items-center gap-1 text-sm text-mist">
           {navItems.map((item) => (
             <Link
-              key={item.href}
+              key={item.label}
               href={item.href}
               className="px-3 py-2 transition hover:text-foam"
             >

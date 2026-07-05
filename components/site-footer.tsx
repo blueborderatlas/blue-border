@@ -9,8 +9,8 @@ export function SiteFooter() {
             Blue Border
           </Link>
           <p className="mt-4 max-w-xl leading-7">
-            Editorial travel discovery for trusted local places, people and
-            experiences around the world.
+            A trusted recommendation network for independent travelers
+            worldwide.
           </p>
         </div>
         <div className="flex flex-wrap items-start gap-5 md:justify-end">

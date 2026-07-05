@@ -39,12 +39,13 @@ export default function AboutPage() {
             About Blue
           </p>
           <h1 className="mt-5 max-w-5xl font-serif text-6xl leading-[0.98] text-foam sm:text-8xl">
-            A trusted way to discover the world.
+            A trusted recommendation network for independent travelers
+            worldwide.
           </h1>
           <p className="mt-8 max-w-3xl text-xl leading-9 text-mist">
-            Blue connects travelers with reliable local people, businesses and
+            Blue helps people discover reliable local people, businesses and
             experiences through editorial curation, practical knowledge and
-            long-term trust.
+            long-term review.
           </p>
         </div>
       </section>

@@ -34,6 +34,7 @@ const statusStyles: Record<TrustStatus, string> = {
   Recommended: "border-sky-300/35 bg-sky-300/10 text-foam",
   Verified: "border-emerald-300/35 bg-emerald-300/10 text-foam",
   "Under Review": "border-amber-300/35 bg-amber-300/10 text-foam",
+  Paused: "border-rose-300/35 bg-rose-300/10 text-foam",
 };
 
 export function generateStaticParams() {
@@ -68,7 +69,7 @@ export default async function RecommendationDetailPage({ params }: PageProps) {
 
   const thingsToKnow = [
     ["Opening hours", recommendation.thingsToKnow.openingHours],
-    ["Language", recommendation.thingsToKnow.language],
+    ["Language", recommendation.languages.join(", ")],
     ["Payment", recommendation.thingsToKnow.payment],
     ["Reservation", recommendation.thingsToKnow.reservation],
     ["Accessibility", recommendation.thingsToKnow.accessibility],
@@ -91,7 +92,7 @@ export default async function RecommendationDetailPage({ params }: PageProps) {
             {recommendation.name}
           </h1>
           <p className="mt-6 text-lg leading-8 text-foam/88">
-            {recommendation.location}
+            {recommendation.city}, {recommendation.country}
           </p>
         </div>
       </section>
@@ -113,7 +114,7 @@ export default async function RecommendationDetailPage({ params }: PageProps) {
             Why Blue Recommends
           </p>
           <div className="grid gap-px overflow-hidden border border-white/10 bg-white/10 sm:grid-cols-2">
-            {recommendation.reasons.map((reason) => (
+            {recommendation.whyBlueRecommends.map((reason) => (
               <div key={reason} className="flex gap-3 bg-deep p-6">
                 <CheckCircle2
                   className="mt-1 shrink-0 text-sand"
@@ -228,15 +229,15 @@ export default async function RecommendationDetailPage({ params }: PageProps) {
               Contact placeholder
             </h2>
             <p className="mt-5 max-w-3xl text-base leading-8 text-mist">
-              Blue does not process bookings, payments or refunds. Future
-              versions can show verified contact instructions here while the
-              traveler communicates directly with the business.
+              {recommendation.contact.instructions} Blue does not process
+              bookings, payments or refunds; travelers communicate directly
+              with the business.
             </p>
             <Link
-              href="#"
+              href={recommendation.bookingLink}
               className="mt-8 inline-flex min-h-12 items-center gap-2 bg-foam px-5 text-sm uppercase tracking-[0.16em] text-ink transition hover:bg-sand"
             >
-              Contact placeholder{" "}
+              {recommendation.contact.label}{" "}
               <ArrowUpRight size={16} aria-hidden="true" />
             </Link>
           </div>
@@ -249,7 +250,7 @@ export default async function RecommendationDetailPage({ params }: PageProps) {
             Nearby Recommendations
           </p>
           <div className="mt-8 grid gap-4 md:grid-cols-3">
-            {recommendation.nearby.map((item) => (
+            {recommendation.nearbyRecommendations.map((item) => (
               <article
                 key={item.name}
                 className="border border-white/10 bg-deep p-6"

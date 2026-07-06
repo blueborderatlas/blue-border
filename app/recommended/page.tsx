@@ -22,16 +22,8 @@ const statusStyles: Record<TrustStatus, string> = {
   Recommended: "border-sky-300/35 bg-sky-300/10 text-foam",
   Verified: "border-emerald-300/35 bg-emerald-300/10 text-foam",
   "Under Review": "border-amber-300/35 bg-amber-300/10 text-foam",
+  Paused: "border-rose-300/35 bg-rose-300/10 text-foam",
 };
-
-function getPlaceParts(location: string) {
-  const [city, country] = location.split(",").map((item) => item.trim());
-
-  return {
-    city,
-    country: country ?? location,
-  };
-}
 
 export default function RecommendedPage() {
   return (
@@ -68,8 +60,6 @@ export default function RecommendedPage() {
       <section className="px-5 pb-24 sm:px-8">
         <div className="mx-auto grid max-w-7xl gap-5 md:grid-cols-2 lg:grid-cols-3">
           {recommendations.map((recommendation) => {
-            const { city, country } = getPlaceParts(recommendation.location);
-
             return (
               <Link
                 key={recommendation.slug}
@@ -91,7 +81,7 @@ export default function RecommendedPage() {
                     <span>{recommendation.category}</span>
                     <span className="h-1 w-1 rounded-full bg-sand/70" />
                     <span>
-                      {country} / {city}
+                      {recommendation.country} / {recommendation.city}
                     </span>
                   </div>
 

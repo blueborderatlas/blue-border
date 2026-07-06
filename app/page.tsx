@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { destinations } from "@/lib/archive";
+import { getFeaturedPosts } from "@/lib/posts";
 import { recommendations } from "@/lib/recommendations";
 
 const heroImage =
@@ -26,24 +27,6 @@ const destinationNotes: Record<string, string> = {
   "southeast-asia": "Warm movement, practical routes and local rhythm.",
 };
 
-const guideCards = [
-  {
-    title: "Travel Planning",
-    image:
-      "https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1400&q=82",
-  },
-  {
-    title: "Accommodation",
-    image:
-      "https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?auto=format&fit=crop&w=1400&q=82",
-  },
-  {
-    title: "Local Trust",
-    image:
-      "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=1400&q=82",
-  },
-];
-
 export default function HomePage() {
   const featuredDestinations = destinationSlugs
     .map((slug) =>
@@ -54,6 +37,7 @@ export default function HomePage() {
         Boolean(destination),
     );
   const featuredRecommendations = recommendations.slice(0, 3);
+  const featuredStories = getFeaturedPosts().slice(0, 3);
 
   return (
     <main>
@@ -186,39 +170,43 @@ export default function HomePage() {
           <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
             <div>
               <p className="text-xs uppercase tracking-[0.22em] text-sand">
-                Guides
+                Journal
               </p>
               <h2 className="mt-5 max-w-3xl font-serif text-5xl leading-none text-foam sm:text-7xl">
-                Quiet knowledge for better travel.
+                Stories with a human trace.
               </h2>
             </div>
             <Link
-              href="/guides"
+              href="/journal"
               className="inline-flex w-fit items-center gap-2 text-sm uppercase tracking-[0.18em] text-foam hover:text-sand"
             >
-              Read guides <ArrowUpRight size={16} aria-hidden="true" />
+              Read journal <ArrowUpRight size={16} aria-hidden="true" />
             </Link>
           </div>
 
           <div className="mt-20 grid gap-8 md:grid-cols-3">
-            {guideCards.map((guide) => (
-              <article
-                key={guide.title}
+            {featuredStories.map((story) => (
+              <Link
+                key={story.slug}
+                href={`/journal/${story.slug}`}
                 className="group relative min-h-[48vh] overflow-hidden bg-tide"
               >
                 <img
-                  src={guide.image}
+                  src={story.coverImage}
                   alt=""
                   className="absolute inset-0 h-full w-full object-cover opacity-[0.78] group-hover:opacity-95"
                   loading="lazy"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/16 to-transparent" />
                 <div className="absolute inset-x-0 bottom-0 p-6 sm:p-8">
+                  <p className="text-xs uppercase tracking-[0.16em] text-sand">
+                    {story.category}
+                  </p>
                   <h3 className="font-serif text-4xl leading-tight text-foam">
-                    {guide.title}
+                    {story.title}
                   </h3>
                 </div>
-              </article>
+              </Link>
             ))}
           </div>
         </div>

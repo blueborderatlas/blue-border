@@ -5,7 +5,7 @@ import { getFeaturedPosts } from "@/lib/posts";
 import { recommendations } from "@/lib/recommendations";
 
 const heroImage =
-  "https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=2200&q=85";
+  "https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=2400&q=85";
 
 const destinationSlugs = ["europe", "china", "japan", "southeast-asia"];
 
@@ -21,11 +21,42 @@ const destinationImages: Record<string, string> = {
 };
 
 const destinationNotes: Record<string, string> = {
-  europe: "Independent cities, coastlines and local stays.",
-  china: "Modern travel, deep culture and trusted local context.",
-  japan: "Quiet neighborhoods, food rituals and slower routes.",
-  "southeast-asia": "Warm movement, practical routes and local rhythm.",
+  europe: "Old cities, local rooms and quieter routes.",
+  china: "A deeper way to read modern travel in China.",
+  japan: "Small rituals, neighborhood stays and careful movement.",
+  "southeast-asia": "Warm routes, trusted people and practical rhythm.",
 };
+
+function SectionIntro({
+  label,
+  title,
+  href,
+  cta,
+}: {
+  label: string;
+  title: string;
+  href: string;
+  cta: string;
+}) {
+  return (
+    <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+      <div>
+        <p className="text-xs uppercase tracking-[0.22em] text-sand">
+          {label}
+        </p>
+        <h2 className="mt-5 max-w-3xl font-serif text-5xl leading-none text-foam sm:text-7xl">
+          {title}
+        </h2>
+      </div>
+      <Link
+        href={href}
+        className="inline-flex w-fit items-center gap-2 text-sm uppercase tracking-[0.18em] text-foam hover:text-sand"
+      >
+        {cta} <ArrowUpRight size={16} aria-hidden="true" />
+      </Link>
+    </div>
+  );
+}
 
 export default function HomePage() {
   const featuredDestinations = destinationSlugs
@@ -45,9 +76,9 @@ export default function HomePage() {
         <img
           src={heroImage}
           alt=""
-          className="absolute inset-0 h-full w-full object-cover opacity-[0.58]"
+          className="absolute inset-0 h-full w-full object-cover opacity-[0.54]"
         />
-        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(6,17,31,0.96),rgba(6,17,31,0.68),rgba(6,17,31,0.24)),linear-gradient(0deg,rgba(6,17,31,0.96),transparent_48%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(6,17,31,0.98),rgba(6,17,31,0.7),rgba(6,17,31,0.2)),linear-gradient(0deg,rgba(6,17,31,0.95),transparent_54%)]" />
         <div className="relative mx-auto flex min-h-[calc(100svh-12rem)] w-full max-w-7xl flex-col justify-center">
           <p className="text-sm uppercase tracking-[0.38em] text-sand sm:text-base">
             Blue
@@ -59,7 +90,7 @@ export default function HomePage() {
             href="/destinations"
             className="mt-12 inline-flex min-h-12 w-fit items-center gap-2 bg-foam px-6 text-sm uppercase tracking-[0.16em] text-ink hover:bg-sand"
           >
-            Explore destinations <ArrowUpRight size={16} aria-hidden="true" />
+            Explore <ArrowUpRight size={16} aria-hidden="true" />
           </Link>
         </div>
         <div className="absolute bottom-8 left-1/2 hidden -translate-x-1/2 items-center gap-3 text-xs uppercase tracking-[0.18em] text-mist sm:flex">
@@ -69,44 +100,34 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="flex min-h-[100svh] items-center px-5 py-28 sm:px-8">
+      <section className="flex min-h-[100svh] items-center px-5 py-24 sm:px-8">
         <div className="mx-auto w-full max-w-7xl">
-          <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
-            <div>
-              <p className="text-xs uppercase tracking-[0.22em] text-sand">
-                Destinations
-              </p>
-              <h2 className="mt-5 max-w-3xl font-serif text-5xl leading-none text-foam sm:text-7xl">
-                The world, edited.
-              </h2>
-            </div>
-            <Link
-              href="/destinations"
-              className="inline-flex w-fit items-center gap-2 text-sm uppercase tracking-[0.18em] text-foam hover:text-sand"
-            >
-              View destinations <ArrowUpRight size={16} aria-hidden="true" />
-            </Link>
-          </div>
+          <SectionIntro
+            label="Destinations"
+            title="Four ways into the world."
+            href="/destinations"
+            cta="View destinations"
+          />
 
-          <div className="mt-20 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-16 grid gap-6 lg:grid-cols-2">
             {featuredDestinations.map((destination) => (
               <Link
                 key={destination.slug}
                 href={`/destinations/${destination.slug}`}
-                className="group relative min-h-[58vh] overflow-hidden bg-tide"
+                className="group relative min-h-[34vh] overflow-hidden bg-tide sm:min-h-[38vh]"
               >
                 <img
                   src={destinationImages[destination.slug]}
                   alt=""
-                  className="absolute inset-0 h-full w-full object-cover opacity-[0.86] group-hover:opacity-100"
+                  className="absolute inset-0 h-full w-full object-cover opacity-[0.84] group-hover:opacity-100"
                   loading="lazy"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-ink/92 via-ink/18 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-ink/92 via-ink/20 to-transparent" />
                 <div className="absolute inset-x-0 bottom-0 p-6 sm:p-8">
                   <h3 className="font-serif text-5xl leading-none text-foam">
                     {destination.name}
                   </h3>
-                  <p className="mt-5 max-w-xs text-sm leading-7 text-mist">
+                  <p className="mt-4 max-w-sm text-sm leading-7 text-mist">
                     {destinationNotes[destination.slug]}
                   </p>
                 </div>
@@ -116,48 +137,40 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="flex min-h-[100svh] items-center border-y border-white/10 bg-white/[0.025] px-5 py-28 sm:px-8">
+      <section className="flex min-h-[100svh] items-center border-y border-white/10 bg-white/[0.025] px-5 py-24 sm:px-8">
         <div className="mx-auto w-full max-w-7xl">
-          <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
-            <div>
-              <p className="text-xs uppercase tracking-[0.22em] text-sand">
-                Recommended
-              </p>
-              <h2 className="mt-5 max-w-3xl font-serif text-5xl leading-none text-foam sm:text-7xl">
-                People and places worth knowing.
-              </h2>
-            </div>
-            <Link
-              href="/recommended"
-              className="inline-flex w-fit items-center gap-2 text-sm uppercase tracking-[0.18em] text-foam hover:text-sand"
-            >
-              View all <ArrowUpRight size={16} aria-hidden="true" />
-            </Link>
-          </div>
+          <SectionIntro
+            label="Recommended"
+            title="People and places worth knowing."
+            href="/recommended"
+            cta="View all"
+          />
 
-          <div className="mt-20 grid gap-8 lg:grid-cols-3">
-            {featuredRecommendations.map((recommendation) => (
+          <div className="mt-16 grid gap-6 lg:grid-cols-12 lg:grid-rows-2">
+            {featuredRecommendations.map((recommendation, index) => (
               <Link
                 key={recommendation.slug}
                 href={`/recommended/${recommendation.slug}`}
-                className="group block"
+                className={`group relative min-h-[36vh] overflow-hidden bg-tide ${
+                  index === 0
+                    ? "lg:col-span-7 lg:row-span-2 lg:min-h-[62vh]"
+                    : "lg:col-span-5 lg:min-h-[29vh]"
+                }`}
               >
-                <div className="relative h-[58vh] min-h-[28rem] overflow-hidden bg-tide">
-                  <img
-                    src={recommendation.coverImage}
-                    alt=""
-                    className="h-full w-full object-cover opacity-[0.84] group-hover:opacity-100"
-                    loading="lazy"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-ink/88 via-ink/10 to-transparent" />
-                  <div className="absolute inset-x-0 bottom-0 p-6 sm:p-8">
-                    <p className="text-xs uppercase tracking-[0.16em] text-sand">
-                      {recommendation.category} · {recommendation.city}
-                    </p>
-                    <h3 className="mt-4 font-serif text-3xl leading-tight text-foam group-hover:text-sand">
-                      {recommendation.name}
-                    </h3>
-                  </div>
+                <img
+                  src={recommendation.coverImage}
+                  alt=""
+                  className="absolute inset-0 h-full w-full object-cover opacity-[0.84] group-hover:opacity-100"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/14 to-transparent" />
+                <div className="absolute inset-x-0 bottom-0 p-6 sm:p-8">
+                  <p className="text-xs uppercase tracking-[0.16em] text-sand">
+                    {recommendation.category} · {recommendation.city}
+                  </p>
+                  <h3 className="mt-4 max-w-xl font-serif text-4xl leading-tight text-foam group-hover:text-sand">
+                    {recommendation.name}
+                  </h3>
                 </div>
               </Link>
             ))}
@@ -165,44 +178,38 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="flex min-h-[100svh] items-center px-5 py-28 sm:px-8">
+      <section className="flex min-h-[100svh] items-center px-5 py-24 sm:px-8">
         <div className="mx-auto w-full max-w-7xl">
-          <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
-            <div>
-              <p className="text-xs uppercase tracking-[0.22em] text-sand">
-                Journal
-              </p>
-              <h2 className="mt-5 max-w-3xl font-serif text-5xl leading-none text-foam sm:text-7xl">
-                Stories with a human trace.
-              </h2>
-            </div>
-            <Link
-              href="/journal"
-              className="inline-flex w-fit items-center gap-2 text-sm uppercase tracking-[0.18em] text-foam hover:text-sand"
-            >
-              Read journal <ArrowUpRight size={16} aria-hidden="true" />
-            </Link>
-          </div>
+          <SectionIntro
+            label="Journal"
+            title="Stories with a human trace."
+            href="/journal"
+            cta="Read journal"
+          />
 
-          <div className="mt-20 grid gap-8 md:grid-cols-3">
-            {featuredStories.map((story) => (
+          <div className="mt-16 grid gap-6 lg:grid-cols-12 lg:grid-rows-2">
+            {featuredStories.map((story, index) => (
               <Link
                 key={story.slug}
                 href={`/journal/${story.slug}`}
-                className="group relative min-h-[48vh] overflow-hidden bg-tide"
+                className={`group relative overflow-hidden bg-tide ${
+                  index === 0
+                    ? "min-h-[58vh] lg:col-span-8 lg:row-span-2"
+                    : "min-h-[32vh] lg:col-span-4"
+                }`}
               >
                 <img
                   src={story.coverImage}
                   alt=""
-                  className="absolute inset-0 h-full w-full object-cover opacity-[0.78] group-hover:opacity-95"
+                  className="absolute inset-0 h-full w-full object-cover opacity-[0.8] group-hover:opacity-95"
                   loading="lazy"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/16 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-ink/92 via-ink/16 to-transparent" />
                 <div className="absolute inset-x-0 bottom-0 p-6 sm:p-8">
                   <p className="text-xs uppercase tracking-[0.16em] text-sand">
                     {story.category}
                   </p>
-                  <h3 className="font-serif text-4xl leading-tight text-foam">
+                  <h3 className="mt-4 max-w-2xl font-serif text-4xl leading-tight text-foam">
                     {story.title}
                   </h3>
                 </div>
@@ -212,17 +219,19 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="flex min-h-[100svh] items-center px-5 py-28 sm:px-8">
-        <div className="mx-auto flex min-h-[66vh] w-full max-w-7xl flex-col justify-center border border-white/10 bg-white/[0.035] p-8 sm:p-12 lg:p-16">
-          <p className="text-xs uppercase tracking-[0.22em] text-sand">
-            Work With Blue
-          </p>
-          <h2 className="mt-6 max-w-4xl font-serif text-6xl leading-none text-foam sm:text-8xl">
-            Trust is the product.
-          </h2>
+      <section className="flex min-h-[100svh] items-center px-5 py-24 sm:px-8">
+        <div className="mx-auto grid min-h-[68vh] w-full max-w-7xl items-center border border-white/10 bg-white/[0.035] p-8 sm:p-12 lg:grid-cols-[1fr_auto] lg:p-16">
+          <div>
+            <p className="text-xs uppercase tracking-[0.22em] text-sand">
+              Work With Blue
+            </p>
+            <h2 className="mt-6 max-w-4xl font-serif text-6xl leading-none text-foam sm:text-8xl">
+              Trust is the product.
+            </h2>
+          </div>
           <Link
             href="/about"
-            className="mt-12 inline-flex min-h-12 w-fit items-center gap-2 bg-foam px-6 text-sm uppercase tracking-[0.16em] text-ink hover:bg-sand"
+            className="mt-12 inline-flex min-h-12 w-fit items-center gap-2 bg-foam px-6 text-sm uppercase tracking-[0.16em] text-ink hover:bg-sand lg:mt-0"
           >
             Learn about Blue <ArrowUpRight size={16} aria-hidden="true" />
           </Link>

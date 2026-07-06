@@ -4,19 +4,13 @@ import Link from "next/link";
 import { useState } from "react";
 import { ArrowUpRight, BadgeCheck } from "lucide-react";
 import {
+  recommendationCategories,
   type Recommendation,
   type RecommendationCategory,
   type TrustStatus,
 } from "@/lib/recommendations";
 
-const filters: RecommendationCategory[] = [
-  "Stay",
-  "Food",
-  "Coffee",
-  "Diving",
-  "Nature",
-  "Local Experience",
-];
+const filters: RecommendationCategory[] = [...recommendationCategories];
 
 const statusStyles: Record<TrustStatus, string> = {
   Recommended: "border-sky-300/35 bg-sky-300/10 text-foam",

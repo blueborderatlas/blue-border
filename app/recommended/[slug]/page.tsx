@@ -269,6 +269,32 @@ export default async function RecommendationDetailPage({ params }: PageProps) {
           </div>
         </div>
       </section>
+
+      {recommendation.relatedGuides.length > 0 ? (
+        <section className="px-5 pb-24 sm:px-8">
+          <div className="mx-auto max-w-7xl border-t border-white/10 pt-14">
+            <p className="text-xs uppercase tracking-[0.22em] text-sand">
+              Related Guides
+            </p>
+            <div className="mt-8 grid gap-4 md:grid-cols-3">
+              {recommendation.relatedGuides.map((guide) => (
+                <Link
+                  key={`${guide.title}-${guide.href}`}
+                  href={guide.href}
+                  className="border border-white/10 bg-deep p-6 transition hover:border-sand/45"
+                >
+                  <h3 className="font-serif text-3xl leading-tight text-foam">
+                    {guide.title}
+                  </h3>
+                  <p className="mt-5 text-xs uppercase tracking-[0.14em] text-mist">
+                    Open guide
+                  </p>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      ) : null}
     </main>
   );
 }

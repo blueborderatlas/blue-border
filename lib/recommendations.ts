@@ -70,11 +70,11 @@ export type Recommendation = {
 export const recommendations: Recommendation[] = [
   {
     id: "egypt-diving-001",
-    slug: "hurghada-small-group-dive-desk",
-    name: "Hurghada Small-Group Dive Desk",
+    slug: "dahab-dive-center",
+    name: "Dahab Dive Center",
     category: "Diving",
     country: "Egypt",
-    city: "Hurghada",
+    city: "Dahab",
     coverImage:
       "https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=2200&q=85",
     gallery: [
@@ -83,16 +83,16 @@ export const recommendations: Recommendation[] = [
       "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1400&q=80",
     ],
     summary:
-      "A Red Sea diving contact profile for travelers who care about safety, equipment clarity and realistic sea conditions more than the cheapest day trip.",
+      "A Dahab diving recommendation for travelers who care about safety, equipment clarity and a calm introduction to the Red Sea.",
     whyBlueRecommends: [
-      "Small-group format makes safety checks and communication easier.",
-      "Good fit for travelers comparing operators beyond price.",
-      "Weather, equipment and cancellation terms are treated as part of the recommendation.",
+      "Dahab is a strong base for shore-access diving and slower Red Sea travel.",
+      "Good fit for travelers comparing dive centers beyond price.",
+      "Safety process, equipment clarity and sea conditions are treated as part of the recommendation.",
       "Useful for first-time Red Sea visitors who want direct questions answered before committing.",
     ],
     bestFor: ["Solo travelers", "Couples", "Backpackers"],
     thingsToKnow: {
-      openingHours: "Boat schedules depend on weather and sea conditions.",
+      openingHours: "Dive schedules depend on weather, site conditions and certification level.",
       payment: "Confirm deposit, cash/card terms and cancellation policy directly.",
       reservation: "Advance reservation is recommended in high season.",
       accessibility: "Ask about boat access, equipment weight and water-entry support.",
@@ -100,25 +100,25 @@ export const recommendations: Recommendation[] = [
     trustStatus: "Under Review",
     languages: ["Arabic", "English"],
     contact: {
-      label: "Ask about dive schedule",
+      label: "Ask about diving",
       instructions:
         "Contact details are placeholder until Blue completes operator verification.",
     },
     bookingLink: "#",
     coordinates: {
       lat: 27.2579,
-      lng: 33.8116,
+      lng: 34.5136,
     },
     nearbyRecommendations: [
       {
-        name: "Hurghada Quiet Stay Base",
+        name: "Dahab Accommodation",
         category: "Stay",
-        location: "El Mamsha area",
+        location: "Dahab town",
       },
       {
-        name: "Red Sea Morning Coffee",
+        name: "Dahab Coffee",
         category: "Coffee",
-        location: "Marina side street",
+        location: "Lighthouse area",
       },
     ],
     relatedGuides: [
@@ -127,18 +127,18 @@ export const recommendations: Recommendation[] = [
         href: "/guides",
       },
       {
-        title: "Red Sea trip planning notes",
+        title: "Egypt coastal month notes",
         href: "/journal/egypt-coastal-month-red-sea-notes",
       },
     ],
   },
   {
     id: "egypt-stay-001",
-    slug: "hurghada-quiet-stay-base",
-    name: "Hurghada Quiet Stay Base",
+    slug: "dahab-accommodation",
+    name: "Dahab Accommodation",
     category: "Stay",
     country: "Egypt",
-    city: "Hurghada",
+    city: "Dahab",
     coverImage:
       "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=2200&q=85",
     gallery: [
@@ -147,17 +147,17 @@ export const recommendations: Recommendation[] = [
       "https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=1400&q=80",
     ],
     summary:
-      "A practical Red Sea base for travelers who want calm nights, simple logistics and easier access to diving or day trips.",
+      "A Dahab accommodation profile for travelers who want walkable routines, quiet nights and easy access to diving, cafes and the sea.",
     whyBlueRecommends: [
-      "Location works better for quiet routines than resort-only isolation.",
-      "Helpful for travelers planning multiple sea days.",
-      "Good example of a stay where neighborhood choice matters as much as the room.",
+      "Dahab works well for travelers who want a simple base rather than resort isolation.",
+      "Helpful for longer stays, dive weeks and remote work routines.",
+      "Neighborhood choice matters here: sea access, noise and walkability can change the whole trip.",
     ],
     bestFor: ["Solo travelers", "Couples", "Digital nomads"],
     thingsToKnow: {
       openingHours: "Check-in hours should be confirmed before arrival.",
       payment: "Direct payment terms vary by season and length of stay.",
-      reservation: "Reserve early around holidays and diving season.",
+      reservation: "Reserve early around holidays, diving weeks and winter high season.",
       accessibility: "Ask about elevator access and room floor before booking.",
     },
     trustStatus: "Recommended",
@@ -165,23 +165,23 @@ export const recommendations: Recommendation[] = [
     contact: {
       label: "Ask about availability",
       instructions:
-        "Blue will replace this with verified direct contact once the stay is reviewed.",
+        "Blue will replace this with verified direct contact once the accommodation is reviewed.",
     },
     bookingLink: "#",
     coordinates: {
       lat: 27.1908,
-      lng: 33.8196,
+      lng: 34.5165,
     },
     nearbyRecommendations: [
       {
-        name: "Hurghada Small-Group Dive Desk",
+        name: "Dahab Dive Center",
         category: "Diving",
-        location: "Marina pickup route",
+        location: "Lighthouse and dive shop area",
       },
       {
-        name: "Red Sea Morning Coffee",
+        name: "Dahab Coffee",
         category: "Coffee",
-        location: "Marina side street",
+        location: "Lighthouse area",
       },
     ],
     relatedGuides: [
@@ -193,11 +193,11 @@ export const recommendations: Recommendation[] = [
   },
   {
     id: "egypt-coffee-001",
-    slug: "red-sea-morning-coffee",
-    name: "Red Sea Morning Coffee",
+    slug: "dahab-coffee",
+    name: "Dahab Coffee",
     category: "Coffee",
     country: "Egypt",
-    city: "Hurghada",
+    city: "Dahab",
     coverImage:
       "https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&w=2200&q=85",
     gallery: [
@@ -206,11 +206,11 @@ export const recommendations: Recommendation[] = [
       "https://images.unsplash.com/photo-1442512595331-e89e73853f31?auto=format&fit=crop&w=1400&q=80",
     ],
     summary:
-      "A low-key coffee stop for slow mornings before a boat day, airport transfer or long walk along the Red Sea.",
+      "A Dahab coffee recommendation for slow mornings, laptop hours and meeting before a dive or coastal walk.",
     whyBlueRecommends: [
-      "Useful as a simple meeting point before sea activities.",
-      "A calmer alternative to hotel breakfast when planning the day.",
-      "Good fit for travelers who want a pause, not a scene.",
+      "Useful as a meeting point before diving, transport or a long sea walk.",
+      "Fits Dahab's slower rhythm better than a rushed breakfast stop.",
+      "Good for travelers who want a pause, not a scene.",
     ],
     bestFor: ["Solo travelers", "Couples", "Digital nomads"],
     thingsToKnow: {
@@ -228,18 +228,18 @@ export const recommendations: Recommendation[] = [
     bookingLink: "#",
     coordinates: {
       lat: 27.2226,
-      lng: 33.8397,
+      lng: 34.517,
     },
     nearbyRecommendations: [
       {
-        name: "Hurghada Quiet Stay Base",
+        name: "Dahab Accommodation",
         category: "Stay",
-        location: "El Mamsha area",
+        location: "Dahab town",
       },
       {
-        name: "Hurghada Small-Group Dive Desk",
+        name: "Dahab Dive Center",
         category: "Diving",
-        location: "Marina pickup route",
+        location: "Lighthouse and dive shop area",
       },
     ],
     relatedGuides: [
@@ -251,8 +251,8 @@ export const recommendations: Recommendation[] = [
   },
   {
     id: "sardinia-stay-001",
-    slug: "margine-rosso-quiet-stay",
-    name: "Margine Rosso Quiet Stay",
+    slug: "sardinia-accommodation",
+    name: "Sardinia Accommodation",
     category: "Stay",
     country: "Italy",
     city: "Sardinia",
@@ -291,12 +291,12 @@ export const recommendations: Recommendation[] = [
     },
     nearbyRecommendations: [
       {
-        name: "Poetto Morning Beach",
+        name: "Poetto Beach",
         category: "Beach",
         location: "Poetto coastline",
       },
       {
-        name: "Cagliari Harbor Table",
+        name: "Cagliari Marina Restaurant",
         category: "Restaurant",
         location: "Cagliari center",
       },
@@ -310,8 +310,8 @@ export const recommendations: Recommendation[] = [
   },
   {
     id: "sardinia-beach-001",
-    slug: "poetto-morning-beach",
-    name: "Poetto Morning Beach",
+    slug: "poetto-beach",
+    name: "Poetto Beach",
     category: "Beach",
     country: "Italy",
     city: "Sardinia",
@@ -350,12 +350,12 @@ export const recommendations: Recommendation[] = [
     },
     nearbyRecommendations: [
       {
-        name: "Margine Rosso Quiet Stay",
+        name: "Sardinia Accommodation",
         category: "Stay",
         location: "Residential coast side",
       },
       {
-        name: "Cagliari Harbor Table",
+        name: "Cagliari Marina Restaurant",
         category: "Restaurant",
         location: "Cagliari center",
       },
@@ -369,8 +369,8 @@ export const recommendations: Recommendation[] = [
   },
   {
     id: "sardinia-restaurant-001",
-    slug: "cagliari-harbor-table",
-    name: "Cagliari Harbor Table",
+    slug: "cagliari-marina-restaurant",
+    name: "Cagliari Marina Restaurant",
     category: "Restaurant",
     country: "Italy",
     city: "Sardinia",
@@ -408,12 +408,12 @@ export const recommendations: Recommendation[] = [
     },
     nearbyRecommendations: [
       {
-        name: "Poetto Morning Beach",
+        name: "Poetto Beach",
         category: "Beach",
         location: "Poetto coastline",
       },
       {
-        name: "Margine Rosso Quiet Stay",
+        name: "Sardinia Accommodation",
         category: "Stay",
         location: "Residential coast side",
       },
@@ -427,8 +427,8 @@ export const recommendations: Recommendation[] = [
   },
   {
     id: "japan-coffee-001",
-    slug: "tokyo-side-street-coffee",
-    name: "Tokyo Side-Street Coffee",
+    slug: "tokyo-coffee",
+    name: "Tokyo Coffee",
     category: "Coffee",
     country: "Japan",
     city: "Tokyo",
@@ -466,7 +466,7 @@ export const recommendations: Recommendation[] = [
     },
     nearbyRecommendations: [
       {
-        name: "Tokyo Neighborhood Introduction",
+        name: "Kyoto Local Experience",
         category: "Local Experience",
         location: "West Tokyo",
       },
@@ -480,8 +480,8 @@ export const recommendations: Recommendation[] = [
   },
   {
     id: "japan-local-001",
-    slug: "kyoto-neighborhood-introduction",
-    name: "Kyoto Neighborhood Introduction",
+    slug: "kyoto-local-experience",
+    name: "Kyoto Local Experience",
     category: "Local Experience",
     country: "Japan",
     city: "Kyoto",
@@ -520,7 +520,7 @@ export const recommendations: Recommendation[] = [
     },
     nearbyRecommendations: [
       {
-        name: "Tokyo Side-Street Coffee",
+        name: "Tokyo Coffee",
         category: "Coffee",
         location: "Tokyo route planning stop",
       },
@@ -534,8 +534,8 @@ export const recommendations: Recommendation[] = [
   },
   {
     id: "germany-housing-001",
-    slug: "berlin-student-housing-desk",
-    name: "Berlin Student Housing Desk",
+    slug: "germany-housing",
+    name: "Germany Housing",
     category: "Housing",
     country: "Germany",
     city: "Berlin",
@@ -574,12 +574,12 @@ export const recommendations: Recommendation[] = [
     },
     nearbyRecommendations: [
       {
-        name: "Berlin Reading Cafe",
+        name: "Berlin Cafe",
         category: "Cafe",
         location: "Prenzlauer Berg",
       },
       {
-        name: "Munich Quiet Study Room",
+        name: "Germany Study-Friendly Place",
         category: "Study",
         location: "University district",
       },
@@ -593,8 +593,8 @@ export const recommendations: Recommendation[] = [
   },
   {
     id: "germany-cafe-001",
-    slug: "berlin-reading-cafe",
-    name: "Berlin Reading Cafe",
+    slug: "berlin-cafe",
+    name: "Berlin Cafe",
     category: "Cafe",
     country: "Germany",
     city: "Berlin",
@@ -632,7 +632,7 @@ export const recommendations: Recommendation[] = [
     },
     nearbyRecommendations: [
       {
-        name: "Berlin Student Housing Desk",
+        name: "Germany Housing",
         category: "Housing",
         location: "Berlin newcomer support",
       },
@@ -646,8 +646,8 @@ export const recommendations: Recommendation[] = [
   },
   {
     id: "germany-study-001",
-    slug: "munich-quiet-study-room",
-    name: "Munich Quiet Study Room",
+    slug: "germany-study-friendly-place",
+    name: "Germany Study-Friendly Place",
     category: "Study",
     country: "Germany",
     city: "Munich",
@@ -685,7 +685,7 @@ export const recommendations: Recommendation[] = [
     },
     nearbyRecommendations: [
       {
-        name: "Berlin Reading Cafe",
+        name: "Berlin Cafe",
         category: "Cafe",
         location: "Berlin planning stop",
       },

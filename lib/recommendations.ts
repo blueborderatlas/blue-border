@@ -27,6 +27,16 @@ export type TravelerType =
   | "Families"
   | "Backpackers";
 
+export type PriceLevel = "Free" | "$" | "$$" | "$$$";
+
+export type RecommendationTrust = {
+  blueVerified: boolean;
+  personallyVisited: boolean;
+  lastUpdated: string;
+  priceLevel: PriceLevel;
+  whyBlueChoseThis: string;
+};
+
 export type Recommendation = {
   id: string;
   slug: string;
@@ -46,6 +56,7 @@ export type Recommendation = {
     accessibility: string;
   };
   trustStatus: TrustStatus;
+  trust: RecommendationTrust;
   languages: string[];
   contact: {
     label: string;
@@ -98,6 +109,14 @@ export const recommendations: Recommendation[] = [
       accessibility: "Ask about boat access, equipment weight and water-entry support.",
     },
     trustStatus: "Under Review",
+    trust: {
+      blueVerified: false,
+      personallyVisited: false,
+      lastUpdated: "2026-07-07",
+      priceLevel: "$$",
+      whyBlueChoseThis:
+        "Dahab is a trust-sensitive diving destination where safety, equipment clarity and communication matter more than a generic travel ranking.",
+    },
     languages: ["Arabic", "English"],
     contact: {
       label: "Ask about diving",
@@ -161,6 +180,14 @@ export const recommendations: Recommendation[] = [
       accessibility: "Ask about elevator access and room floor before booking.",
     },
     trustStatus: "Recommended",
+    trust: {
+      blueVerified: true,
+      personallyVisited: false,
+      lastUpdated: "2026-07-07",
+      priceLevel: "$$",
+      whyBlueChoseThis:
+        "A good Dahab base can shape the whole trip, especially for travelers balancing diving, work routines and quiet nights.",
+    },
     languages: ["Arabic", "English"],
     contact: {
       label: "Ask about availability",
@@ -220,6 +247,14 @@ export const recommendations: Recommendation[] = [
       accessibility: "Street access should be checked for mobility needs.",
     },
     trustStatus: "Under Review",
+    trust: {
+      blueVerified: false,
+      personallyVisited: false,
+      lastUpdated: "2026-07-07",
+      priceLevel: "$",
+      whyBlueChoseThis:
+        "Coffee stops are useful trust anchors in Dahab because they help travelers orient themselves before dives, transfers and long walks.",
+    },
     languages: ["Arabic", "English"],
     contact: {
       label: "Contact placeholder",
@@ -278,6 +313,14 @@ export const recommendations: Recommendation[] = [
       accessibility: "Ask about stairs, bus distance and luggage access.",
     },
     trustStatus: "Recommended",
+    trust: {
+      blueVerified: true,
+      personallyVisited: true,
+      lastUpdated: "2026-07-07",
+      priceLevel: "$$",
+      whyBlueChoseThis:
+        "This stay direction matches Blue's observed Sardinia rhythm: practical buses, quieter residential areas and access to the sea without resort pressure.",
+    },
     languages: ["Italian", "English"],
     contact: {
       label: "Ask about the stay",
@@ -337,6 +380,14 @@ export const recommendations: Recommendation[] = [
       accessibility: "Promenade access is easier than many rocky beaches.",
     },
     trustStatus: "Verified",
+    trust: {
+      blueVerified: true,
+      personallyVisited: true,
+      lastUpdated: "2026-07-07",
+      priceLevel: "Free",
+      whyBlueChoseThis:
+        "Poetto is a simple, usable beach recommendation because access, timing and public transport matter more than novelty.",
+    },
     languages: ["Italian"],
     contact: {
       label: "No direct contact",
@@ -396,6 +447,14 @@ export const recommendations: Recommendation[] = [
       accessibility: "Ask directly for entrance and seating details.",
     },
     trustStatus: "Under Review",
+    trust: {
+      blueVerified: false,
+      personallyVisited: false,
+      lastUpdated: "2026-07-07",
+      priceLevel: "$$",
+      whyBlueChoseThis:
+        "A grounded restaurant near Cagliari's marina can become a useful local endpoint after beach days, but consistency still needs review.",
+    },
     languages: ["Italian", "English"],
     contact: {
       label: "Ask about a table",
@@ -454,6 +513,14 @@ export const recommendations: Recommendation[] = [
       accessibility: "Small interiors can be tight.",
     },
     trustStatus: "Recommended",
+    trust: {
+      blueVerified: true,
+      personallyVisited: false,
+      lastUpdated: "2026-07-07",
+      priceLevel: "$",
+      whyBlueChoseThis:
+        "A calm Tokyo coffee stop helps independent travelers reset between dense neighborhoods without relying on trend-driven cafe lists.",
+    },
     languages: ["Japanese", "Basic English"],
     contact: {
       label: "Contact placeholder",
@@ -507,6 +574,14 @@ export const recommendations: Recommendation[] = [
       accessibility: "Walking pace and route can be discussed in advance.",
     },
     trustStatus: "Under Review",
+    trust: {
+      blueVerified: false,
+      personallyVisited: false,
+      lastUpdated: "2026-07-07",
+      priceLevel: "$$",
+      whyBlueChoseThis:
+        "Local context in Kyoto can meaningfully change how travelers move through the city, especially around etiquette, pacing and neighborhood choice.",
+    },
     languages: ["Japanese", "English"],
     contact: {
       label: "Ask about a walk",
@@ -561,6 +636,14 @@ export const recommendations: Recommendation[] = [
       accessibility: "Remote communication should be available.",
     },
     trustStatus: "Under Review",
+    trust: {
+      blueVerified: false,
+      personallyVisited: false,
+      lastUpdated: "2026-07-07",
+      priceLevel: "$$",
+      whyBlueChoseThis:
+        "Housing support is high stakes for students and newcomers, so Blue should surface process clarity and scam-prevention signals before any recommendation is upgraded.",
+    },
     languages: ["German", "English", "Chinese"],
     contact: {
       label: "Ask about housing support",
@@ -620,6 +703,14 @@ export const recommendations: Recommendation[] = [
       accessibility: "Ask locally about step-free access and seating.",
     },
     trustStatus: "Recommended",
+    trust: {
+      blueVerified: true,
+      personallyVisited: false,
+      lastUpdated: "2026-07-07",
+      priceLevel: "$",
+      whyBlueChoseThis:
+        "For students and remote workers, a reliable Berlin cafe is less about hype and more about calm seating, practical hours and repeat usability.",
+    },
     languages: ["German", "English"],
     contact: {
       label: "Contact placeholder",
@@ -673,6 +764,14 @@ export const recommendations: Recommendation[] = [
       accessibility: "Check desk access, elevator and quiet-room rules.",
     },
     trustStatus: "Under Review",
+    trust: {
+      blueVerified: false,
+      personallyVisited: false,
+      lastUpdated: "2026-07-07",
+      priceLevel: "$",
+      whyBlueChoseThis:
+        "Study-friendly spaces support Blue's student audience and can be evaluated over time through repeated traveler feedback.",
+    },
     languages: ["German", "English"],
     contact: {
       label: "Ask about access",

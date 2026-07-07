@@ -3,38 +3,16 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import {
   ArrowUpRight,
-  Backpack,
   CheckCircle2,
-  Heart,
-  Laptop,
-  ShieldCheck,
-  User,
-  Users,
 } from "lucide-react";
 import {
   getRecommendationBySlug,
   recommendations,
-  type TravelerType,
-  type TrustStatus,
 } from "@/lib/recommendations";
+import { BlueTrustSystem } from "@/components/blue-trust-system";
 
 type PageProps = {
   params: Promise<{ slug: string }>;
-};
-
-const bestForIcons: Record<TravelerType, typeof User> = {
-  "Solo travelers": User,
-  Couples: Heart,
-  "Digital nomads": Laptop,
-  Families: Users,
-  Backpackers: Backpack,
-};
-
-const statusStyles: Record<TrustStatus, string> = {
-  Recommended: "border-sky-300/35 bg-sky-300/10 text-foam",
-  Verified: "border-emerald-300/35 bg-emerald-300/10 text-foam",
-  "Under Review": "border-amber-300/35 bg-amber-300/10 text-foam",
-  Paused: "border-rose-300/35 bg-rose-300/10 text-foam",
 };
 
 export function generateStaticParams() {
@@ -108,6 +86,8 @@ export default async function RecommendationDetailPage({ params }: PageProps) {
         </div>
       </section>
 
+      <BlueTrustSystem recommendation={recommendation} />
+
       <section className="border-y border-white/10 bg-white/[0.025] px-5 py-20 sm:px-8">
         <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.75fr_1.25fr]">
           <p className="text-xs uppercase tracking-[0.22em] text-sand">
@@ -129,30 +109,6 @@ export default async function RecommendationDetailPage({ params }: PageProps) {
         </div>
       </section>
 
-      <section className="px-5 py-20 sm:px-8">
-        <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.75fr_1.25fr]">
-          <p className="text-xs uppercase tracking-[0.22em] text-sand">
-            Best For
-          </p>
-          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
-            {recommendation.bestFor.map((item) => {
-              const Icon = bestForIcons[item];
-              return (
-                <div key={item} className="border border-white/10 bg-deep p-5">
-                  <Icon
-                    className="text-sand"
-                    size={24}
-                    strokeWidth={1.6}
-                    aria-hidden="true"
-                  />
-                  <p className="mt-5 text-sm leading-6 text-foam">{item}</p>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
       <section className="border-y border-white/10 bg-white/[0.025] px-5 py-20 sm:px-8">
         <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.75fr_1.25fr]">
           <p className="text-xs uppercase tracking-[0.22em] text-sand">
@@ -170,31 +126,6 @@ export default async function RecommendationDetailPage({ params }: PageProps) {
                 <p className="text-base leading-7 text-foam/88">{value}</p>
               </div>
             ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="px-5 py-20 sm:px-8">
-        <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.75fr_1.25fr]">
-          <p className="text-xs uppercase tracking-[0.22em] text-sand">
-            Blue Trust Status
-          </p>
-          <div
-            className={`w-full border p-7 sm:p-9 ${statusStyles[recommendation.trustStatus]}`}
-          >
-            <ShieldCheck
-              className="text-sand"
-              size={28}
-              strokeWidth={1.6}
-              aria-hidden="true"
-            />
-            <h2 className="mt-6 font-serif text-4xl leading-tight text-foam sm:text-5xl">
-              {recommendation.trustStatus}
-            </h2>
-            <p className="mt-5 max-w-3xl text-base leading-8 text-mist">
-              Blue may update this status as real traveler feedback and
-              long-term observation accumulate.
-            </p>
           </div>
         </div>
       </section>

@@ -1,63 +1,76 @@
-# Blue Sprint 20 Review
+# Blue Sprint 21 Review
 
 Generated: 2026-07-07
 
-## 1. Sprint Objective
+## Sprint Objective
 
-Build a reusable, data-driven Blue Trust System component for every recommendation detail page.
+Complete Dahab as the first full destination on Blue.
 
-The goal was to make trust signals visible and structured without redesigning unrelated pages.
+The sprint focused on content quality, practical travel usefulness and internal recommendation structure. No homepage redesign, layout redesign or new product feature was introduced.
 
-## 2. What Changed
+## What Changed
 
-- Added a reusable `BlueTrustSystem` component.
-- Extended recommendation data with a dedicated `trust` object.
-- Each recommendation now supports:
-  - Blue Verified
-  - Personally Visited
-  - Last Updated
-  - Price Level
-  - Why Blue Chose This
-- The component also displays existing recommendation fields:
-  - Best For
-  - Languages
-- Recommendation detail pages now use the reusable trust component.
-- The previous separate `Best For` and `Blue Trust Status` sections were replaced by one consolidated trust system section.
+- Expanded Dahab from 3 recommendations to a complete 10-part destination layer:
+  - Dahab Accommodation
+  - Dahab Dive Center
+  - Dahab Coffee
+  - Dahab Restaurant
+  - Dahab Transport Desk
+  - Dahab SIM Card
+  - Dahab ATM & Cash Point
+  - Dahab Pharmacy & Clinic
+  - Dahab Safety Tips
+  - Dahab Local Guide
+- Improved Dahab editorial summaries.
+- Added more credible `Why Blue Recommends` reasoning.
+- Added practical travel tips in `Things to Know`.
+- Added Blue Trust System data for every new Dahab entry.
+- Added internal nearby recommendation links by name/category/location.
+- Added related guide and journal references, including the Egypt coastal journal.
+- Updated destination recommendation display so the Middle East destination page shows the full Dahab collection instead of only the first six recommendations.
 
-## 3. Pages Affected
+## Pages Affected
 
-Affected:
-
-- `/recommended/[slug]`
-
-Verified page:
-
+- `/destinations/middle-east`
+- `/recommended`
 - `/recommended/dahab-dive-center`
+- `/recommended/dahab-accommodation`
+- `/recommended/dahab-coffee`
+- `/recommended/dahab-restaurant`
+- `/recommended/dahab-transport-desk`
+- `/recommended/dahab-sim-card`
+- `/recommended/dahab-atm-cash-point`
+- `/recommended/dahab-pharmacy-clinic`
+- `/recommended/dahab-safety-tips`
+- `/recommended/dahab-local-guide`
 
 Not affected:
 
 - Homepage
-- `/recommended`
-- `/destinations`
-- `/guides`
-- `/journal`
-- Site layout and navigation
+- Global layout
+- Navigation
+- SEO settings
+- Analytics
+- Markdown article system
 
-## 4. User-Visible Changes
+## User-Visible Changes
 
-On every recommendation detail page, users now see a dedicated Blue Trust System section with:
+- Dahab now feels like a complete destination rather than a few isolated recommendations.
+- The Middle East destination page shows the full Dahab recommendation set.
+- Recommendation detail pages contain richer practical content.
+- Dahab entries now cover real traveler needs beyond inspiration:
+  - where to stay
+  - where to dive
+  - where to get coffee
+  - where to eat
+  - how to move around
+  - how to handle SIM/data
+  - how to manage cash
+  - where to start for pharmacy/clinic needs
+  - how to think about safety
+  - when a local guide helps
 
-- Blue Verified status
-- Personally Visited status
-- Last Updated date
-- Best For audiences
-- Price Level
-- Languages
-- Why Blue Chose This
-
-This makes the recommendation page feel more like a trust product instead of a simple listing.
-
-## 5. Build Status
+## Build Status
 
 Build passed.
 
@@ -72,53 +85,62 @@ Result:
 - Compiled successfully.
 - Type checking passed.
 - Static generation completed.
-- 54 pages generated.
-- 11 recommendation detail pages generated.
+- 61 pages generated.
+- 18 recommendation detail pages generated.
 
-## 6. Browser Verification
+## Browser Verification
 
 Browser verification passed using production preview.
 
-Verified route:
+Verified routes:
 
-- `/recommended/dahab-dive-center`
+- `/destinations/middle-east`
+- `/recommended/dahab-local-guide`
 
-Confirmed visible text:
+Confirmed on `/destinations/middle-east`:
+
+- Dahab Dive Center
+- Dahab Accommodation
+- Dahab Coffee
+- Dahab Restaurant
+- Dahab Transport Desk
+- Dahab SIM Card
+- Dahab ATM & Cash Point
+- Dahab Pharmacy & Clinic
+- Dahab Safety Tips
+- Dahab Local Guide
+
+Confirmed on `/recommended/dahab-local-guide`:
 
 - Blue Trust System
-- Blue Verified
-- Personally Visited
-- Last Updated
-- Best For
-- Price Level
-- Languages
 - Why Blue Chose This
+- Dahab Safety Tips
+- Dahab Transport Desk
+- Egypt coastal month notes
 
 Screenshot:
 
 - `affected-page.jpg`
 
-## 7. Git Status
+## Known Issues
 
-- Sprint implementation commit: `ad38d64`
-- Push status: Failed from Codex environment.
-- Push error: local GitHub credential helper is unavailable (`credential-osxkeychain`) and Git could not read a GitHub username in this environment.
-
-## 8. Known Issues
-
-- Trust data is still editorial placeholder data until real partner review begins.
-- `Personally Visited` is manually entered and not yet tied to an internal verification workflow.
-- `Last Updated` is currently stored as a string in recommendation data.
+- Dahab business names are still editorial placeholders until real partner names are confirmed.
 - Contact details remain placeholders.
-- Cover images remain placeholder external images.
-- There is no backend, CMS, traveler feedback workflow or admin interface yet.
+- Cover images and galleries still use placeholder external images.
+- `Safety Tips`, `ATM`, `SIM Card` and `Pharmacy` are represented as recommendation entries, not separate destination utility modules.
+- Related guides mostly point to `/guides` placeholder until real guide pages exist.
+- There is still no backend, CMS, admin workflow or traveler feedback system.
 
-## 9. Recommended Next Sprint
+## Recommended Next Sprint
 
-Build the internal structure for recommendation review states:
+Create a dedicated destination detail model for future full destinations:
 
-- Add review history per recommendation.
-- Add trust status notes.
-- Add traveler feedback placeholders.
-- Add criteria for upgrade, maintain, under review and paused decisions.
-- Prepare the data model for future admin/CMS migration.
+- Destination overview
+- Practical essentials
+- Recommended businesses
+- Safety notes
+- Transport notes
+- Related journal
+- Related guides
+
+This would let Dahab become the template for future full destinations without overloading recommendation entries.

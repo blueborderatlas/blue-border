@@ -14,6 +14,12 @@ export const recommendationCategories = [
   "Local Experience",
   "Beach",
   "Restaurant",
+  "Transportation",
+  "SIM Card",
+  "ATM",
+  "Pharmacy",
+  "Safety",
+  "Local Guide",
   "Housing",
   "Study",
 ] as const;
@@ -94,19 +100,19 @@ export const recommendations: Recommendation[] = [
       "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1400&q=80",
     ],
     summary:
-      "A Dahab diving recommendation for travelers who care about safety, equipment clarity and a calm introduction to the Red Sea.",
+      "A Dahab dive-center recommendation for travelers who want shore-access Red Sea diving with clear safety checks, realistic site advice and calm communication before getting in the water.",
     whyBlueRecommends: [
-      "Dahab is a strong base for shore-access diving and slower Red Sea travel.",
-      "Good fit for travelers comparing dive centers beyond price.",
-      "Safety process, equipment clarity and sea conditions are treated as part of the recommendation.",
-      "Useful for first-time Red Sea visitors who want direct questions answered before committing.",
+      "Dahab is one of the Red Sea's most practical bases for shore-entry dives, but quality still varies by instructor, equipment and briefing style.",
+      "Blue prioritizes centers that explain site difficulty, current, entry points and certification limits before selling a trip.",
+      "Good for travelers who want a clear safety conversation instead of choosing only by price.",
+      "A useful anchor for first-time Red Sea visitors who need equipment, weather and cancellation expectations explained plainly.",
     ],
     bestFor: ["Solo travelers", "Couples", "Backpackers"],
     thingsToKnow: {
       openingHours: "Dive schedules depend on weather, site conditions and certification level.",
       payment: "Confirm deposit, cash/card terms and cancellation policy directly.",
       reservation: "Advance reservation is recommended in high season.",
-      accessibility: "Ask about boat access, equipment weight and water-entry support.",
+      accessibility: "Ask about shore-entry difficulty, equipment weight and support for nervous or returning divers.",
     },
     trustStatus: "Under Review",
     trust: {
@@ -115,7 +121,7 @@ export const recommendations: Recommendation[] = [
       lastUpdated: "2026-07-07",
       priceLevel: "$$",
       whyBlueChoseThis:
-        "Dahab is a trust-sensitive diving destination where safety, equipment clarity and communication matter more than a generic travel ranking.",
+        "Dahab diving is trust-sensitive: a good recommendation should help travelers judge safety, instructor communication and realistic sea conditions before money changes hands.",
     },
     languages: ["Arabic", "English"],
     contact: {
@@ -139,6 +145,11 @@ export const recommendations: Recommendation[] = [
         category: "Coffee",
         location: "Lighthouse area",
       },
+      {
+        name: "Dahab Transport Desk",
+        category: "Transportation",
+        location: "Dahab to Sharm route",
+      },
     ],
     relatedGuides: [
       {
@@ -148,6 +159,10 @@ export const recommendations: Recommendation[] = [
       {
         title: "Egypt coastal month notes",
         href: "/journal/egypt-coastal-month-red-sea-notes",
+      },
+      {
+        title: "Dahab first-timer practical checklist",
+        href: "/guides",
       },
     ],
   },
@@ -166,11 +181,11 @@ export const recommendations: Recommendation[] = [
       "https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=1400&q=80",
     ],
     summary:
-      "A Dahab accommodation profile for travelers who want walkable routines, quiet nights and easy access to diving, cafes and the sea.",
+      "A Dahab accommodation recommendation for travelers who want a walkable base near the sea, quiet nights, simple logistics and enough routine for diving, remote work or a longer pause.",
     whyBlueRecommends: [
-      "Dahab works well for travelers who want a simple base rather than resort isolation.",
-      "Helpful for longer stays, dive weeks and remote work routines.",
-      "Neighborhood choice matters here: sea access, noise and walkability can change the whole trip.",
+      "Dahab works best when the stay supports daily rhythm: walking distance, noise level, Wi-Fi and easy food access matter.",
+      "Helpful for travelers staying more than a few nights, especially divers and remote workers.",
+      "Blue treats neighborhood choice as part of the recommendation because a cheap room far from the right routine can become expensive in time and stress.",
     ],
     bestFor: ["Solo travelers", "Couples", "Digital nomads"],
     thingsToKnow: {
@@ -186,7 +201,7 @@ export const recommendations: Recommendation[] = [
       lastUpdated: "2026-07-07",
       priceLevel: "$$",
       whyBlueChoseThis:
-        "A good Dahab base can shape the whole trip, especially for travelers balancing diving, work routines and quiet nights.",
+        "A good Dahab base shapes the entire trip: it affects sleep, walking routes, dive mornings, work calls and how easy it feels to stay longer.",
     },
     languages: ["Arabic", "English"],
     contact: {
@@ -210,11 +225,20 @@ export const recommendations: Recommendation[] = [
         category: "Coffee",
         location: "Lighthouse area",
       },
+      {
+        name: "Dahab Pharmacy & Clinic",
+        category: "Pharmacy",
+        location: "Central Dahab",
+      },
     ],
     relatedGuides: [
       {
         title: "Choosing a stay base before sea trips",
         href: "/guides",
+      },
+      {
+        title: "Egypt coastal month notes",
+        href: "/journal/egypt-coastal-month-red-sea-notes",
       },
     ],
   },
@@ -233,11 +257,11 @@ export const recommendations: Recommendation[] = [
       "https://images.unsplash.com/photo-1442512595331-e89e73853f31?auto=format&fit=crop&w=1400&q=80",
     ],
     summary:
-      "A Dahab coffee recommendation for slow mornings, laptop hours and meeting before a dive or coastal walk.",
+      "A Dahab coffee recommendation for slow mornings, practical meetups, laptop hours and a softer start before diving, errands or a long coastal walk.",
     whyBlueRecommends: [
-      "Useful as a meeting point before diving, transport or a long sea walk.",
-      "Fits Dahab's slower rhythm better than a rushed breakfast stop.",
-      "Good for travelers who want a pause, not a scene.",
+      "Useful as a low-pressure meeting point before dives, transfers or local guide walks.",
+      "Fits Dahab's slower rhythm better than a rushed hotel breakfast or busy beachfront stop.",
+      "A practical place to check messages, confirm pickup times and settle into the day.",
     ],
     bestFor: ["Solo travelers", "Couples", "Digital nomads"],
     thingsToKnow: {
@@ -253,7 +277,7 @@ export const recommendations: Recommendation[] = [
       lastUpdated: "2026-07-07",
       priceLevel: "$",
       whyBlueChoseThis:
-        "Coffee stops are useful trust anchors in Dahab because they help travelers orient themselves before dives, transfers and long walks.",
+        "Coffee stops are small but important trust anchors in Dahab: they help travelers orient, meet people, confirm plans and slow down before making decisions.",
     },
     languages: ["Arabic", "English"],
     contact: {
@@ -276,11 +300,495 @@ export const recommendations: Recommendation[] = [
         category: "Diving",
         location: "Lighthouse and dive shop area",
       },
+      {
+        name: "Dahab ATM & Cash Point",
+        category: "ATM",
+        location: "Central Dahab",
+      },
     ],
     relatedGuides: [
       {
         title: "Planning slow mornings before transfers",
         href: "/guides",
+      },
+    ],
+  },
+  {
+    id: "egypt-restaurant-001",
+    slug: "dahab-restaurant",
+    name: "Dahab Restaurant",
+    category: "Restaurant",
+    country: "Egypt",
+    city: "Dahab",
+    coverImage:
+      "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=2200&q=85",
+    gallery: [
+      "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1400&q=80",
+      "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1400&q=80",
+      "https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&w=1400&q=80",
+    ],
+    summary:
+      "A Dahab restaurant recommendation for travelers who want a grounded dinner after diving or a long walking day, with simple food, clear prices and a relaxed local pace.",
+    whyBlueRecommends: [
+      "Food recommendations in Dahab should be practical: clean, consistent, fairly priced and easy to return to.",
+      "A good dinner place becomes part of the travel routine, especially for longer stays.",
+      "Blue favors restaurants where travelers can understand portions, prices and payment before sitting down.",
+    ],
+    bestFor: ["Solo travelers", "Couples", "Families", "Backpackers"],
+    thingsToKnow: {
+      openingHours: "Evening hours may shift by season and prayer time.",
+      payment: "Carry cash; card availability should be confirmed before ordering.",
+      reservation: "Usually not needed, but groups should call ahead.",
+      accessibility: "Ask about steps, bathroom access and outdoor seating if needed.",
+    },
+    trustStatus: "Under Review",
+    trust: {
+      blueVerified: false,
+      personallyVisited: false,
+      lastUpdated: "2026-07-07",
+      priceLevel: "$",
+      whyBlueChoseThis:
+        "A reliable restaurant is part of Dahab's everyday infrastructure for travelers; Blue is looking for places that feel repeatable, fair and easy to understand.",
+    },
+    languages: ["Arabic", "English"],
+    contact: {
+      label: "Ask about opening hours",
+      instructions: "Direct contact will be added after Blue verifies details.",
+    },
+    bookingLink: "#",
+    coordinates: {
+      lat: 28.4964,
+      lng: 34.5147,
+    },
+    nearbyRecommendations: [
+      {
+        name: "Dahab Accommodation",
+        category: "Stay",
+        location: "Dahab town",
+      },
+      {
+        name: "Dahab Safety Tips",
+        category: "Safety",
+        location: "Dahab practical notes",
+      },
+    ],
+    relatedGuides: [
+      {
+        title: "How Blue evaluates everyday food stops",
+        href: "/guides",
+      },
+      {
+        title: "Egypt coastal month notes",
+        href: "/journal/egypt-coastal-month-red-sea-notes",
+      },
+    ],
+  },
+  {
+    id: "egypt-transport-001",
+    slug: "dahab-transport-desk",
+    name: "Dahab Transport Desk",
+    category: "Transportation",
+    country: "Egypt",
+    city: "Dahab",
+    coverImage:
+      "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=2200&q=85",
+    gallery: [
+      "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=1400&q=80",
+      "https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=1400&q=80",
+      "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1400&q=80",
+    ],
+    summary:
+      "A practical Dahab transport recommendation for airport transfers, Sharm connections and day-trip logistics where clarity matters more than chasing the cheapest ride.",
+    whyBlueRecommends: [
+      "Transport is one of the first trust moments in Dahab, especially after late flights into Sharm El Sheikh.",
+      "Blue favors clear pickup points, transparent pricing and drivers who confirm timing without pressure.",
+      "Useful for travelers who do not want to negotiate every movement from zero.",
+    ],
+    bestFor: ["Solo travelers", "Couples", "Families", "Backpackers"],
+    thingsToKnow: {
+      openingHours: "Airport and intercity transfers should be arranged in advance.",
+      payment: "Agree the price, currency and waiting policy before departure.",
+      reservation: "Book ahead for late-night arrivals and early departures.",
+      accessibility: "Confirm luggage space, car size and air conditioning before booking.",
+    },
+    trustStatus: "Recommended",
+    trust: {
+      blueVerified: true,
+      personallyVisited: false,
+      lastUpdated: "2026-07-07",
+      priceLevel: "$$",
+      whyBlueChoseThis:
+        "Reliable transport reduces stress in Dahab because most travelers arrive via Sharm and need clear expectations before the desert road transfer.",
+    },
+    languages: ["Arabic", "English"],
+    contact: {
+      label: "Ask about transfer",
+      instructions: "Verified driver or desk contact will be added after review.",
+    },
+    bookingLink: "#",
+    coordinates: {
+      lat: 28.5001,
+      lng: 34.5156,
+    },
+    nearbyRecommendations: [
+      {
+        name: "Dahab SIM Card",
+        category: "SIM Card",
+        location: "Central Dahab",
+      },
+      {
+        name: "Dahab Accommodation",
+        category: "Stay",
+        location: "Dahab town",
+      },
+    ],
+    relatedGuides: [
+      {
+        title: "Sharm to Dahab arrival checklist",
+        href: "/guides",
+      },
+      {
+        title: "Egypt coastal month notes",
+        href: "/journal/egypt-coastal-month-red-sea-notes",
+      },
+    ],
+  },
+  {
+    id: "egypt-sim-001",
+    slug: "dahab-sim-card",
+    name: "Dahab SIM Card",
+    category: "SIM Card",
+    country: "Egypt",
+    city: "Dahab",
+    coverImage:
+      "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=2200&q=85",
+    gallery: [
+      "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1400&q=80",
+      "https://images.unsplash.com/photo-1512428559087-560fa5ceab42?auto=format&fit=crop&w=1400&q=80",
+      "https://images.unsplash.com/photo-1516321497487-e288fb19713f?auto=format&fit=crop&w=1400&q=80",
+    ],
+    summary:
+      "A Dahab SIM card recommendation for travelers who need reliable data for maps, transfers, dive communication and remote work backup.",
+    whyBlueRecommends: [
+      "Connectivity is practical safety in Dahab: maps, drivers, dive shops and accommodation all depend on messaging.",
+      "Blue recommends checking passport requirements, package validity and hotspot rules before buying.",
+      "Useful for travelers arriving from Sharm who did not set up data at the airport.",
+    ],
+    bestFor: ["Solo travelers", "Digital nomads", "Backpackers"],
+    thingsToKnow: {
+      openingHours: "Shop hours vary; avoid leaving SIM setup until late evening.",
+      payment: "Cash is safest; ask for the final package price before activation.",
+      reservation: "No reservation needed.",
+      accessibility: "Bring passport and confirm the shop can activate the SIM on the spot.",
+    },
+    trustStatus: "Under Review",
+    trust: {
+      blueVerified: false,
+      personallyVisited: false,
+      lastUpdated: "2026-07-07",
+      priceLevel: "$",
+      whyBlueChoseThis:
+        "A working SIM card is a small purchase with large consequences: it affects transport, safety, diving logistics and daily confidence.",
+    },
+    languages: ["Arabic", "English"],
+    contact: {
+      label: "Contact placeholder",
+      instructions: "Direct contact is not necessary unless Blue verifies a specific shop.",
+    },
+    bookingLink: "#",
+    coordinates: {
+      lat: 28.4972,
+      lng: 34.514,
+    },
+    nearbyRecommendations: [
+      {
+        name: "Dahab ATM & Cash Point",
+        category: "ATM",
+        location: "Central Dahab",
+      },
+      {
+        name: "Dahab Transport Desk",
+        category: "Transportation",
+        location: "Dahab to Sharm route",
+      },
+    ],
+    relatedGuides: [
+      {
+        title: "First 24 hours in Dahab",
+        href: "/guides",
+      },
+    ],
+  },
+  {
+    id: "egypt-atm-001",
+    slug: "dahab-atm-cash-point",
+    name: "Dahab ATM & Cash Point",
+    category: "ATM",
+    country: "Egypt",
+    city: "Dahab",
+    coverImage:
+      "https://images.unsplash.com/photo-1556741533-6e6a62bd8b49?auto=format&fit=crop&w=2200&q=85",
+    gallery: [
+      "https://images.unsplash.com/photo-1556741533-6e6a62bd8b49?auto=format&fit=crop&w=1400&q=80",
+      "https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&w=1400&q=80",
+      "https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=1400&q=80",
+    ],
+    summary:
+      "A practical Dahab cash recommendation for travelers who need local currency without making every meal, taxi or small errand more complicated.",
+    whyBlueRecommends: [
+      "Cash still matters for Dahab transport, small shops and casual restaurants.",
+      "Blue recommends having backup cash before remote beach trips or late transfers.",
+      "ATM reliability, fees and card acceptance should be checked before relying on one machine.",
+    ],
+    bestFor: ["Solo travelers", "Couples", "Backpackers", "Families"],
+    thingsToKnow: {
+      openingHours: "ATM access may be 24/7, but machine availability can vary.",
+      payment: "Withdraw Egyptian pounds; keep small notes for taxis and tips.",
+      reservation: "No reservation needed.",
+      accessibility: "Use well-lit, central locations and avoid depending on one machine.",
+    },
+    trustStatus: "Recommended",
+    trust: {
+      blueVerified: true,
+      personallyVisited: false,
+      lastUpdated: "2026-07-07",
+      priceLevel: "Free",
+      whyBlueChoseThis:
+        "Cash access is part of Dahab's practical trust layer: travelers need to know where money logistics are easy before problems appear.",
+    },
+    languages: ["Arabic", "English"],
+    contact: {
+      label: "No direct contact",
+      instructions: "This is a practical place note, not a business booking.",
+    },
+    bookingLink: "#",
+    coordinates: {
+      lat: 28.498,
+      lng: 34.5148,
+    },
+    nearbyRecommendations: [
+      {
+        name: "Dahab SIM Card",
+        category: "SIM Card",
+        location: "Central Dahab",
+      },
+      {
+        name: "Dahab Restaurant",
+        category: "Restaurant",
+        location: "Central Dahab",
+      },
+    ],
+    relatedGuides: [
+      {
+        title: "Money and cash notes for independent travelers",
+        href: "/guides",
+      },
+    ],
+  },
+  {
+    id: "egypt-pharmacy-001",
+    slug: "dahab-pharmacy-clinic",
+    name: "Dahab Pharmacy & Clinic",
+    category: "Pharmacy",
+    country: "Egypt",
+    city: "Dahab",
+    coverImage:
+      "https://images.unsplash.com/photo-1584515933487-779824d29309?auto=format&fit=crop&w=2200&q=85",
+    gallery: [
+      "https://images.unsplash.com/photo-1584515933487-779824d29309?auto=format&fit=crop&w=1400&q=80",
+      "https://images.unsplash.com/photo-1587854692152-cbe660dbde88?auto=format&fit=crop&w=1400&q=80",
+      "https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=1400&q=80",
+    ],
+    summary:
+      "A Dahab health-support recommendation for travelers who need a pharmacy, basic clinic direction or a plan before minor illness becomes a trip problem.",
+    whyBlueRecommends: [
+      "Health logistics should be known before they are urgent, especially in a small desert town.",
+      "Blue prioritizes clear language support, opening hours and whether travelers can get basic advice quickly.",
+      "Useful for divers, long-stay travelers and anyone managing heat, stomach issues or small injuries.",
+    ],
+    bestFor: ["Solo travelers", "Couples", "Families", "Backpackers"],
+    thingsToKnow: {
+      openingHours: "Confirm pharmacy and clinic hours locally; emergency options may differ.",
+      payment: "Carry cash and ask about receipts for insurance claims.",
+      reservation: "Clinic visits may require calling ahead.",
+      accessibility: "Ask about location, stairs and English-speaking support if needed.",
+    },
+    trustStatus: "Under Review",
+    trust: {
+      blueVerified: false,
+      personallyVisited: false,
+      lastUpdated: "2026-07-07",
+      priceLevel: "$",
+      whyBlueChoseThis:
+        "A complete destination needs basic health orientation; Blue should help travelers know where to start without pretending to offer medical advice.",
+    },
+    languages: ["Arabic", "English"],
+    contact: {
+      label: "Ask about hours",
+      instructions:
+        "Direct contact will be added only after Blue verifies the pharmacy or clinic information.",
+    },
+    bookingLink: "#",
+    coordinates: {
+      lat: 28.4976,
+      lng: 34.5154,
+    },
+    nearbyRecommendations: [
+      {
+        name: "Dahab Safety Tips",
+        category: "Safety",
+        location: "Dahab practical notes",
+      },
+      {
+        name: "Dahab Accommodation",
+        category: "Stay",
+        location: "Dahab town",
+      },
+    ],
+    relatedGuides: [
+      {
+        title: "Health and safety basics before slow travel",
+        href: "/guides",
+      },
+    ],
+  },
+  {
+    id: "egypt-safety-001",
+    slug: "dahab-safety-tips",
+    name: "Dahab Safety Tips",
+    category: "Safety",
+    country: "Egypt",
+    city: "Dahab",
+    coverImage:
+      "https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=2200&q=85",
+    gallery: [
+      "https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=1400&q=80",
+      "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1400&q=80",
+      "https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1400&q=80",
+    ],
+    summary:
+      "A Dahab safety note for independent travelers covering heat, sea conditions, night movement, desert trips, money habits and basic communication.",
+    whyBlueRecommends: [
+      "Safety in Dahab is less about fear and more about habits: water, sun, sea conditions, transport clarity and cash awareness.",
+      "Blue keeps this as a practical reference point across the Dahab collection.",
+      "Useful for travelers who prefer calm preparation over alarmist advice.",
+    ],
+    bestFor: ["Solo travelers", "Couples", "Families", "Backpackers"],
+    thingsToKnow: {
+      openingHours: "Use as a before-you-go checklist.",
+      payment: "Free practical note.",
+      reservation: "No reservation needed.",
+      accessibility: "Ask guides, hosts or dive centers for current local conditions.",
+    },
+    trustStatus: "Verified",
+    trust: {
+      blueVerified: true,
+      personallyVisited: false,
+      lastUpdated: "2026-07-07",
+      priceLevel: "Free",
+      whyBlueChoseThis:
+        "Safety tips complete the destination layer by turning scattered advice into a clear, calm checklist travelers can actually use.",
+    },
+    languages: ["English"],
+    contact: {
+      label: "No direct contact",
+      instructions: "This is an editorial safety note, not emergency assistance.",
+    },
+    bookingLink: "#",
+    coordinates: {
+      lat: 28.4959,
+      lng: 34.5144,
+    },
+    nearbyRecommendations: [
+      {
+        name: "Dahab Pharmacy & Clinic",
+        category: "Pharmacy",
+        location: "Central Dahab",
+      },
+      {
+        name: "Dahab Local Guide",
+        category: "Local Guide",
+        location: "Dahab town and desert routes",
+      },
+    ],
+    relatedGuides: [
+      {
+        title: "Dahab safety and arrival checklist",
+        href: "/guides",
+      },
+      {
+        title: "Egypt coastal month notes",
+        href: "/journal/egypt-coastal-month-red-sea-notes",
+      },
+    ],
+  },
+  {
+    id: "egypt-local-guide-001",
+    slug: "dahab-local-guide",
+    name: "Dahab Local Guide",
+    category: "Local Guide",
+    country: "Egypt",
+    city: "Dahab",
+    coverImage:
+      "https://images.unsplash.com/photo-1533105079780-92b9be482077?auto=format&fit=crop&w=2200&q=85",
+    gallery: [
+      "https://images.unsplash.com/photo-1533105079780-92b9be482077?auto=format&fit=crop&w=1400&q=80",
+      "https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=1400&q=80",
+      "https://images.unsplash.com/photo-1476610182048-b716b8518aae?auto=format&fit=crop&w=1400&q=80",
+    ],
+    summary:
+      "A Dahab local guide recommendation for travelers who want context around neighborhoods, desert routes, sea days and how to move respectfully without being over-managed.",
+    whyBlueRecommends: [
+      "A good local guide can reduce uncertainty without turning the trip into a packaged tour.",
+      "Useful for travelers considering desert walks, local etiquette, markets or first-day orientation.",
+      "Blue favors guides who explain pace, risk, price and expectations before confirming a plan.",
+    ],
+    bestFor: ["Solo travelers", "Couples", "Families", "Backpackers"],
+    thingsToKnow: {
+      openingHours: "By arrangement.",
+      payment: "Agree price, inclusions and cancellation terms before meeting.",
+      reservation: "Book ahead for desert routes or full-day plans.",
+      accessibility: "Discuss walking distance, heat exposure and transport needs in advance.",
+    },
+    trustStatus: "Under Review",
+    trust: {
+      blueVerified: false,
+      personallyVisited: false,
+      lastUpdated: "2026-07-07",
+      priceLevel: "$$",
+      whyBlueChoseThis:
+        "Dahab benefits from human context: the right guide can help travelers understand pace, place and practical boundaries without selling a generic tour.",
+    },
+    languages: ["Arabic", "English"],
+    contact: {
+      label: "Ask about a local walk",
+      instructions: "Direct guide contact will be added after Blue review.",
+    },
+    bookingLink: "#",
+    coordinates: {
+      lat: 28.4988,
+      lng: 34.5149,
+    },
+    nearbyRecommendations: [
+      {
+        name: "Dahab Safety Tips",
+        category: "Safety",
+        location: "Dahab practical notes",
+      },
+      {
+        name: "Dahab Transport Desk",
+        category: "Transportation",
+        location: "Dahab to Sharm route",
+      },
+    ],
+    relatedGuides: [
+      {
+        title: "How Blue evaluates local guides",
+        href: "/guides",
+      },
+      {
+        title: "Egypt coastal month notes",
+        href: "/journal/egypt-coastal-month-red-sea-notes",
       },
     ],
   },

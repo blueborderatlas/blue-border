@@ -90,7 +90,7 @@ export default async function DestinationRegionPage({ params }: PageProps) {
             </div>
 
             <div className="mt-8 grid gap-4 md:grid-cols-3">
-              {recommendations.slice(0, 6).map((recommendation) => (
+              {recommendations.map((recommendation) => (
                 <Link
                   key={recommendation.id}
                   href={`/recommended/${recommendation.slug}`}

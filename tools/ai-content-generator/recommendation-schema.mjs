@@ -1,0 +1,58 @@
+export const recommendationSchema = {
+  type: "object",
+  additionalProperties: false,
+  required: [
+    "title",
+    "destination",
+    "country",
+    "category",
+    "summary",
+    "whyBlueRecommends",
+    "bestFor",
+    "thingsToKnow",
+    "trustStatus",
+    "suggestedGallery",
+    "tags",
+  ],
+  properties: {
+    title: { type: "string" },
+    destination: { type: "string" },
+    country: { type: "string" },
+    category: { type: "string" },
+    summary: { type: "string" },
+    whyBlueRecommends: {
+      type: "array",
+      minItems: 3,
+      maxItems: 5,
+      items: { type: "string" },
+    },
+    bestFor: {
+      type: "array",
+      minItems: 3,
+      maxItems: 5,
+      items: { type: "string" },
+    },
+    thingsToKnow: {
+      type: "array",
+      minItems: 4,
+      maxItems: 6,
+      items: { type: "string" },
+    },
+    trustStatus: {
+      type: "string",
+      enum: ["Recommended", "Under Review", "Blue Verified", "Personally Visited"],
+    },
+    suggestedGallery: {
+      type: "array",
+      minItems: 1,
+      maxItems: 8,
+      items: { type: "string" },
+    },
+    tags: {
+      type: "array",
+      minItems: 5,
+      maxItems: 10,
+      items: { type: "string" },
+    },
+  },
+};

@@ -5,22 +5,10 @@ A coastal travel journal about hidden islands, fishing spots and slow travel in 
 
 Blue includes a standalone local generator for turning travel photos into one structured Blue recommendation JSON.
 
-Setup:
+Make sure Ollama is running and `moondream` is installed:
 
 ```bash
-cp .env.example .env.local
-```
-
-Add your real key to `.env.local`:
-
-```bash
-OPENAI_API_KEY=sk-your-real-key-here
-```
-
-Load it before running:
-
-```bash
-source .env.local
+ollama list
 ```
 
 Put travel photos here:
@@ -37,7 +25,8 @@ node tools/ai-content-generator/generate-blue-recommendation.mjs \
   --destination Dahab \
   --country Egypt \
   --category Coffee \
-  --provider openai \
+  --provider ollama \
+  --model moondream \
   --out tools/ai-content-generator/output/dahab-coffee
 ```
 
@@ -47,6 +36,6 @@ Output appears in:
 tools/ai-content-generator/output/dahab-coffee/
 ```
 
-Do not commit `.env`, `.env.local`, API keys, raw photos, `tools/ai-content-generator/input/` or `tools/ai-content-generator/output/`.
+Do not commit `.env`, `.env.local`, API keys, raw photos, `tools/ai-content-generator/input/` contents or `tools/ai-content-generator/output/` contents.
 
 More details: `tools/ai-content-generator/README.md`.

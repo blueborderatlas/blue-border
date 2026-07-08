@@ -7,5 +7,7 @@ dist
 .vercel
 *.log
 .DS_Store
-tools/ai-content-generator/input/
-tools/ai-content-generator/output/
+tools/ai-content-generator/input/*
+tools/ai-content-generator/output/*
+!tools/ai-content-generator/input/.gitkeep
+!tools/ai-content-generator/output/.gitkeep

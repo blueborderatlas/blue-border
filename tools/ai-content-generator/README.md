@@ -1,12 +1,47 @@
 # Blue AI Content Generator
 
-This is Blue's first local AI content workflow.
+Blue's local AI content pipeline turns travel photos into one structured recommendation draft.
 
-It does not modify the website, recommendation data, routes or UI. It reads a local folder of travel photos, sends supported images to a configured AI vision provider and saves one complete Blue recommendation JSON.
+It does not modify the website, recommendation data, routes or UI.
+
+## Folder Structure
+
+```text
+tools/
+  ai-content-generator/
+    input/
+    output/
+    prompts/
+    providers/
+    schemas/
+    logs/
+    docs/
+```
+
+## Production Pipeline
+
+```text
+Travel Photos
+  -> Vision Model (Ollama / moondream)
+  -> Structured Image Analysis
+  -> Blue Content Generator
+  -> Quality Gate
+  -> recommendation.json
+```
+
+The vision model only outputs structured facts. It does not write marketing copy.
+
+The Blue Content Generator creates editorial content from those facts locally.
 
 ## Input
 
-A folder containing travel photos:
+Put travel photos here:
+
+```text
+tools/ai-content-generator/input/your-test-name/
+```
+
+Supported formats:
 
 - `.jpg`
 - `.jpeg`
@@ -16,73 +51,15 @@ A folder containing travel photos:
 
 Unsupported files, such as HEIC, are skipped and recorded in `image-manifest.json`.
 
-Recommended local folder:
+## Run Locally With Ollama
 
-```text
-tools/ai-content-generator/input/your-test-name/
-```
-
-Example:
-
-```text
-tools/ai-content-generator/input/dahab-coffee/
-```
-
-Put only the photos you want the model to inspect into that folder. The generator reads every supported image in the folder.
-
-## Output
-
-The generator writes these files to the selected output folder:
-
-- `recommendation.json`
-- `prompt.md`
-- `response.json`
-- `image-manifest.json`
-
-## Run
-
-1. Create a local environment file from the example:
+Make sure Ollama is running and `moondream` is installed:
 
 ```bash
-cp .env.example .env.local
+ollama list
 ```
 
-2. Add your real OpenAI API key to `.env.local`:
-
-```bash
-OPENAI_API_KEY=sk-your-real-key-here
-```
-
-Do not commit `.env.local`.
-
-Optional provider settings:
-
-```bash
-BLUE_AI_PROVIDER=openai
-BLUE_AI_MODEL=
-GEMINI_API_KEY=
-OLLAMA_HOST=http://127.0.0.1:11434
-```
-
-3. Load the key into your current terminal:
-
-```bash
-source .env.local
-```
-
-4. Add photos to a local input folder:
-
-```bash
-mkdir -p tools/ai-content-generator/input/dahab-coffee
-```
-
-Then copy your travel photos into:
-
-```text
-tools/ai-content-generator/input/dahab-coffee/
-```
-
-5. Run the real Vision generation:
+Run:
 
 ```bash
 node tools/ai-content-generator/generate-blue-recommendation.mjs \
@@ -90,34 +67,40 @@ node tools/ai-content-generator/generate-blue-recommendation.mjs \
   --destination Dahab \
   --country Egypt \
   --category Coffee \
-  --provider openai \
+  --provider ollama \
+  --model moondream \
   --out tools/ai-content-generator/output/dahab-coffee
 ```
 
-Provider options:
+## Output
 
-- `openai`: uses the OpenAI Responses API. Requires `OPENAI_API_KEY`.
-- `ollama`: uses a local Ollama server. Requires a local vision-capable model and `OLLAMA_HOST` if not using the default local host.
-- `gemini`: uses the Gemini API. Requires `GEMINI_API_KEY`.
-
-The generator only calls one shared `generateRecommendation()` interface. Provider-specific request logic lives in `tools/ai-content-generator/providers/`.
-
-## Output Location
-
-After a successful run, files appear here:
-
-```text
-tools/ai-content-generator/output/dahab-coffee/
-```
-
-Expected files:
+Every successful run generates:
 
 ```text
 recommendation.json
+image-analysis.json
 prompt.md
 response.json
 image-manifest.json
+quality-report.json
+run.log
+REVIEW.md
 ```
+
+## Quality Gate
+
+The quality gate rejects output when it detects:
+
+- factual hallucinations
+- missing required fields
+- empty arrays
+- placeholder values
+- invalid categories
+- duplicated text
+- confidence below threshold
+- unsupported gallery filenames
+
+If the quality gate fails, the generator saves diagnostics but does not create a production-ready `recommendation.json`.
 
 ## What Not To Commit
 
@@ -125,41 +108,16 @@ Do not commit:
 
 - `.env`
 - `.env.local`
-- real API keys
-- `tools/ai-content-generator/input/`
-- `tools/ai-content-generator/output/`
+- API keys
 - raw travel photos
+- `tools/ai-content-generator/input/` contents
+- `tools/ai-content-generator/output/` contents
 - raw provider response files
 
-The project `.gitignore` is configured to ignore the local input and output folders.
+## Docs
 
-## How It Works
+Pipeline documentation:
 
-1. Reads image files from the selected folder.
-2. Filters to browser/API-supported image formats.
-3. Builds a Blue editorial prompt from `blue-recommendation-prompt.md`.
-4. Converts images to base64 data URLs.
-5. Sends text plus images to the selected provider.
-6. Requests structured JSON using a strict schema.
-7. Saves the generated recommendation, the exact prompt used and the raw provider response.
-8. Prints the total token usage when the provider reports it.
-
-## JSON Fields
-
-The generated JSON contains:
-
-- `title`
-- `destination`
-- `country`
-- `category`
-- `summary`
-- `whyBlueRecommends`
-- `bestFor`
-- `thingsToKnow`
-- `trustStatus`
-- `suggestedGallery`
-- `tags`
-
-## Required Environment
-
-Provider credentials must be available in the shell. The generator does not create fake output and does not have a dry-run mode.
+```text
+tools/ai-content-generator/docs/AI_PIPELINE.md
+```

@@ -72,3 +72,36 @@ export async function generateRecommendation({
     usage: result.usage,
   };
 }
+
+export async function generateImageAnalysis({
+  providerName,
+  model,
+  prompt,
+  images,
+  detail,
+  schema,
+}) {
+  const provider = validateProviderConfiguration(providerName);
+  const resolvedModel = model || process.env.BLUE_AI_MODEL || provider.defaultModel;
+
+  if (!provider.generateImageAnalysis) {
+    throw new Error(`Provider "${provider.name}" does not support structured image analysis.`);
+  }
+
+  const result = await provider.generateImageAnalysis({
+    apiKey: getProviderApiKey(providerName),
+    model: resolvedModel,
+    prompt,
+    images,
+    detail,
+    schema,
+  });
+
+  return {
+    provider: provider.name,
+    model: resolvedModel,
+    analysis: result.analysis,
+    response: result.response,
+    usage: result.usage,
+  };
+}

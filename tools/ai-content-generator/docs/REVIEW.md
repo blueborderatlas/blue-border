@@ -1,101 +1,97 @@
-# Sprint 26 Review: Production Local AI Pipeline
+# Sprint 31 Review: Tolerant Ollama JSON Parsing
 
 Generated: 2026-07-08
 
 ## Objective
 
-Turn the prototype AI generator into a production-quality local pipeline without modifying website pages, homepage, layout or recommendation data.
+Make the Ollama provider tolerant of imperfect JSON returned by `moondream` without modifying website pages, homepage, layout, UI or recommendation data.
+
+## Problem
+
+`moondream` can respond successfully but return text that is not immediately parseable JSON.
+
+Observed failure:
+
+```text
+Expected ',' or '}' after property value
+```
 
 ## What Changed
 
-- Preserved the existing provider architecture.
-- Made the production pipeline Ollama-only.
-- Changed the default local model to `moondream`.
-- Split generation into two stages:
-  - structured image analysis
-  - local Blue content generation
-- Prevented the vision model from writing recommendation copy.
-- Added a deterministic Blue content generator that writes from structured facts only.
-- Improved the quality gate.
-- Added automatic per-run files:
-  - `run.log`
-  - `quality-report.json`
-  - `REVIEW.md`
-- Reorganized generator files into:
-  - `input/`
-  - `output/`
-  - `prompts/`
-  - `providers/`
-  - `schemas/`
-  - `logs/`
-  - `docs/`
+- Added tolerant JSON extraction before `JSON.parse()`.
+- Removed markdown fences:
+  - ```json
+  - ```
+- Trimmed whitespace before parsing.
+- Extracted the first complete JSON object from mixed text.
+- Added simple safe repairs:
+  - trailing commas
+  - smart double quotes
+  - smart single quotes
+  - missing final newline
+- Added `JsonExtractionError` with raw/cleaned/extracted/repaired text details.
+- Added generator-level parsing failure handling.
 
-## Pipeline
+## Failure Outputs
+
+If repair fails, the pipeline now saves:
 
 ```text
-Travel Photos
-  -> Vision Model (Ollama / moondream)
-  -> Structured Image Analysis
-  -> Blue Content Generator
-  -> Quality Gate
-  -> recommendation.json
+response.raw.txt
+response.invalid.json
+quality-report.json
+run.log
+REVIEW.md
 ```
 
-## Quality Gate Improvements
+If Ollama also returned a normal API response body, it is saved as:
 
-The quality gate now rejects:
+```text
+response.json
+```
 
-- factual hallucinations
-- missing required fields
-- empty arrays
-- placeholder values
-- invalid categories
-- duplicated text
-- confidence below threshold
-- unsupported gallery filenames
+## Behavior
 
-## Files Added Or Moved
+If repair succeeds:
 
-- `docs/AI_PIPELINE.md`
-- `prompts/vision-analysis-prompt.md`
-- `prompts/blue-recommendation-prompt.md`
-- `schemas/image-analysis-schema.mjs`
-- `schemas/recommendation-schema.mjs`
-- `blue-content-generator.mjs`
-- `run-review.mjs`
-- `quality-control.mjs`
-- `logs/.gitkeep`
-- `input/.gitkeep`
-- `output/.gitkeep`
+- the pipeline continues normally
+- batch image analysis is saved
+- final merged recommendation can proceed
+
+If repair fails:
+
+- raw model text is preserved
+- invalid extracted/repaired JSON text is preserved
+- quality gate reports a parsing failure
+- the run stops clearly instead of failing silently
+
+## Token Statistics In REVIEW.md
+
+Generated run reviews now retain token estimates even when JSON parsing fails:
+
+- prompt tokens
+- response tokens
+- estimated total tokens
+- images processed
+- average tokens per image
 
 ## Verification
 
 Completed:
 
 - JavaScript syntax checks.
-- Local deterministic pipeline checks with sample image analysis.
-- Next.js production build.
+- Parser tests for:
+  - markdown-fenced JSON
+  - extra text before/after JSON
+  - trailing commas
+  - smart quotes
+  - invalid JSON failure path
 
 Not executed:
 
-- Live Ollama model call inside Codex sandbox.
-
-Reason:
-
-Ollama should be run from the user's normal macOS Terminal session, not inside the Codex sandbox.
+- Ollama model run.
+- Paid API call.
 
 ## Next Step
 
-Run the local pipeline from macOS Terminal:
-
-```bash
-cd /Users/yuanzhang/Documents/Codex/2026-05-10/vercel-blue-border-blue-border-coastal && node tools/ai-content-generator/run-sprint-25-ollama-test.mjs
-```
-
-Then review:
-
-```text
-tools/ai-content-generator/output/sprint-25-ollama/REVIEW.md
-tools/ai-content-generator/output/sprint-25-ollama/quality-report.json
-tools/ai-content-generator/output/sprint-25-ollama/recommendation.json
-```
+Run the Dahab diving command again from normal macOS Terminal. If `moondream` returns imperfect JSON, the pipeline should now either repair it safely or preserve the raw response for review.

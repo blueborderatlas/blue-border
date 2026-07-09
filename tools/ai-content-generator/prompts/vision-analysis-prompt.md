@@ -1,39 +1,11 @@
-# Blue Structured Image Analysis Prompt
+Describe exactly what you can directly observe in this image.
 
-You are only the vision analysis step.
+Do not write JSON.
+Do not use markdown.
+Do not infer business names, prices, opening hours, booking details or recommendations.
 
-Your job is to inspect the uploaded travel photos and return structured observable facts only.
+Mention visible people, animals, vehicles, buildings, water, sky, objects, activities, colors, environment and readable text.
 
-Do not write marketing copy.
-Do not recommend anything.
-Do not create titles.
-Do not write travel-guide prose.
-Do not invent business names, exact locations, prices, opening hours or personal visits.
+If something is unclear, say that it is unclear.
 
-Return only JSON matching the image analysis schema.
-
-Editor context:
-
-- Destination: {{destination}}
-- Country: {{country}}
-- Category: {{category}}
-- Notes: {{notes}}
-
-For each image, describe only visible evidence:
-
-- objects
-- atmosphere
-- colors
-- environment
-- activities
-- confidence
-- notes
-
-Confidence guide:
-
-- 0.90-1.00: clear image, many reliable visual cues
-- 0.70-0.89: usable image, several clear cues
-- 0.50-0.69: limited but partially useful evidence
-- below 0.50: too unclear for recommendation drafting
-
-If the image is a broad destination view rather than a specific business, say so in `limitations`.
+Return plain English only.

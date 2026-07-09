@@ -25,6 +25,11 @@ export const destinations = [
     places: ["United Arab Emirates", "Turkey", "Egypt", "Jordan", "Oman"],
   },
   {
+    name: "Dahab",
+    slug: "dahab",
+    places: ["Dahab", "Red Sea", "Sinai"],
+  },
+  {
     name: "Islands",
     slug: "islands",
     places: ["Sardinia", "Sicily", "Malta", "Canary Islands", "Bali"],

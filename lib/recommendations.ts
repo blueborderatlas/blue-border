@@ -1,3 +1,5 @@
+import { publishedAiRecommendations } from "@/lib/published-ai-recommendations";
+
 export type TrustStatus =
   | "Recommended"
   | "Verified"
@@ -84,7 +86,7 @@ export type Recommendation = {
   }>;
 };
 
-export const recommendations: Recommendation[] = [
+const curatedRecommendations: Recommendation[] = [
   {
     id: "egypt-diving-001",
     slug: "dahab-dive-center",
@@ -1304,6 +1306,11 @@ export const recommendations: Recommendation[] = [
       },
     ],
   },
+];
+
+export const recommendations: Recommendation[] = [
+  ...curatedRecommendations,
+  ...publishedAiRecommendations,
 ];
 
 const destinationCountryMap: Record<string, string[]> = {

@@ -11,3 +11,7 @@ tools/ai-content-generator/input/*
 tools/ai-content-generator/output/*
 !tools/ai-content-generator/input/.gitkeep
 !tools/ai-content-generator/output/.gitkeep
+!tools/ai-content-generator/input/<destination-category>/
+!tools/ai-content-generator/input/<destination-category>/.gitkeep
+!tools/ai-content-generator/output/<destination-category>/
+!tools/ai-content-generator/output/<destination-category>/.gitkeep

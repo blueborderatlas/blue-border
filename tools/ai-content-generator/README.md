@@ -22,6 +22,7 @@ tools/
 
 ```text
 Travel Photos
+  -> Batch Splitter (1 image by default)
   -> Vision Model (Ollama / moondream)
   -> Structured Image Analysis
   -> Blue Content Generator
@@ -32,6 +33,8 @@ Travel Photos
 The vision model only outputs structured facts. It does not write marketing copy.
 
 The Blue Content Generator creates editorial content from those facts locally.
+
+The generator never sends all images to Ollama in one request. The default is one image per request to stay safely below moondream's small context window.
 
 ## Input
 
@@ -69,7 +72,56 @@ node tools/ai-content-generator/generate-blue-recommendation.mjs \
   --category Coffee \
   --provider ollama \
   --model moondream \
+  --batchSize 1 \
   --out tools/ai-content-generator/output/dahab-coffee
+```
+
+## Run A New Destination Test
+
+Use one folder name for each destination and category pair:
+
+```text
+tools/ai-content-generator/input/<destination-category>/
+tools/ai-content-generator/output/<destination-category>/
+```
+
+Example names:
+
+```text
+dahab-diving
+sardinia-stay
+tokyo-coffee
+crete-transport
+```
+
+Put only the photos for that test inside the input folder. Keep the folder name lowercase and use hyphens.
+
+Run the pipeline with the same folder name for `--photos` and `--out`:
+
+```bash
+node tools/ai-content-generator/generate-blue-recommendation.mjs \
+  --photos tools/ai-content-generator/input/<destination-category> \
+  --destination "<Destination Name>" \
+  --country "<Country Name>" \
+  --category "<Category>" \
+  --provider ollama \
+  --model moondream \
+  --batchSize 1 \
+  --out tools/ai-content-generator/output/<destination-category>
+```
+
+For a second destination test, replace the placeholders:
+
+```bash
+node tools/ai-content-generator/generate-blue-recommendation.mjs \
+  --photos tools/ai-content-generator/input/sardinia-stay \
+  --destination "Sardinia" \
+  --country "Italy" \
+  --category "Stay" \
+  --provider ollama \
+  --model moondream \
+  --batchSize 1 \
+  --out tools/ai-content-generator/output/sardinia-stay
 ```
 
 ## Output
@@ -79,6 +131,7 @@ Every successful run generates:
 ```text
 recommendation.json
 image-analysis.json
+image-analysis/
 prompt.md
 response.json
 image-manifest.json

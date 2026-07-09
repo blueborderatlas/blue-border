@@ -105,3 +105,34 @@ export async function generateImageAnalysis({
     usage: result.usage,
   };
 }
+
+export async function generateImageDescription({
+  providerName,
+  model,
+  prompt,
+  images,
+  detail,
+}) {
+  const provider = validateProviderConfiguration(providerName);
+  const resolvedModel = model || process.env.BLUE_AI_MODEL || provider.defaultModel;
+
+  if (!provider.generateImageDescription) {
+    throw new Error(`Provider "${provider.name}" does not support plain-text image descriptions.`);
+  }
+
+  const result = await provider.generateImageDescription({
+    apiKey: getProviderApiKey(providerName),
+    model: resolvedModel,
+    prompt,
+    images,
+    detail,
+  });
+
+  return {
+    provider: provider.name,
+    model: resolvedModel,
+    description: result.description,
+    response: result.response,
+    usage: result.usage,
+  };
+}

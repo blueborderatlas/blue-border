@@ -8,12 +8,17 @@ The website is not part of this pipeline. The generator writes local draft files
 
 ```mermaid
 flowchart TD
-    A["Travel Photos"] --> B["Vision Model: Ollama + moondream"]
-    B --> C["Structured Image Analysis"]
-    C --> D["Blue Content Generator"]
-    D --> E["Quality Gate"]
-    E -->|Pass| F["recommendation.json"]
-    E -->|Fail| G["recommendation.invalid.json + quality-report.json"]
+    A["Travel Photos"] --> B["Batch Splitter: 1 image by default"]
+    B --> C1["Vision Batch 001"]
+    B --> C2["Vision Batch 002"]
+    B --> C3["Vision Batch 003"]
+    C1 --> D["Merge Structured Facts"]
+    C2 --> D
+    C3 --> D
+    D --> E["Blue Content Generator"]
+    E --> F["Quality Gate"]
+    F -->|Pass| G["recommendation.json"]
+    F -->|Fail| H["recommendation.invalid.json + quality-report.json"]
 ```
 
 ## Step 1: Travel Photos
@@ -54,6 +59,8 @@ Its only job is to describe visible facts:
 - confidence
 - limitations
 
+Images are never sent to Ollama all at once. The generator defaults to one image per request so moondream stays safely below its small context window. The batch size can be raised to 2-4 only when the local model can handle it.
+
 ## Step 3: Structured Image Analysis
 
 The model output must match:
@@ -63,6 +70,20 @@ tools/ai-content-generator/schemas/image-analysis-schema.mjs
 ```
 
 This creates a neutral fact layer between image understanding and editorial writing.
+
+Each batch is saved separately:
+
+```text
+output/<run-name>/image-analysis/image-analysis-001.json
+output/<run-name>/image-analysis/image-analysis-002.json
+output/<run-name>/image-analysis/image-analysis-003.json
+```
+
+After every batch completes, the generator merges all structured facts into:
+
+```text
+output/<run-name>/image-analysis.json
+```
 
 ## Step 4: Blue Content Generator
 
@@ -103,6 +124,7 @@ Every successful run generates:
 ```text
 recommendation.json
 image-analysis.json
+image-analysis/
 prompt.md
 response.json
 image-manifest.json
@@ -123,6 +145,7 @@ node tools/ai-content-generator/generate-blue-recommendation.mjs \
   --category Coffee \
   --provider ollama \
   --model moondream \
+  --batchSize 1 \
   --out tools/ai-content-generator/output/dahab-coffee
 ```
 

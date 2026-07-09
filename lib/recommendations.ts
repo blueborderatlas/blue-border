@@ -28,6 +28,50 @@ export const recommendationCategories = [
 
 export type RecommendationCategory = (typeof recommendationCategories)[number];
 
+export const destinationCategoryGroups = [
+  {
+    label: "Diving",
+    slug: "diving",
+    categories: ["Diving"],
+  },
+  {
+    label: "Stay",
+    slug: "stay",
+    categories: ["Stay"],
+  },
+  {
+    label: "Food",
+    slug: "food",
+    categories: ["Food", "Restaurant"],
+  },
+  {
+    label: "Cafe",
+    slug: "cafe",
+    categories: ["Cafe", "Coffee"],
+  },
+  {
+    label: "Transport",
+    slug: "transport",
+    categories: ["Transportation"],
+  },
+  {
+    label: "Pharmacy",
+    slug: "pharmacy",
+    categories: ["Pharmacy"],
+  },
+  {
+    label: "Local Guide",
+    slug: "local-guide",
+    categories: ["Local Guide"],
+  },
+] as const satisfies ReadonlyArray<{
+  label: string;
+  slug: string;
+  categories: readonly RecommendationCategory[];
+}>;
+
+export type DestinationCategoryGroup = (typeof destinationCategoryGroups)[number];
+
 export type TravelerType =
   | "Solo travelers"
   | "Couples"
@@ -45,19 +89,37 @@ export type RecommendationTrust = {
   whyBlueChoseThis: string;
 };
 
+export type BusinessVerificationStatus = "Blue Verified" | "Under Review";
+
 export type BusinessProfile = {
+  id: string;
   name: string;
-  verified: boolean;
+  verified: BusinessVerificationStatus;
   category: string;
+  destination: string;
   country: string;
   city: string;
   address: string;
   website: string;
   googleMaps: string;
   instagram: string;
-  contact: string;
+  email: string;
+  phone: string;
   openingHours: string;
   priceRange: string;
+  languages: string[];
+  shortDescription: string;
+};
+
+export type BlueExperience = {
+  visitedByBlue: boolean;
+  visitDate: string;
+  reviewer: string;
+  blueRating: string;
+  recommendedFor: string[];
+  highlights: string[];
+  cautions: string[];
+  editorNotes: string;
 };
 
 export type AiObservations = {
@@ -110,6 +172,7 @@ export type Recommendation = {
     href: string;
   }>;
   businessProfile?: BusinessProfile;
+  blueExperience?: BlueExperience;
   aiObservations?: AiObservations;
 };
 
@@ -1371,4 +1434,22 @@ export function getRecommendationsForDestination(destination: {
       places.has(city)
     );
   });
+}
+
+export function getDestinationCategoryBySlug(slug: string) {
+  return destinationCategoryGroups.find((category) => category.slug === slug);
+}
+
+export function getRecommendationsForDestinationCategory(
+  destination: {
+    name: string;
+    places: readonly string[];
+  },
+  category: DestinationCategoryGroup,
+) {
+  const categorySet = new Set<RecommendationCategory>(category.categories);
+
+  return getRecommendationsForDestination(destination).filter((recommendation) =>
+    categorySet.has(recommendation.category),
+  );
 }

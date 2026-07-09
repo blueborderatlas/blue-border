@@ -26,9 +26,6 @@ export function SiteFooter() {
           <Link className="transition hover:text-foam" href="/guides">
             Guides
           </Link>
-          <Link className="transition hover:text-foam" href="/recommended">
-            Recommended
-          </Link>
           <Link className="transition hover:text-foam" href="#">
             Work With Blue
           </Link>

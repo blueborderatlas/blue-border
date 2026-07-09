@@ -64,7 +64,7 @@ export function RecommendationCollection({
             {filteredRecommendations.map((recommendation) => (
               <Link
                 key={recommendation.id}
-                href={`/recommended/${recommendation.slug}`}
+                href={`/places/${recommendation.slug}`}
                 className="group overflow-hidden border border-white/10 bg-white/[0.03] transition duration-500 hover:-translate-y-1 hover:border-sand/45 hover:bg-white/[0.05]"
               >
                 <div className="relative h-72 overflow-hidden bg-tide">

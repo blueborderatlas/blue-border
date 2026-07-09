@@ -3,7 +3,11 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { destinations, getDestinationBySlug } from "@/lib/archive";
 import { getPostsByRegion } from "@/lib/posts";
-import { getRecommendationsForDestination } from "@/lib/recommendations";
+import {
+  destinationCategoryGroups,
+  getRecommendationsForDestination,
+  getRecommendationsForDestinationCategory,
+} from "@/lib/recommendations";
 import { PostCard } from "@/components/post-card";
 import { SectionHeading } from "@/components/section-heading";
 
@@ -43,6 +47,13 @@ export default async function DestinationRegionPage({ params }: PageProps) {
 
   const posts = getPostsByRegion(destination.name);
   const recommendations = getRecommendationsForDestination(destination);
+  const categoryLinks = destinationCategoryGroups
+    .map((category) => ({
+      ...category,
+      count: getRecommendationsForDestinationCategory(destination, category)
+        .length,
+    }))
+    .filter((category) => destination.slug === "dahab" || category.count > 0);
 
   return (
     <main className="px-5 pb-24 pt-32 sm:px-8">
@@ -64,6 +75,42 @@ export default async function DestinationRegionPage({ params }: PageProps) {
           ))}
         </div>
 
+        {categoryLinks.length > 0 ? (
+          <section className="mt-14 border-y border-white/10 py-12">
+            <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+              <div>
+                <p className="text-xs uppercase tracking-[0.22em] text-sand">
+                  Categories
+                </p>
+                <h2 className="mt-4 font-serif text-4xl leading-tight text-foam sm:text-5xl">
+                  Browse {destination.name} by travel need.
+                </h2>
+              </div>
+              <p className="max-w-md text-sm leading-7 text-mist">
+                Start with a category, then open a trusted place when you need
+                the full profile.
+              </p>
+            </div>
+
+            <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+              {categoryLinks.map((category) => (
+                <Link
+                  key={category.slug}
+                  href={`/destinations/${destination.slug}/${category.slug}`}
+                  className="group border border-white/10 bg-white/[0.03] p-5 transition hover:border-sand/45"
+                >
+                  <p className="text-xs uppercase tracking-[0.16em] text-sand">
+                    {category.count} places
+                  </p>
+                  <h3 className="mt-4 font-serif text-3xl leading-tight text-foam group-hover:text-sand">
+                    {category.label}
+                  </h3>
+                </Link>
+              ))}
+            </div>
+          </section>
+        ) : null}
+
         <div className="mt-10 grid gap-6">
           {posts.map((post, index) => (
             <PostCard key={post.slug} post={post} priority={index === 0} />
@@ -75,25 +122,27 @@ export default async function DestinationRegionPage({ params }: PageProps) {
             <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
               <div>
                 <p className="text-xs uppercase tracking-[0.22em] text-sand">
-                  Recommended
+                  Places
                 </p>
                 <h2 className="mt-4 font-serif text-4xl leading-tight text-foam sm:text-5xl">
                   Trusted local starting points.
                 </h2>
               </div>
-              <Link
-                href="/recommended"
-                className="text-sm uppercase tracking-[0.16em] text-mist transition hover:text-sand"
-              >
-                View all recommendations
-              </Link>
+              {categoryLinks[0] ? (
+                <Link
+                  href={`/destinations/${destination.slug}/${categoryLinks[0].slug}`}
+                  className="text-sm uppercase tracking-[0.16em] text-mist transition hover:text-sand"
+                >
+                  Browse by category
+                </Link>
+              ) : null}
             </div>
 
             <div className="mt-8 grid gap-4 md:grid-cols-3">
               {recommendations.map((recommendation) => (
                 <Link
                   key={recommendation.id}
-                  href={`/recommended/${recommendation.slug}`}
+                  href={`/places/${recommendation.slug}`}
                   className="group overflow-hidden border border-white/10 bg-white/[0.03] transition hover:border-sand/45"
                 >
                   <div className="h-56 overflow-hidden bg-tide">

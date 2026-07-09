@@ -6,6 +6,7 @@ import {
   CheckCircle2,
 } from "lucide-react";
 import {
+  destinationCategoryGroups,
   getRecommendationBySlug,
   recommendations,
 } from "@/lib/recommendations";
@@ -55,19 +56,45 @@ export default async function RecommendationDetailPage({ params }: PageProps) {
   const businessProfile = recommendation.businessProfile;
   const businessProfileRows = businessProfile
     ? [
+        ["ID", businessProfile.id],
         ["Name", businessProfile.name],
-        ["Verified", businessProfile.verified ? "Yes" : "Not verified"],
+        ["Verified", businessProfile.verified],
         ["Category", businessProfile.category],
+        ["Destination", businessProfile.destination],
         ["Location", `${businessProfile.city}, ${businessProfile.country}`],
         ["Address", businessProfile.address],
         ["Website", businessProfile.website],
         ["Google Maps", businessProfile.googleMaps],
         ["Instagram", businessProfile.instagram],
-        ["Contact", businessProfile.contact],
+        ["Email", businessProfile.email],
+        ["Phone", businessProfile.phone],
         ["Opening hours", businessProfile.openingHours],
         ["Price range", businessProfile.priceRange],
+        ["Languages", businessProfile.languages.join(", ")],
       ]
     : [];
+  const blueExperience = recommendation.blueExperience;
+  const blueExperienceRows = blueExperience
+    ? [
+        ["Visited by Blue", blueExperience.visitedByBlue ? "Yes" : "Not yet"],
+        ["Visit date", blueExperience.visitDate],
+        ["Reviewer", blueExperience.reviewer],
+        ["Blue rating", blueExperience.blueRating],
+        ["Recommended for", blueExperience.recommendedFor.join(", ")],
+      ]
+    : [];
+  const destinationSlug = (
+    businessProfile?.destination || recommendation.city
+  )
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)/g, "");
+  const categorySlug =
+    destinationCategoryGroups.find((category) =>
+      (category.categories as readonly string[]).includes(
+        recommendation.category,
+      ),
+    )?.slug || recommendation.category.toLowerCase().replace(/\s+/g, "-");
   const observationGroups: Array<[string, string[]]> = recommendation.aiObservations
     ? [
         ["Underwater", recommendation.aiObservations.underwater],
@@ -89,6 +116,25 @@ export default async function RecommendationDetailPage({ params }: PageProps) {
         />
         <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(6,17,31,0.95),rgba(6,17,31,0.62),rgba(6,17,31,0.25)),linear-gradient(0deg,rgba(6,17,31,0.96),transparent_44%)]" />
         <div className="relative mx-auto w-full max-w-7xl">
+          <nav className="mb-7 flex flex-wrap gap-3 text-xs uppercase tracking-[0.16em] text-mist">
+            <Link href="/destinations" className="transition hover:text-sand">
+              Destinations
+            </Link>
+            <span>/</span>
+            <Link
+              href={`/destinations/${destinationSlug}`}
+              className="transition hover:text-sand"
+            >
+              {businessProfile?.destination || recommendation.city}
+            </Link>
+            <span>/</span>
+            <Link
+              href={`/destinations/${destinationSlug}/${categorySlug}`}
+              className="transition hover:text-sand"
+            >
+              {recommendation.category}
+            </Link>
+          </nav>
           <p className="text-xs uppercase tracking-[0.24em] text-sand">
             {recommendation.category}
           </p>
@@ -101,17 +147,6 @@ export default async function RecommendationDetailPage({ params }: PageProps) {
         </div>
       </section>
 
-      <section className="px-5 py-20 sm:px-8">
-        <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.75fr_1.25fr]">
-          <p className="text-xs uppercase tracking-[0.22em] text-sand">
-            Blue Summary
-          </p>
-          <p className="max-w-4xl font-serif text-3xl leading-tight text-foam sm:text-5xl">
-            {recommendation.summary}
-          </p>
-        </div>
-      </section>
-
       {businessProfile ? (
         <section className="border-y border-white/10 bg-white/[0.025] px-5 py-20 sm:px-8">
           <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.75fr_1.25fr]">
@@ -120,8 +155,11 @@ export default async function RecommendationDetailPage({ params }: PageProps) {
                 Business Profile
               </p>
               <h2 className="mt-5 font-serif text-4xl leading-tight text-foam sm:text-5xl">
-                Human-editable business details.
+                {businessProfile.name}
               </h2>
+              <p className="mt-5 text-sm leading-7 text-mist">
+                {businessProfile.shortDescription}
+              </p>
             </div>
             <div className="grid gap-px overflow-hidden border border-white/10 bg-white/10">
               {businessProfileRows.map(([label, value]) => (
@@ -140,46 +178,94 @@ export default async function RecommendationDetailPage({ params }: PageProps) {
         </section>
       ) : null}
 
-      <BlueTrustSystem recommendation={recommendation} />
-
-      <section className="border-y border-white/10 bg-white/[0.025] px-5 py-20 sm:px-8">
-        <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.75fr_1.25fr]">
-          <p className="text-xs uppercase tracking-[0.22em] text-sand">
-            Why Blue Recommends
-          </p>
-          <div className="grid gap-px overflow-hidden border border-white/10 bg-white/10 sm:grid-cols-2">
-            {recommendation.whyBlueRecommends.map((reason) => (
-              <div key={reason} className="flex gap-3 bg-deep p-6">
-                <CheckCircle2
-                  className="mt-1 shrink-0 text-sand"
-                  size={17}
-                  strokeWidth={1.8}
-                  aria-hidden="true"
-                />
-                <p className="text-base leading-7 text-foam/88">{reason}</p>
+      {blueExperience ? (
+        <section className="px-5 py-20 sm:px-8">
+          <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.75fr_1.25fr]">
+            <div>
+              <p className="text-xs uppercase tracking-[0.22em] text-sand">
+                Blue Experience
+              </p>
+              <h2 className="mt-5 font-serif text-4xl leading-tight text-foam sm:text-5xl">
+                Human review, separated from AI output.
+              </h2>
+              <p className="mt-5 text-sm leading-7 text-mist">
+                {blueExperience.editorNotes}
+              </p>
+            </div>
+            <div className="grid gap-px overflow-hidden border border-white/10 bg-white/10">
+              {blueExperienceRows.map(([label, value]) => (
+                <div
+                  key={label}
+                  className="grid gap-3 bg-deep p-5 sm:grid-cols-[0.32fr_0.68fr]"
+                >
+                  <p className="text-xs uppercase tracking-[0.16em] text-sand">
+                    {label}
+                  </p>
+                  <p className="text-base leading-7 text-foam/88">{value}</p>
+                </div>
+              ))}
+              <div className="grid gap-px bg-white/10 lg:grid-cols-3">
+                <div className="bg-deep p-6">
+                  <p className="text-xs uppercase tracking-[0.16em] text-sand">
+                    Highlights
+                  </p>
+                  <ul className="mt-5 space-y-3 text-sm leading-7 text-foam/88">
+                    {blueExperience.highlights.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                </div>
+                <div className="bg-deep p-6">
+                  <p className="text-xs uppercase tracking-[0.16em] text-sand">
+                    Cautions
+                  </p>
+                  <ul className="mt-5 space-y-3 text-sm leading-7 text-foam/88">
+                    {blueExperience.cautions.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                </div>
+                <div className="bg-deep p-6">
+                  <p className="text-xs uppercase tracking-[0.16em] text-sand">
+                    Editor Notes
+                  </p>
+                  <p className="mt-5 text-sm leading-7 text-foam/88">
+                    {blueExperience.editorNotes}
+                  </p>
+                </div>
               </div>
-            ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      ) : null}
 
       <section className="border-y border-white/10 bg-white/[0.025] px-5 py-20 sm:px-8">
         <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.75fr_1.25fr]">
-          <p className="text-xs uppercase tracking-[0.22em] text-sand">
-            Things to Know
-          </p>
-          <div className="grid gap-px overflow-hidden border border-white/10 bg-white/10">
-            {thingsToKnow.map(([label, value]) => (
-              <div
-                key={label}
-                className="grid gap-3 bg-deep p-5 sm:grid-cols-[0.32fr_0.68fr]"
-              >
-                <p className="text-xs uppercase tracking-[0.16em] text-sand">
-                  {label}
-                </p>
-                <p className="text-base leading-7 text-foam/88">{value}</p>
-              </div>
-            ))}
+          <div>
+            <p className="text-xs uppercase tracking-[0.22em] text-sand">
+              Blue Recommendation
+            </p>
+            <h2 className="mt-5 font-serif text-4xl leading-tight text-foam sm:text-5xl">
+              AI-assisted recommendation, reviewed before publishing.
+            </h2>
+          </div>
+          <div>
+            <p className="max-w-4xl font-serif text-3xl leading-tight text-foam sm:text-5xl">
+              {recommendation.summary}
+            </p>
+            <div className="mt-10 grid gap-px overflow-hidden border border-white/10 bg-white/10 sm:grid-cols-2">
+              {recommendation.whyBlueRecommends.map((reason) => (
+                <div key={reason} className="flex gap-3 bg-deep p-6">
+                  <CheckCircle2
+                    className="mt-1 shrink-0 text-sand"
+                    size={17}
+                    strokeWidth={1.8}
+                    aria-hidden="true"
+                  />
+                  <p className="text-base leading-7 text-foam/88">{reason}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -236,6 +322,29 @@ export default async function RecommendationDetailPage({ params }: PageProps) {
           </div>
         </div>
       </section>
+
+      <section className="border-y border-white/10 bg-white/[0.025] px-5 py-20 sm:px-8">
+        <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.75fr_1.25fr]">
+          <p className="text-xs uppercase tracking-[0.22em] text-sand">
+            Things to Know
+          </p>
+          <div className="grid gap-px overflow-hidden border border-white/10 bg-white/10">
+            {thingsToKnow.map(([label, value]) => (
+              <div
+                key={label}
+                className="grid gap-3 bg-deep p-5 sm:grid-cols-[0.32fr_0.68fr]"
+              >
+                <p className="text-xs uppercase tracking-[0.16em] text-sand">
+                  {label}
+                </p>
+                <p className="text-base leading-7 text-foam/88">{value}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <BlueTrustSystem recommendation={recommendation} />
 
       <section className="px-5 py-20 sm:px-8">
         <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.75fr_1.25fr]">

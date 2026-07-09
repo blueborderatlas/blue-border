@@ -1,7 +1,10 @@
 import dahabDivingObservations from "@/lib/published-recommendations/dahab-diving/ai-observations.json";
+import dahabDivingBlueExperience from "@/lib/published-recommendations/dahab-diving/blue-experience.json";
+import dahabDivingBusinessProfile from "@/lib/published-recommendations/dahab-diving/business-profile.json";
 import dahabDivingRecommendation from "@/lib/published-recommendations/dahab-diving/recommendation.json";
 import type {
   AiObservations,
+  BlueExperience,
   BusinessProfile,
   Recommendation,
   RecommendationCategory,
@@ -27,6 +30,7 @@ type PublishedRecommendationRecord = {
   id: string;
   slug: string;
   businessProfile: BusinessProfile;
+  blueExperience: BlueExperience;
   blueRecommendation: PublishedBlueRecommendation;
   aiObservations: AiObservations;
   imageBasePath: string;
@@ -43,20 +47,8 @@ const publishedRecommendationRecords: PublishedRecommendationRecord[] = [
   {
     id: "ai-egypt-dahab-diving-001",
     slug: "dahab-diving-beyond-the-water",
-    businessProfile: {
-      name: "Dahab diving operator under review",
-      verified: false,
-      category: "Diving",
-      country: "Egypt",
-      city: "Dahab",
-      address: "Dahab, South Sinai, Egypt. Exact address not verified.",
-      website: "Not verified",
-      googleMaps: "Not verified",
-      instagram: "Not verified",
-      contact: "Pending human verification",
-      openingHours: "Not verified",
-      priceRange: "Not verified",
-    },
+    businessProfile: dahabDivingBusinessProfile as BusinessProfile,
+    blueExperience: dahabDivingBlueExperience as BlueExperience,
     blueRecommendation: dahabDivingRecommendation,
     aiObservations: dahabDivingObservations,
     imageBasePath: "/images/ai/dahab-diving",
@@ -199,6 +191,7 @@ function adaptPublishedRecommendation(
     nearbyRecommendations: record.nearbyRecommendations,
     relatedGuides: record.relatedGuides,
     businessProfile: record.businessProfile,
+    blueExperience: record.blueExperience,
     aiObservations: record.aiObservations,
   };
 }

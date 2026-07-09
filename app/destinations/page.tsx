@@ -10,43 +10,56 @@ export const metadata: Metadata = {
 
 const destinationGroups = [
   {
+    name: "Dahab",
+    slug: "dahab",
+    copy: "Red Sea diving, slow local routines and practical trust notes around a compact desert-coast town.",
+    image: "/images/ai/dahab-diving/DJI_20260626_193515_Edit_Composited_Photo.jpg",
+  },
+  {
     name: "Europe",
+    slug: "europe",
     copy: "Historic cities, regional stays and independent routes across familiar and overlooked corners.",
     image:
       "https://images.unsplash.com/photo-1467269204594-9661b134dd2b?auto=format&fit=crop&w=1200&q=80",
   },
   {
     name: "China",
+    slug: "china",
     copy: "Local context for domestic travel, city life, food, stays and slower regional journeys.",
     image:
       "https://images.unsplash.com/photo-1508804185872-d7badad00f7d?auto=format&fit=crop&w=1200&q=80",
   },
   {
     name: "Japan",
+    slug: "japan",
     copy: "Calm neighborhoods, practical routes, small businesses and travel notes beyond first impressions.",
     image:
       "https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=1200&q=80",
   },
   {
     name: "Southeast Asia",
+    slug: "southeast-asia",
     copy: "Warm-weather bases, local operators, transport notes and independent travel planning.",
     image:
       "https://images.unsplash.com/photo-1508009603885-50cf7c579365?auto=format&fit=crop&w=1200&q=80",
   },
   {
     name: "Middle East",
+    slug: "middle-east",
     copy: "Cities, desert routes, coastal stops and trusted local connections for curious travelers.",
     image:
       "https://images.unsplash.com/photo-1512632578888-169bbbc64f33?auto=format&fit=crop&w=1200&q=80",
   },
   {
     name: "Islands",
+    slug: "islands",
     copy: "Island bases, local stays, practical routes and slower travel between sea and city.",
     image:
       "https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&fit=crop&w=1200&q=80",
   },
   {
     name: "Remote Places",
+    slug: "remote-places",
     copy: "Farther routes for long-term travelers, open landscapes and rare local knowledge.",
     image:
       "https://images.unsplash.com/photo-1476610182048-b716b8518aae?auto=format&fit=crop&w=1200&q=80",
@@ -55,7 +68,7 @@ const destinationGroups = [
 
 const destinationStructure = [
   "Overview",
-  "Recommended",
+  "Places",
   "Guides",
   "Journal",
   "Local businesses",
@@ -106,7 +119,7 @@ export default function DestinationsPage() {
                   {destination.copy}
                 </p>
                 <Link
-                  href="#"
+                  href={`/destinations/${destination.slug}`}
                   className="mt-7 inline-flex min-h-11 items-center gap-2 border border-white/18 px-4 text-xs uppercase tracking-[0.16em] text-foam transition hover:border-sand hover:text-sand"
                 >
                   Explore <ArrowUpRight size={15} aria-hidden="true" />
@@ -152,13 +165,13 @@ export default function DestinationsPage() {
           </h2>
           <div className="mt-9 flex flex-wrap gap-3">
             <Link
-              href="#"
+              href="/destinations/europe"
               className="inline-flex min-h-12 items-center gap-2 bg-foam px-5 text-sm uppercase tracking-[0.16em] text-ink transition hover:bg-sand"
             >
               Explore Europe <ArrowUpRight size={16} aria-hidden="true" />
             </Link>
             <Link
-              href="#"
+              href="/destinations/china"
               className="inline-flex min-h-12 items-center border border-white/24 px-5 text-sm uppercase tracking-[0.16em] text-foam transition hover:border-sand hover:text-sand"
             >
               Explore China

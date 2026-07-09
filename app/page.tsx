@@ -6,32 +6,74 @@ import {
   Coffee,
   Map,
   Pill,
+  GraduationCap,
   Utensils,
   Waves,
 } from "lucide-react";
-import { destinations } from "@/lib/archive";
+import { getLatestPosts } from "@/lib/posts";
+import { recommendations } from "@/lib/recommendations";
 
 const heroImage =
   "/images/ai/dahab-diving/DJI_20260626_193515_Edit_Composited_Photo.jpg";
 
-const dahabGallery = [
-  "/images/ai/dahab-diving/DJI_20260626_193515_Edit_Composited_Photo.jpg",
-  "/images/ai/dahab-diving/DJI_20260626_193649_Edit_Composited_Photo.jpg",
-  "/images/ai/dahab-diving/DJI_20260626_194018_Edit_Composited_Photo.jpg",
+const destinationCards = [
+  {
+    name: "Germany",
+    href: "/destinations/europe",
+    status: "Coming Soon",
+    image:
+      "https://images.unsplash.com/photo-1467269204594-9661b134dd2b?auto=format&fit=crop&w=1800&q=82",
+  },
+  {
+    name: "Egypt",
+    href: "/destinations/dahab",
+    status: "Published",
+    image:
+      "/images/ai/dahab-diving/DJI_20260626_193515_Edit_Composited_Photo.jpg",
+  },
+  {
+    name: "Italy",
+    href: "/destinations/europe",
+    status: "Coming Soon",
+    image:
+      "https://images.unsplash.com/photo-1533676802871-eca1ae998cd5?auto=format&fit=crop&w=1800&q=82",
+  },
+  {
+    name: "Thailand",
+    href: "/destinations/southeast-asia",
+    status: "Coming Soon",
+    image:
+      "https://images.unsplash.com/photo-1508009603885-50cf7c579365?auto=format&fit=crop&w=1800&q=82",
+  },
+  {
+    name: "Indonesia",
+    href: "/destinations/southeast-asia",
+    status: "Coming Soon",
+    image:
+      "https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=1800&q=82",
+  },
+  {
+    name: "Nepal",
+    href: "/destinations/remote-places",
+    status: "Coming Soon",
+    image:
+      "https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=1800&q=82",
+  },
+  {
+    name: "Japan",
+    href: "/destinations/japan",
+    status: "Coming Soon",
+    image:
+      "https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=1800&q=82",
+  },
+  {
+    name: "China",
+    href: "/destinations/china",
+    status: "Coming Soon",
+    image:
+      "https://images.unsplash.com/photo-1508804185872-d7badad00f7d?auto=format&fit=crop&w=1800&q=82",
+  },
 ];
-
-const destinationSlugs = ["dahab", "europe", "china", "japan"];
-
-const destinationImages: Record<string, string> = {
-  dahab:
-    "/images/ai/dahab-diving/DJI_20260626_193515_Edit_Composited_Photo.jpg",
-  europe:
-    "https://images.unsplash.com/photo-1467269204594-9661b134dd2b?auto=format&fit=crop&w=1800&q=82",
-  china:
-    "https://images.unsplash.com/photo-1508804185872-d7badad00f7d?auto=format&fit=crop&w=1800&q=82",
-  japan:
-    "https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=1800&q=82",
-};
 
 const categoryCards = [
   {
@@ -69,6 +111,11 @@ const categoryCards = [
     href: "/destinations/dahab/local-guide",
     Icon: Map,
   },
+  {
+    label: "Study",
+    href: "/destinations/europe/study",
+    Icon: GraduationCap,
+  },
 ];
 
 function VisualLink({
@@ -89,14 +136,10 @@ function VisualLink({
 }
 
 export default function HomePage() {
-  const featuredDestinations = destinationSlugs
-    .map((slug) =>
-      destinations.find((destination) => destination.slug === slug),
-    )
-    .filter(
-      (destination): destination is (typeof destinations)[number] =>
-        Boolean(destination),
-    );
+  const publishedPlaces = recommendations.filter(
+    (recommendation) => recommendation.businessProfile,
+  );
+  const latestStories = getLatestPosts(3);
 
   return (
     <main>
@@ -116,7 +159,7 @@ export default function HomePage() {
             Travel Begins With Trust
           </p>
           <div className="mt-12">
-            <VisualLink href="/destinations/dahab" label="Explore Dahab" />
+            <VisualLink href="/destinations" label="Explore Destinations" />
           </div>
         </div>
 
@@ -129,62 +172,45 @@ export default function HomePage() {
 
       <section className="px-5 py-32 sm:px-8 lg:py-44">
         <div className="mx-auto max-w-7xl">
-          <div className="mb-14 flex items-end justify-between gap-6">
+          <div className="mb-16 flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
             <div>
               <p className="text-xs uppercase tracking-[0.22em] text-sand">
-                Featured Destination
+                Explore Destinations
               </p>
-              <h2 className="mt-5 font-serif text-6xl leading-none text-foam sm:text-8xl">
-                Dahab
+              <h2 className="mt-5 max-w-3xl font-serif text-5xl leading-none text-foam sm:text-7xl">
+                Start with a place in the world.
               </h2>
             </div>
-            <div className="hidden sm:block">
-              <VisualLink href="/destinations/dahab" label="Open" />
-            </div>
+            <VisualLink href="/destinations" label="All destinations" />
           </div>
 
-          <Link
-            href="/destinations/dahab"
-            className="group grid gap-5 lg:grid-cols-[1.25fr_0.75fr]"
-          >
-            <div className="relative min-h-[78vh] overflow-hidden bg-tide">
-              <img
-                src={dahabGallery[0]}
-                alt=""
-                className="absolute inset-0 h-full w-full object-cover opacity-[0.86] transition duration-700 group-hover:scale-[1.025] group-hover:opacity-100"
-                loading="eager"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-ink/88 via-ink/10 to-transparent" />
-              <div className="absolute bottom-0 left-0 p-7 sm:p-10">
-                <p className="text-xs uppercase tracking-[0.18em] text-sand">
-                  Red Sea
-                </p>
-                <h3 className="mt-4 max-w-3xl font-serif text-5xl leading-none text-foam sm:text-7xl">
-                  Diving, desert light and trusted local notes.
-                </h3>
-              </div>
-            </div>
-
-            <div className="grid gap-5">
-              {dahabGallery.slice(1).map((image, index) => (
-                <div
-                  key={image}
-                  className="relative min-h-[36vh] overflow-hidden bg-tide"
-                >
-                  <img
-                    src={image}
-                    alt=""
-                    className="absolute inset-0 h-full w-full object-cover opacity-[0.78] transition duration-700 group-hover:opacity-95"
-                    loading="lazy"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-ink/78 via-transparent to-transparent" />
-                  <p className="absolute bottom-6 left-6 text-xs uppercase tracking-[0.18em] text-foam/86">
-                    0{index + 2}
+          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            {destinationCards.map((destination, index) => (
+              <Link
+                key={destination.name}
+                href={destination.href}
+                className={`group relative min-h-[58vh] overflow-hidden bg-tide ${
+                  index === 1 ? "lg:col-span-2" : ""
+                }`}
+              >
+                <img
+                  src={destination.image}
+                  alt=""
+                  className="absolute inset-0 h-full w-full object-cover opacity-[0.76] transition duration-700 group-hover:scale-105 group-hover:opacity-100"
+                  loading={index < 2 ? "eager" : "lazy"}
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/12 to-transparent" />
+                <div className="absolute inset-x-0 bottom-0 p-6 sm:p-7">
+                  <p className="text-xs uppercase tracking-[0.16em] text-sand">
+                    {destination.status}
                   </p>
+                  <h3 className="mt-4 font-serif text-5xl leading-none text-foam sm:text-6xl">
+                    {destination.name}
+                  </h3>
                 </div>
-              ))}
-            </div>
-          </Link>
+              </Link>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -193,13 +219,13 @@ export default function HomePage() {
           <div className="mb-16 flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
             <div>
               <p className="text-xs uppercase tracking-[0.22em] text-sand">
-                Explore by Category
+                Browse by Category
               </p>
               <h2 className="mt-5 max-w-3xl font-serif text-5xl leading-none text-foam sm:text-7xl">
                 Choose a need.
               </h2>
             </div>
-            <VisualLink href="/destinations/dahab" label="Dahab hub" />
+            <VisualLink href="/destinations/dahab" label="Egypt is live" />
           </div>
 
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -222,7 +248,7 @@ export default function HomePage() {
                     {label}
                   </h3>
                   <p className="mt-5 text-xs uppercase tracking-[0.16em] text-mist">
-                    Dahab
+                    Explore
                   </p>
                 </div>
               </Link>
@@ -236,32 +262,81 @@ export default function HomePage() {
           <div className="mb-16 flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
             <div>
               <p className="text-xs uppercase tracking-[0.22em] text-sand">
-                Destinations
+                Featured Places
               </p>
-              <h2 className="mt-5 font-serif text-5xl leading-none text-foam sm:text-7xl">
-                Keep moving.
+              <h2 className="mt-5 max-w-3xl font-serif text-5xl leading-none text-foam sm:text-7xl">
+                Published by Blue.
               </h2>
             </div>
-            <VisualLink href="/destinations" label="All destinations" />
+            <VisualLink href="/destinations/dahab" label="Dahab hub" />
           </div>
 
-          <div className="grid gap-5 lg:grid-cols-4">
-            {featuredDestinations.map((destination) => (
+          <div className="grid gap-5 lg:grid-cols-3">
+            {publishedPlaces.map((place, index) => (
               <Link
-                key={destination.slug}
-                href={`/destinations/${destination.slug}`}
-                className="group relative min-h-[62vh] overflow-hidden bg-tide"
+                key={place.id}
+                href={`/places/${place.slug}`}
+                className={`group relative min-h-[68vh] overflow-hidden bg-tide ${
+                  index === 0 ? "lg:col-span-2" : ""
+                }`}
               >
                 <img
-                  src={destinationImages[destination.slug]}
+                  src={place.coverImage}
                   alt=""
-                  className="absolute inset-0 h-full w-full object-cover opacity-[0.78] transition duration-700 group-hover:scale-105 group-hover:opacity-100"
+                  className="absolute inset-0 h-full w-full object-cover opacity-[0.82] transition duration-700 group-hover:scale-[1.025] group-hover:opacity-100"
                   loading="lazy"
                 />
+                <div className="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/14 to-transparent" />
+                <div className="absolute inset-x-0 bottom-0 p-7 sm:p-10">
+                  <p className="text-xs uppercase tracking-[0.16em] text-sand">
+                    {place.category} · {place.city}
+                  </p>
+                  <h3 className="mt-5 max-w-3xl font-serif text-5xl leading-none text-foam sm:text-7xl">
+                    {place.businessProfile?.name || place.name}
+                  </h3>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="border-y border-white/10 bg-white/[0.025] px-5 py-32 sm:px-8 lg:py-44">
+        <div className="mx-auto max-w-7xl">
+          <div className="mb-16 flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+              <p className="text-xs uppercase tracking-[0.22em] text-sand">
+                Latest Stories
+              </p>
+              <h2 className="mt-5 max-w-3xl font-serif text-5xl leading-none text-foam sm:text-7xl">
+                Field notes.
+              </h2>
+            </div>
+            <VisualLink href="/journal" label="Journal" />
+          </div>
+
+          <div className="grid gap-5 md:grid-cols-3">
+            {latestStories.map((story) => (
+              <Link
+                key={story.slug}
+                href={`/journal/${story.slug}`}
+                className="group relative min-h-[58vh] overflow-hidden bg-tide"
+              >
+                {story.coverImage ? (
+                  <img
+                    src={story.coverImage}
+                    alt=""
+                    className="absolute inset-0 h-full w-full object-cover opacity-[0.78] transition duration-700 group-hover:scale-105 group-hover:opacity-100"
+                    loading="lazy"
+                  />
+                ) : null}
                 <div className="absolute inset-0 bg-gradient-to-t from-ink/88 via-ink/10 to-transparent" />
                 <div className="absolute inset-x-0 bottom-0 p-6">
-                  <h3 className="font-serif text-5xl leading-none text-foam">
-                    {destination.name}
+                  <p className="text-xs uppercase tracking-[0.16em] text-sand">
+                    {story.category}
+                  </p>
+                  <h3 className="mt-4 font-serif text-4xl leading-tight text-foam sm:text-5xl">
+                    {story.title}
                   </h3>
                 </div>
               </Link>

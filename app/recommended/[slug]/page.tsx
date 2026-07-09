@@ -52,6 +52,32 @@ export default async function RecommendationDetailPage({ params }: PageProps) {
     ["Reservation", recommendation.thingsToKnow.reservation],
     ["Accessibility", recommendation.thingsToKnow.accessibility],
   ];
+  const businessProfile = recommendation.businessProfile;
+  const businessProfileRows = businessProfile
+    ? [
+        ["Name", businessProfile.name],
+        ["Verified", businessProfile.verified ? "Yes" : "Not verified"],
+        ["Category", businessProfile.category],
+        ["Location", `${businessProfile.city}, ${businessProfile.country}`],
+        ["Address", businessProfile.address],
+        ["Website", businessProfile.website],
+        ["Google Maps", businessProfile.googleMaps],
+        ["Instagram", businessProfile.instagram],
+        ["Contact", businessProfile.contact],
+        ["Opening hours", businessProfile.openingHours],
+        ["Price range", businessProfile.priceRange],
+      ]
+    : [];
+  const observationGroups: Array<[string, string[]]> = recommendation.aiObservations
+    ? [
+        ["Underwater", recommendation.aiObservations.underwater],
+        ["Shore", recommendation.aiObservations.shore],
+        ["Equipment", recommendation.aiObservations.equipment],
+        ["Facilities", recommendation.aiObservations.facilities],
+        ["People", recommendation.aiObservations.people],
+        ["Visible Signs", recommendation.aiObservations.visibleSigns],
+      ]
+    : [];
 
   return (
     <main>
@@ -85,6 +111,34 @@ export default async function RecommendationDetailPage({ params }: PageProps) {
           </p>
         </div>
       </section>
+
+      {businessProfile ? (
+        <section className="border-y border-white/10 bg-white/[0.025] px-5 py-20 sm:px-8">
+          <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.75fr_1.25fr]">
+            <div>
+              <p className="text-xs uppercase tracking-[0.22em] text-sand">
+                Business Profile
+              </p>
+              <h2 className="mt-5 font-serif text-4xl leading-tight text-foam sm:text-5xl">
+                Human-editable business details.
+              </h2>
+            </div>
+            <div className="grid gap-px overflow-hidden border border-white/10 bg-white/10">
+              {businessProfileRows.map(([label, value]) => (
+                <div
+                  key={label}
+                  className="grid gap-3 bg-deep p-5 sm:grid-cols-[0.32fr_0.68fr]"
+                >
+                  <p className="text-xs uppercase tracking-[0.16em] text-sand">
+                    {label}
+                  </p>
+                  <p className="text-base leading-7 text-foam/88">{value}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      ) : null}
 
       <BlueTrustSystem recommendation={recommendation} />
 
@@ -129,6 +183,39 @@ export default async function RecommendationDetailPage({ params }: PageProps) {
           </div>
         </div>
       </section>
+
+      {recommendation.aiObservations ? (
+        <section className="border-y border-white/10 bg-white/[0.025] px-5 py-20 sm:px-8">
+          <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.75fr_1.25fr]">
+            <div>
+              <p className="text-xs uppercase tracking-[0.22em] text-sand">
+                AI Observations
+              </p>
+              <h2 className="mt-5 font-serif text-4xl leading-tight text-foam sm:text-5xl">
+                {recommendation.aiObservations.label}
+              </h2>
+              <p className="mt-5 text-sm leading-7 text-mist">
+                Visible signs are recorded as photo observations only. They are
+                not verified business identities.
+              </p>
+            </div>
+            <div className="grid gap-px overflow-hidden border border-white/10 bg-white/10 sm:grid-cols-2">
+              {observationGroups.map(([label, items]) => (
+                <div key={label} className="bg-deep p-6">
+                  <p className="text-xs uppercase tracking-[0.16em] text-sand">
+                    {label}
+                  </p>
+                  <ul className="mt-5 space-y-3 text-sm leading-7 text-foam/88">
+                    {items.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      ) : null}
 
       <section className="border-y border-white/10 bg-white/[0.025] px-5 py-20 sm:px-8">
         <div className="mx-auto max-w-7xl">

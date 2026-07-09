@@ -1,0 +1,38 @@
+{
+  "label": "Observed from uploaded photos.",
+  "underwater": [
+    "underwater reef scenes are documented",
+    "coral reef is visible",
+    "multiple scuba divers appear",
+    "fish and marine life appear in the reef photos",
+    "diving or swimming activity is visible"
+  ],
+  "shore": [
+    "beach or shore context is visible",
+    "seating by the water is documented",
+    "shoreline waiting or preparation area appears"
+  ],
+  "equipment": [
+    "air tanks are visible",
+    "scuba gear is visible",
+    "equipment handling area appears",
+    "underwater camera use is visible"
+  ],
+  "facilities": [
+    "onshore building or office setting appears",
+    "lockers or storage area are visible",
+    "food or front-desk area appears nearby",
+    "signage is visible in several photos"
+  ],
+  "people": [
+    "travelers and divers appear across multiple photos",
+    "group photos suggest a social diving context",
+    "people are shown before or after the water activity"
+  ],
+  "visibleSigns": [
+    "Fish & Friends",
+    "IGD 469",
+    "Scuba Diving Center",
+    "Casa"
+  ]
+}

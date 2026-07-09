@@ -1,4 +1,4 @@
-import { publishedAiRecommendations } from "@/lib/published-ai-recommendations";
+import { publishedRecommendations } from "@/lib/published-recommendations";
 
 export type TrustStatus =
   | "Recommended"
@@ -45,6 +45,31 @@ export type RecommendationTrust = {
   whyBlueChoseThis: string;
 };
 
+export type BusinessProfile = {
+  name: string;
+  verified: boolean;
+  category: string;
+  country: string;
+  city: string;
+  address: string;
+  website: string;
+  googleMaps: string;
+  instagram: string;
+  contact: string;
+  openingHours: string;
+  priceRange: string;
+};
+
+export type AiObservations = {
+  label: string;
+  underwater: string[];
+  shore: string[];
+  equipment: string[];
+  facilities: string[];
+  people: string[];
+  visibleSigns: string[];
+};
+
 export type Recommendation = {
   id: string;
   slug: string;
@@ -84,6 +109,8 @@ export type Recommendation = {
     title: string;
     href: string;
   }>;
+  businessProfile?: BusinessProfile;
+  aiObservations?: AiObservations;
 };
 
 const curatedRecommendations: Recommendation[] = [
@@ -1310,7 +1337,7 @@ const curatedRecommendations: Recommendation[] = [
 
 export const recommendations: Recommendation[] = [
   ...curatedRecommendations,
-  ...publishedAiRecommendations,
+  ...publishedRecommendations,
 ];
 
 const destinationCountryMap: Record<string, string[]> = {

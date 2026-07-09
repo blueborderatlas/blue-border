@@ -1,11 +1,15 @@
-import dahabDiving from "@/lib/generated-recommendations/dahab-diving.json";
+import dahabDivingObservations from "@/lib/published-recommendations/dahab-diving/ai-observations.json";
+import dahabDivingRecommendation from "@/lib/published-recommendations/dahab-diving/recommendation.json";
 import type {
+  AiObservations,
+  BusinessProfile,
   Recommendation,
   RecommendationCategory,
   TravelerType,
+  TrustStatus,
 } from "@/lib/recommendations";
 
-type GeneratedRecommendation = {
+type PublishedBlueRecommendation = {
   title: string;
   destination: string;
   country: string;
@@ -19,12 +23,13 @@ type GeneratedRecommendation = {
   tags: string[];
 };
 
-type PublishedGeneratedRecommendation = {
+type PublishedRecommendationRecord = {
   id: string;
   slug: string;
-  generated: GeneratedRecommendation;
+  businessProfile: BusinessProfile;
+  blueRecommendation: PublishedBlueRecommendation;
+  aiObservations: AiObservations;
   imageBasePath: string;
-  city: string;
   trust: Recommendation["trust"];
   languages: string[];
   contact: Recommendation["contact"];
@@ -34,13 +39,27 @@ type PublishedGeneratedRecommendation = {
   relatedGuides: Recommendation["relatedGuides"];
 };
 
-const generatedRecommendationSources: PublishedGeneratedRecommendation[] = [
+const publishedRecommendationRecords: PublishedRecommendationRecord[] = [
   {
     id: "ai-egypt-dahab-diving-001",
     slug: "dahab-diving-beyond-the-water",
-    generated: dahabDiving,
+    businessProfile: {
+      name: "Dahab diving operator under review",
+      verified: false,
+      category: "Diving",
+      country: "Egypt",
+      city: "Dahab",
+      address: "Dahab, South Sinai, Egypt. Exact address not verified.",
+      website: "Not verified",
+      googleMaps: "Not verified",
+      instagram: "Not verified",
+      contact: "Pending human verification",
+      openingHours: "Not verified",
+      priceRange: "Not verified",
+    },
+    blueRecommendation: dahabDivingRecommendation,
+    aiObservations: dahabDivingObservations,
     imageBasePath: "/images/ai/dahab-diving",
-    city: "Dahab",
     trust: {
       blueVerified: false,
       personallyVisited: false,
@@ -133,41 +152,56 @@ function toThingsToKnow(items: string[]): Recommendation["thingsToKnow"] {
   };
 }
 
+function toTrustStatus(status: string): TrustStatus {
+  const allowed: TrustStatus[] = [
+    "Recommended",
+    "Verified",
+    "Under Review",
+    "Paused",
+  ];
+
+  return allowed.includes(status as TrustStatus)
+    ? (status as TrustStatus)
+    : "Under Review";
+}
+
 function toPublicImagePath(basePath: string, fileName: string) {
   return `${basePath}/${fileName}`;
 }
 
-function adaptGeneratedRecommendation(
-  source: PublishedGeneratedRecommendation,
+function adaptPublishedRecommendation(
+  record: PublishedRecommendationRecord,
 ): Recommendation {
-  const category = toCategory(source.generated.category);
-  const gallery = source.generated.suggestedGallery.map((fileName) =>
-    toPublicImagePath(source.imageBasePath, fileName),
+  const category = toCategory(record.blueRecommendation.category);
+  const gallery = record.blueRecommendation.suggestedGallery.map((fileName) =>
+    toPublicImagePath(record.imageBasePath, fileName),
   );
 
   return {
-    id: source.id,
-    slug: source.slug,
-    name: source.generated.title,
+    id: record.id,
+    slug: record.slug,
+    name: record.blueRecommendation.title,
     category,
-    country: source.generated.country,
-    city: source.city || source.generated.destination,
+    country: record.blueRecommendation.country,
+    city: record.blueRecommendation.destination,
     coverImage: gallery[0],
     gallery,
-    summary: source.generated.summary,
-    whyBlueRecommends: source.generated.whyBlueRecommends,
+    summary: record.blueRecommendation.summary,
+    whyBlueRecommends: record.blueRecommendation.whyBlueRecommends,
     bestFor: toBestFor(category),
-    thingsToKnow: toThingsToKnow(source.generated.thingsToKnow),
-    trustStatus: "Under Review",
-    trust: source.trust,
-    languages: source.languages,
-    contact: source.contact,
-    bookingLink: source.bookingLink,
-    coordinates: source.coordinates,
-    nearbyRecommendations: source.nearbyRecommendations,
-    relatedGuides: source.relatedGuides,
+    thingsToKnow: toThingsToKnow(record.blueRecommendation.thingsToKnow),
+    trustStatus: toTrustStatus(record.blueRecommendation.trustStatus),
+    trust: record.trust,
+    languages: record.languages,
+    contact: record.contact,
+    bookingLink: record.bookingLink,
+    coordinates: record.coordinates,
+    nearbyRecommendations: record.nearbyRecommendations,
+    relatedGuides: record.relatedGuides,
+    businessProfile: record.businessProfile,
+    aiObservations: record.aiObservations,
   };
 }
 
-export const publishedAiRecommendations: Recommendation[] =
-  generatedRecommendationSources.map(adaptGeneratedRecommendation);
+export const publishedRecommendations: Recommendation[] =
+  publishedRecommendationRecords.map(adaptPublishedRecommendation);

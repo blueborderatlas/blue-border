@@ -2,22 +2,15 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { ArrowUpRight, BadgeCheck } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
+import { TrustBadge } from "@/components/editorial";
 import {
   recommendationCategories,
   type Recommendation,
   type RecommendationCategory,
-  type TrustStatus,
 } from "@/lib/recommendations";
 
 const filters: RecommendationCategory[] = [...recommendationCategories];
-
-const statusStyles: Record<TrustStatus, string> = {
-  Recommended: "border-sky-300/35 bg-sky-300/10 text-foam",
-  Verified: "border-emerald-300/35 bg-emerald-300/10 text-foam",
-  "Under Review": "border-amber-300/35 bg-amber-300/10 text-foam",
-  Paused: "border-rose-300/35 bg-rose-300/10 text-foam",
-};
 
 export function RecommendationCollection({
   recommendations,
@@ -47,8 +40,8 @@ export function RecommendationCollection({
                 onClick={() => setActiveFilter(isActive ? null : filter)}
                 className={
                   isActive
-                    ? "min-h-11 border border-sand/60 bg-sand/10 px-4 text-xs uppercase tracking-[0.16em] text-foam transition hover:border-sand"
-                    : "min-h-11 border border-white/12 bg-white/[0.03] px-4 text-xs uppercase tracking-[0.16em] text-mist transition hover:border-sand/60 hover:text-foam"
+                    ? "min-h-11 rounded-blue-sm border border-sand/60 bg-sand/10 px-4 text-xs uppercase tracking-[0.16em] text-foam transition duration-300 ease-blue hover:border-sand"
+                    : "min-h-11 rounded-blue-sm border border-white/12 bg-white/[0.03] px-4 text-xs uppercase tracking-[0.16em] text-mist transition duration-300 ease-blue hover:border-sand/60 hover:text-foam"
                 }
               >
                 {filter}
@@ -65,7 +58,7 @@ export function RecommendationCollection({
               <Link
                 key={recommendation.id}
                 href={`/places/${recommendation.slug}`}
-                className={`group overflow-hidden bg-white/[0.03] shadow-coast transition duration-500 hover:-translate-y-1 hover:bg-white/[0.05] ${
+                className={`blue-card blue-card-hover group ${
                   index === 0 ? "lg:col-span-2" : ""
                 }`}
               >
@@ -77,7 +70,7 @@ export function RecommendationCollection({
                   <img
                     src={recommendation.coverImage}
                     alt=""
-                    className="h-full w-full object-cover opacity-80 transition duration-700 group-hover:scale-105 group-hover:opacity-100"
+                    className="blue-media-img"
                     loading="lazy"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-ink/86 via-ink/12 to-transparent" />
@@ -105,12 +98,7 @@ export function RecommendationCollection({
                   </p>
 
                   <div className="mt-7 flex items-center justify-between gap-4">
-                    <span
-                      className={`inline-flex min-h-10 items-center gap-2 border px-3 text-xs uppercase tracking-[0.14em] ${statusStyles[recommendation.trustStatus]}`}
-                    >
-                      <BadgeCheck size={15} strokeWidth={1.6} />
-                      {recommendation.trustStatus}
-                    </span>
+                    <TrustBadge status={recommendation.trustStatus} />
                     <ArrowUpRight
                       className="text-mist transition group-hover:text-sand"
                       size={18}
@@ -122,8 +110,8 @@ export function RecommendationCollection({
             ))}
           </div>
         ) : (
-          <div className="mx-auto max-w-7xl bg-white/[0.03] p-8 shadow-coast sm:p-10">
-            <p className="text-xs uppercase tracking-[0.18em] text-sand">
+          <div className="blue-card mx-auto max-w-7xl p-8 sm:p-10">
+            <p className="blue-eyebrow">
               No recommendations yet
             </p>
             <h2 className="mt-4 max-w-2xl font-serif text-4xl leading-tight text-foam sm:text-5xl">

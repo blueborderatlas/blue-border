@@ -1,3 +1,5 @@
+import { Eyebrow } from "@/components/editorial";
+
 export function SectionHeading({
   eyebrow,
   title,
@@ -9,11 +11,11 @@ export function SectionHeading({
 }) {
   return (
     <div className="max-w-3xl">
-      <p className="text-xs uppercase tracking-[0.2em] text-sand">{eyebrow}</p>
-      <h2 className="mt-3 font-serif text-4xl leading-tight text-foam sm:text-5xl">
+      <Eyebrow>{eyebrow}</Eyebrow>
+      <h2 className="blue-h2 mt-4">
         {title}
       </h2>
-      {copy ? <p className="mt-4 text-base leading-7 text-mist">{copy}</p> : null}
+      {copy ? <p className="blue-body mt-4">{copy}</p> : null}
     </div>
   );
 }

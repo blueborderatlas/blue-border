@@ -22,7 +22,7 @@ export function ImageGallery({
     <section className="border-b border-white/10 bg-ink px-5 py-8 sm:px-8">
       <div className="mx-auto max-w-7xl">
         <div className="mb-4 flex items-end justify-between gap-4">
-          <p className="text-xs uppercase tracking-[0.2em] text-sand">
+          <p className="blue-eyebrow">
             Photo notes
           </p>
           <p className="text-xs text-mist">{visibleImages.length} images</p>
@@ -34,7 +34,7 @@ export function ImageGallery({
           {visibleImages.map((image, index) => (
             <figure
               key={image}
-              className="h-[260px] w-[78vw] max-w-[460px] shrink-0 snap-start overflow-hidden rounded-[6px] border border-white/10 bg-deep sm:h-[360px] sm:w-[560px] sm:max-w-none lg:w-[640px]"
+              className="h-[260px] w-[78vw] max-w-[460px] shrink-0 snap-start overflow-hidden rounded-blue border border-white/10 bg-deep sm:h-[360px] sm:w-[560px] sm:max-w-none lg:w-[640px]"
             >
               <img
                 src={image}

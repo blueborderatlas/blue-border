@@ -32,7 +32,7 @@ export default async function CategoriesPage({
         <div className="mt-10 flex flex-wrap gap-3">
           <Link
             href="/categories"
-            className={`inline-flex min-h-12 items-center border px-4 text-sm transition ${
+            className={`inline-flex min-h-12 items-center rounded-blue-sm border px-4 text-sm transition duration-300 ease-blue ${
               activeCategory === "All"
                 ? "border-sand bg-sand text-ink"
                 : "border-white/12 bg-white/[0.03] text-mist hover:border-sand/80 hover:text-foam"

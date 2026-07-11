@@ -24,7 +24,7 @@ export function CategoryLink({
   return (
     <Link
       href={`/categories?category=${encodeURIComponent(category)}`}
-      className={`group inline-flex min-h-12 items-center gap-3 border px-4 text-sm transition ${
+      className={`group inline-flex min-h-12 items-center gap-3 rounded-blue-sm border px-4 text-sm transition duration-300 ease-blue ${
         active
           ? "border-sand bg-sand text-ink"
           : "border-white/12 bg-white/[0.03] text-mist hover:border-sand/80 hover:text-foam"

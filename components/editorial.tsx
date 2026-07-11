@@ -1,11 +1,10 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, BadgeCheck } from "lucide-react";
+import type { TrustStatus } from "@/lib/recommendations";
 
 export function Eyebrow({ children }: { children: ReactNode }) {
-  return (
-    <p className="text-xs uppercase tracking-[0.24em] text-sand">{children}</p>
-  );
+  return <p className="blue-eyebrow">{children}</p>;
 }
 
 export function EditorialLink({
@@ -19,10 +18,7 @@ export function EditorialLink({
 }) {
   if (variant === "text") {
     return (
-      <Link
-        href={href}
-        className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.18em] text-foam transition hover:text-sand"
-      >
+      <Link href={href} className="blue-text-link">
         {children} <ArrowUpRight size={15} aria-hidden="true" />
       </Link>
     );
@@ -31,11 +27,7 @@ export function EditorialLink({
   return (
     <Link
       href={href}
-      className={
-        variant === "solid"
-          ? "inline-flex min-h-12 items-center gap-2 bg-foam px-5 text-sm uppercase tracking-[0.16em] text-ink transition hover:bg-sand"
-          : "inline-flex min-h-12 items-center gap-2 border border-foam/60 px-5 text-sm uppercase tracking-[0.16em] text-foam transition hover:border-sand hover:text-sand"
-      }
+      className={variant === "solid" ? "blue-button-solid" : "blue-button"}
     >
       {children} <ArrowUpRight size={16} aria-hidden="true" />
     </Link>
@@ -56,7 +48,7 @@ export function PageHero({
   children?: ReactNode;
 }) {
   return (
-    <section className="relative overflow-hidden px-5 pb-20 pt-36 sm:px-8 lg:pb-28 lg:pt-44">
+    <section className="relative overflow-hidden px-5 pb-20 pt-32 sm:px-8 sm:pt-36 lg:pb-28 lg:pt-44">
       {image ? (
         <>
           <img
@@ -69,14 +61,8 @@ export function PageHero({
       ) : null}
       <div className="relative mx-auto max-w-7xl">
         <Eyebrow>{eyebrow}</Eyebrow>
-        <h1 className="mt-5 max-w-5xl font-serif text-6xl leading-[0.96] text-foam sm:text-8xl">
-          {title}
-        </h1>
-        {copy ? (
-          <p className="mt-7 max-w-3xl text-lg leading-8 text-mist sm:text-xl sm:leading-9">
-            {copy}
-          </p>
-        ) : null}
+        <h1 className="blue-h1 mt-5 max-w-5xl">{title}</h1>
+        {copy ? <p className="blue-body-lg mt-7 max-w-3xl">{copy}</p> : null}
         {children ? <div className="mt-9">{children}</div> : null}
       </div>
     </section>
@@ -103,23 +89,21 @@ export function EditorialCard({
   return (
     <Link
       href={href}
-      className={`group relative flex overflow-hidden bg-tide shadow-coast ${
+      className={`blue-card blue-card-hover group relative flex bg-tide ${
         large ? "min-h-[72vh]" : "min-h-[28rem]"
       }`}
     >
       <img
         src={image}
         alt=""
-        className="absolute inset-0 h-full w-full object-cover opacity-[0.76] transition duration-700 group-hover:scale-[1.035] group-hover:opacity-95"
+        className="blue-media-img absolute inset-0"
         loading="lazy"
       />
-      <div className="absolute inset-0 bg-gradient-to-t from-ink/92 via-ink/24 to-transparent" />
+      <div className="blue-overlay-bottom" />
       <div className="relative mt-auto w-full p-6 sm:p-8">
-        <p className="text-xs uppercase tracking-[0.18em] text-sand">
-          {eyebrow}
-        </p>
+        <Eyebrow>{eyebrow}</Eyebrow>
         <h2
-          className={`mt-4 font-serif leading-tight text-foam transition group-hover:text-sand ${
+          className={`mt-4 font-serif leading-tight text-foam transition duration-300 ease-blue group-hover:text-sand ${
             large ? "text-5xl sm:text-7xl" : "text-4xl sm:text-5xl"
           }`}
         >
@@ -130,11 +114,7 @@ export function EditorialCard({
             {copy}
           </p>
         ) : null}
-        {meta ? (
-          <p className="mt-7 text-xs uppercase tracking-[0.16em] text-mist">
-            {meta}
-          </p>
-        ) : null}
+        {meta ? <p className="blue-caption mt-7">{meta}</p> : null}
       </div>
     </Link>
   );
@@ -152,19 +132,31 @@ export function SectionIntro({
   action?: ReactNode;
 }) {
   return (
-    <div className="mb-14 flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+    <div className="mb-12 flex flex-col gap-6 sm:mb-14 sm:flex-row sm:items-end sm:justify-between">
       <div>
         <Eyebrow>{eyebrow}</Eyebrow>
-        <h2 className="mt-5 max-w-4xl font-serif text-5xl leading-none text-foam sm:text-7xl">
+        <h2 className="mt-5 max-w-4xl font-serif text-4xl leading-[1.02] text-foam sm:text-6xl lg:text-7xl">
           {title}
         </h2>
-        {copy ? (
-          <p className="mt-5 max-w-2xl text-base leading-8 text-mist">
-            {copy}
-          </p>
-        ) : null}
+        {copy ? <p className="blue-body mt-5 max-w-2xl">{copy}</p> : null}
       </div>
       {action ? <div className="shrink-0">{action}</div> : null}
     </div>
+  );
+}
+
+const trustBadgeStyles: Record<TrustStatus, string> = {
+  Recommended: "border-sky-200/25 bg-sky-200/10",
+  Verified: "border-emerald-200/25 bg-emerald-200/10",
+  "Under Review": "border-amber-200/30 bg-amber-200/10",
+  Paused: "border-rose-200/25 bg-rose-200/10",
+};
+
+export function TrustBadge({ status }: { status: TrustStatus }) {
+  return (
+    <span className={`blue-chip ${trustBadgeStyles[status]}`}>
+      <BadgeCheck size={15} strokeWidth={1.6} aria-hidden="true" />
+      {status}
+    </span>
   );
 }

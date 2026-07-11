@@ -80,7 +80,7 @@ export default async function ArticlePage({ params }: PageProps) {
             <h1 className="mt-5 max-w-5xl font-serif text-5xl leading-tight text-foam sm:text-7xl">
               {post.title}
             </h1>
-            <p className="mt-6 max-w-3xl text-lg leading-8 text-foam/86">
+            <p className="mt-6 max-w-3xl text-lg leading-8 text-foam/85">
               {post.excerpt}
             </p>
           </div>

@@ -18,13 +18,26 @@ const config: Config = {
         mist: "#b7c8d1",
         sand: "#d7c5a5",
         rust: "#b86f52",
+        bluebg: "#06111f",
+        bluepanel: "#091827",
+        bluecard: "rgba(255, 255, 255, 0.035)",
+        blueborder: "rgba(255, 255, 255, 0.1)",
       },
       fontFamily: {
         serif: ["var(--font-serif)", "Georgia", "serif"],
         sans: ["var(--font-sans)", "Inter", "system-ui", "sans-serif"],
       },
+      borderRadius: {
+        blue: "8px",
+        "blue-sm": "5px",
+        "blue-lg": "14px",
+      },
       boxShadow: {
         coast: "0 24px 80px rgba(0, 0, 0, 0.34)",
+        editorial: "0 28px 88px rgba(0, 0, 0, 0.32)",
+      },
+      transitionTimingFunction: {
+        blue: "cubic-bezier(0.22, 1, 0.36, 1)",
       },
     },
   },

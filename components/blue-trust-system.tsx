@@ -8,6 +8,7 @@ import {
   Wallet,
 } from "lucide-react";
 import type { Recommendation } from "@/lib/recommendations";
+import { Eyebrow, TrustBadge } from "@/components/editorial";
 
 type BlueTrustSystemProps = {
   recommendation: Recommendation;
@@ -48,48 +49,49 @@ export function BlueTrustSystem({ recommendation }: BlueTrustSystemProps) {
   ];
 
   return (
-    <section className="px-5 py-20 sm:px-8">
+    <section className="blue-section">
       <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.75fr_1.25fr]">
         <div>
-          <p className="text-xs uppercase tracking-[0.22em] text-sand">
-            Blue Trust System
-          </p>
-          <h2 className="mt-5 font-serif text-4xl leading-tight text-foam sm:text-5xl">
+          <Eyebrow>Blue Trust System</Eyebrow>
+          <h2 className="blue-h2 mt-5">
             Trust signals, reviewed over time.
           </h2>
+          <div className="mt-7">
+            <TrustBadge status={recommendation.trustStatus} />
+          </div>
         </div>
 
-        <div className="grid gap-px overflow-hidden border border-white/10 bg-white/10">
-          <div className="grid gap-px bg-white/10 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-3">
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {trustItems.map(({ label, value, Icon }) => (
-              <div key={label} className="bg-deep p-6">
+              <div key={label} className="blue-card-flat p-6">
                 <Icon
                   className="text-sand"
                   size={22}
                   strokeWidth={1.6}
                   aria-hidden="true"
                 />
-                <p className="mt-5 text-xs uppercase tracking-[0.16em] text-sand">
+                <p className="blue-eyebrow mt-5">
                   {label}
                 </p>
-                <p className="mt-3 text-base leading-7 text-foam/88">
+                <p className="mt-3 text-base leading-7 text-foam/85">
                   {value}
                 </p>
               </div>
             ))}
           </div>
 
-          <div className="bg-deep p-7 sm:p-8">
+          <div className="blue-card-flat p-7 sm:p-8">
             <Sparkles
               className="text-sand"
               size={24}
               strokeWidth={1.6}
               aria-hidden="true"
             />
-            <p className="mt-5 text-xs uppercase tracking-[0.16em] text-sand">
+            <p className="blue-eyebrow mt-5">
               Why Blue Chose This
             </p>
-            <p className="mt-4 max-w-3xl text-base leading-8 text-foam/88">
+            <p className="mt-4 max-w-3xl text-base leading-8 text-foam/85">
               {recommendation.trust.whyBlueChoseThis}
             </p>
           </div>

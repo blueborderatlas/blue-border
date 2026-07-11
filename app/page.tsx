@@ -136,7 +136,7 @@ function VisualLink({
   return (
     <Link
       href={href}
-      className="inline-flex min-h-12 items-center gap-2 border border-foam/70 px-6 text-sm uppercase tracking-[0.16em] text-foam transition hover:border-sand hover:text-sand"
+      className="blue-button"
     >
       {label} <ArrowUpRight size={16} aria-hidden="true" />
     </Link>
@@ -166,7 +166,7 @@ export default function HomePage() {
           <h1 className="font-serif text-7xl leading-none text-foam sm:text-9xl lg:text-[12rem]">
             Blue
           </h1>
-          <p className="mt-8 text-xs uppercase tracking-[0.42em] text-foam/88 sm:text-sm">
+          <p className="mt-8 text-xs uppercase tracking-[0.42em] text-foam/85 sm:text-sm">
             Travel Begins With Trust
           </p>
           <div className="mt-12">
@@ -200,7 +200,7 @@ export default function HomePage() {
               <Link
                 key={destination.name}
                 href={destination.href}
-                className={`group relative overflow-hidden bg-tide shadow-coast ${
+                className={`blue-card blue-card-hover group relative bg-tide ${
                   index === 1
                     ? "min-h-[70vh] lg:col-span-2 lg:row-span-2"
                     : "min-h-[34vh]"
@@ -253,7 +253,7 @@ export default function HomePage() {
             <div className="grid gap-5 lg:grid-cols-[1.15fr_0.85fr]">
               <Link
                 href={`/places/${primaryPlace.slug}`}
-                className="group relative min-h-[76vh] overflow-hidden bg-tide shadow-coast"
+                className="blue-card blue-card-hover group relative min-h-[76vh] bg-tide"
               >
                 <img
                   src={primaryPlace.coverImage}
@@ -280,7 +280,7 @@ export default function HomePage() {
                   <Link
                     key={place.id}
                     href={`/places/${place.slug}`}
-                    className="group relative min-h-[36vh] overflow-hidden bg-tide"
+                    className="blue-card blue-card-hover group relative min-h-[36vh] bg-tide"
                   >
                     <img
                       src={place.coverImage}
@@ -327,7 +327,7 @@ export default function HomePage() {
               <Link
                 key={label}
                 href={href}
-                className={`group relative flex overflow-hidden bg-tide shadow-coast ${
+                className={`blue-card blue-card-hover group relative flex bg-tide ${
                   index === 0 || index === 4
                     ? "min-h-[58vh] lg:col-span-3"
                     : "min-h-[36vh] lg:col-span-2"
@@ -381,7 +381,7 @@ export default function HomePage() {
             <div className="grid gap-5 lg:grid-cols-[1.25fr_0.75fr]">
               <Link
                 href={`/journal/${leadStory.slug}`}
-                className="group relative min-h-[78vh] overflow-hidden bg-tide shadow-coast"
+                className="blue-card blue-card-hover group relative min-h-[78vh] bg-tide"
               >
                 <img
                   src={leadStory.coverImage}
@@ -408,7 +408,7 @@ export default function HomePage() {
                   <Link
                     key={story.slug}
                     href={`/journal/${story.slug}`}
-                    className="group relative min-h-[38vh] overflow-hidden bg-tide"
+                    className="blue-card blue-card-hover group relative min-h-[38vh] bg-tide"
                   >
                     <img
                       src={story.coverImage}
@@ -452,7 +452,7 @@ export default function HomePage() {
               <Link
                 key={story.slug}
                 href={`/journal/${story.slug}`}
-                className={`group relative overflow-hidden bg-tide shadow-coast ${
+                className={`blue-card blue-card-hover group relative bg-tide ${
                   index === 1 ? "min-h-[62vh] md:mt-16" : "min-h-[50vh]"
                 }`}
               >

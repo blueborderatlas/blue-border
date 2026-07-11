@@ -5,6 +5,18 @@
 :root {
   --font-serif: "Georgia", "Times New Roman", serif;
   --font-sans: "Inter", "Avenir Next", "Segoe UI", system-ui, sans-serif;
+  --blue-bg: #06111f;
+  --blue-panel: #091827;
+  --blue-card: rgba(255, 255, 255, 0.035);
+  --blue-border: rgba(255, 255, 255, 0.1);
+  --blue-border-strong: rgba(215, 197, 165, 0.45);
+  --blue-text: #f4f0e8;
+  --blue-text-secondary: #d8e3e8;
+  --blue-text-muted: #b7c8d1;
+  --blue-accent: #d7c5a5;
+  --blue-overlay: linear-gradient(to top, rgba(6, 17, 31, 0.92), rgba(6, 17, 31, 0.22), transparent);
+  --blue-hover-overlay: rgba(255, 255, 255, 0.045);
+  --blue-ease: cubic-bezier(0.22, 1, 0.36, 1);
   color-scheme: dark;
 }
 
@@ -24,11 +36,121 @@ body {
     linear-gradient(180deg, #06111f 0%, #091827 46%, #06111f 100%);
   color: #f4f0e8;
   font-family: var(--font-sans);
+  text-rendering: optimizeLegibility;
 }
 
 ::selection {
   background: #d7c5a5;
   color: #06111f;
+}
+
+a,
+button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 1px solid var(--blue-accent);
+  outline-offset: 4px;
+}
+
+img {
+  max-width: 100%;
+}
+
+@layer components {
+  .blue-container {
+    @apply mx-auto max-w-7xl px-5 sm:px-8;
+  }
+
+  .blue-section {
+    @apply px-5 py-20 sm:px-8 sm:py-24 lg:py-32;
+  }
+
+  .blue-section-lg {
+    @apply px-5 py-24 sm:px-8 sm:py-32 lg:py-40;
+  }
+
+  .blue-section-muted {
+    @apply border-y border-white/10 bg-white/[0.025];
+  }
+
+  .blue-eyebrow {
+    @apply text-xs uppercase tracking-[0.2em] text-sand;
+  }
+
+  .blue-display {
+    @apply font-serif text-6xl leading-[0.95] text-foam sm:text-8xl lg:text-[10rem];
+  }
+
+  .blue-h1 {
+    @apply font-serif text-5xl leading-[0.98] text-foam sm:text-7xl lg:text-8xl;
+  }
+
+  .blue-h2 {
+    @apply font-serif text-4xl leading-tight text-foam sm:text-6xl;
+  }
+
+  .blue-h3 {
+    @apply font-serif text-3xl leading-tight text-foam sm:text-4xl;
+  }
+
+  .blue-body-lg {
+    @apply text-lg leading-8 text-mist sm:text-xl sm:leading-9;
+  }
+
+  .blue-body {
+    @apply text-base leading-8 text-mist;
+  }
+
+  .blue-body-sm {
+    @apply text-sm leading-7 text-mist;
+  }
+
+  .blue-caption {
+    @apply text-xs uppercase tracking-[0.16em] text-mist;
+  }
+
+  .blue-card {
+    @apply overflow-hidden rounded-blue bg-white/[0.035] shadow-editorial transition duration-500 ease-blue;
+  }
+
+  .blue-card-flat {
+    @apply rounded-blue border border-white/10 bg-deep transition duration-300 ease-blue;
+  }
+
+  .blue-card-hover {
+    @apply hover:-translate-y-1 hover:bg-white/[0.05];
+  }
+
+  .blue-media {
+    @apply relative overflow-hidden rounded-blue bg-tide;
+  }
+
+  .blue-media-img {
+    @apply h-full w-full object-cover opacity-[0.76] transition duration-700 ease-blue group-hover:scale-[1.035] group-hover:opacity-95;
+  }
+
+  .blue-overlay-bottom {
+    @apply absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/20 to-transparent;
+  }
+
+  .blue-button {
+    @apply inline-flex min-h-12 items-center gap-2 rounded-blue-sm border border-foam/60 px-5 text-sm uppercase tracking-[0.14em] text-foam transition duration-300 ease-blue hover:border-sand hover:text-sand;
+  }
+
+  .blue-button-solid {
+    @apply inline-flex min-h-12 items-center gap-2 rounded-blue-sm bg-foam px-5 text-sm uppercase tracking-[0.14em] text-ink transition duration-300 ease-blue hover:bg-sand;
+  }
+
+  .blue-text-link {
+    @apply inline-flex min-h-11 items-center gap-2 text-xs uppercase tracking-[0.16em] text-foam transition duration-300 ease-blue hover:text-sand;
+  }
+
+  .blue-chip {
+    @apply inline-flex min-h-10 items-center gap-2 rounded-blue-sm border border-white/10 bg-white/[0.045] px-3 text-xs uppercase tracking-[0.14em] text-foam;
+  }
 }
 
 .prose-coast {

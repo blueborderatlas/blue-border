@@ -151,6 +151,7 @@ export default function HomePage() {
   const [leadStory, ...supportStories] = stories;
   const latestJournal = stories.slice(3, 6);
   const [primaryPlace, ...secondaryPlaces] = publishedPlaces;
+  const featuredDestinations = destinationCards.slice(0, 5);
 
   return (
     <main>
@@ -181,6 +182,24 @@ export default function HomePage() {
         </div>
       </section>
 
+      <section className="border-y border-white/10 bg-white/[0.025] px-5 py-24 sm:px-8 lg:py-32">
+        <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
+          <p className="text-xs uppercase tracking-[0.22em] text-sand">
+            Blue
+          </p>
+          <div>
+            <h2 className="max-w-5xl font-serif text-5xl leading-none text-foam sm:text-7xl lg:text-8xl">
+              A global travel platform for finding trusted places before you
+              arrive.
+            </h2>
+            <p className="mt-8 max-w-2xl text-base leading-8 text-mist">
+              Start with the world, move through destinations, and discover the
+              local people and businesses worth knowing.
+            </p>
+          </div>
+        </div>
+      </section>
+
       <section className="px-5 py-28 sm:px-8 lg:py-40">
         <div className="mx-auto max-w-7xl">
           <div className="mb-16 flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
@@ -195,15 +214,19 @@ export default function HomePage() {
             <VisualLink href="/destinations" label="All destinations" />
           </div>
 
-          <div className="grid gap-5 lg:grid-cols-4">
-            {destinationCards.map((destination, index) => (
+          <div className="grid gap-5 lg:grid-cols-12 lg:auto-rows-[18rem]">
+            {featuredDestinations.map((destination, index) => (
               <Link
                 key={destination.name}
                 href={destination.href}
                 className={`blue-card blue-card-hover group relative bg-tide ${
                   index === 1
-                    ? "min-h-[70vh] lg:col-span-2 lg:row-span-2"
-                    : "min-h-[34vh]"
+                    ? "min-h-[72vh] lg:col-span-7 lg:row-span-2"
+                    : index === 0
+                      ? "min-h-[42vh] lg:col-span-5"
+                      : index === 4
+                        ? "min-h-[50vh] lg:col-span-7"
+                        : "min-h-[42vh] lg:col-span-5"
                 }`}
               >
                 <img
@@ -250,10 +273,10 @@ export default function HomePage() {
           </div>
 
           {primaryPlace ? (
-            <div className="grid gap-5 lg:grid-cols-[1.15fr_0.85fr]">
+            <div className="flex flex-col gap-5 lg:min-h-[78vh] lg:flex-row">
               <Link
                 href={`/places/${primaryPlace.slug}`}
-                className="blue-card blue-card-hover group relative min-h-[76vh] bg-tide"
+                className="blue-card blue-card-hover group relative min-h-[62vh] bg-tide lg:flex-[1.25]"
               >
                 <img
                   src={primaryPlace.coverImage}
@@ -275,30 +298,38 @@ export default function HomePage() {
                 </div>
               </Link>
 
-              <div className="grid gap-5">
-                {secondaryPlaces.slice(0, 2).map((place) => (
-                  <Link
-                    key={place.id}
-                    href={`/places/${place.slug}`}
-                    className="blue-card blue-card-hover group relative min-h-[36vh] bg-tide"
-                  >
-                    <img
-                      src={place.coverImage}
-                      alt=""
-                      className="absolute inset-0 h-full w-full object-cover opacity-[0.62] transition duration-700 group-hover:scale-105 group-hover:opacity-95"
-                      loading="lazy"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/24 to-transparent" />
-                    <div className="absolute inset-x-0 bottom-0 p-6">
-                      <p className="text-xs uppercase tracking-[0.16em] text-sand">
-                        {place.category} · {place.city}
-                      </p>
-                      <h3 className="mt-4 font-serif text-4xl leading-tight text-foam">
-                        {place.businessProfile?.name || place.name}
-                      </h3>
-                    </div>
-                  </Link>
-                ))}
+              <div className="blue-card flex min-h-[42vh] flex-col justify-between border border-white/10 bg-ink/74 p-7 sm:p-10 lg:flex-[0.75]">
+                <div>
+                  <p className="text-xs uppercase tracking-[0.22em] text-sand">
+                    Blue Recommended
+                  </p>
+                  <h3 className="mt-6 font-serif text-5xl leading-none text-foam sm:text-6xl">
+                    One place can carry the whole chapter.
+                  </h3>
+                  <p className="mt-7 max-w-xl text-base leading-8 text-mist">
+                    Published places sit at the center of Blue: human-curated,
+                    destination-linked and ready to expand as the collection
+                    grows.
+                  </p>
+                </div>
+                <div className="mt-12 space-y-5 border-t border-white/10 pt-7">
+                  <p className="text-xs uppercase tracking-[0.16em] text-mist">
+                    Trust status
+                  </p>
+                  <p className="font-serif text-3xl text-foam">
+                    {primaryPlace.trustStatus}
+                  </p>
+                  {secondaryPlaces.length > 0 ? (
+                    <p className="text-sm leading-7 text-mist">
+                      More published places are ready to surface here as the
+                      collection grows.
+                    </p>
+                  ) : null}
+                  <VisualLink
+                    href={`/places/${primaryPlace.slug}`}
+                    label="Open place"
+                  />
+                </div>
               </div>
             </div>
           ) : null}
@@ -307,7 +338,7 @@ export default function HomePage() {
 
       <section className="px-5 py-28 sm:px-8 lg:py-40">
         <div className="mx-auto max-w-7xl">
-          <div className="mb-16 grid gap-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
+          <div className="mb-16 flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
             <div>
               <p className="text-xs uppercase tracking-[0.22em] text-sand">
                 Travel by Interest
@@ -316,21 +347,17 @@ export default function HomePage() {
                 Travel starts with a need.
               </h2>
             </div>
-            <p className="max-w-2xl text-base leading-8 text-mist lg:ml-auto">
-              Find the kind of local context that changes how a trip feels:
-              where to stay, who to trust, how to move and where to pause.
-            </p>
           </div>
 
-          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-6">
+          <div className="-mx-5 flex gap-5 overflow-x-auto px-5 pb-4 sm:-mx-8 sm:px-8 lg:mx-0 lg:px-0">
             {categoryCards.map(({ label, href, Icon, image }, index) => (
               <Link
                 key={label}
                 href={href}
-                className={`blue-card blue-card-hover group relative flex bg-tide ${
-                  index === 0 || index === 4
-                    ? "min-h-[58vh] lg:col-span-3"
-                    : "min-h-[36vh] lg:col-span-2"
+                className={`blue-card blue-card-hover group relative flex shrink-0 bg-tide ${
+                  index % 3 === 0
+                    ? "h-[62vh] w-[78vw] sm:w-[32rem]"
+                    : "h-[48vh] w-[68vw] sm:w-[26rem]"
                 }`}
               >
                 <img
@@ -447,29 +474,36 @@ export default function HomePage() {
             <VisualLink href="/journal" label="Open journal" />
           </div>
 
-          <div className="grid gap-5 md:grid-cols-3">
+          <div className="space-y-5">
             {latestJournal.map((story, index) => (
               <Link
                 key={story.slug}
                 href={`/journal/${story.slug}`}
-                className={`blue-card blue-card-hover group relative bg-tide ${
-                  index === 1 ? "min-h-[62vh] md:mt-16" : "min-h-[50vh]"
-                }`}
+                className="blue-card blue-card-hover group flex flex-col overflow-hidden border border-white/10 bg-white/[0.025] sm:flex-row"
               >
-                <img
-                  src={story.coverImage}
-                  alt=""
-                  className="absolute inset-0 h-full w-full object-cover opacity-[0.68] transition duration-700 group-hover:scale-105 group-hover:opacity-95"
-                  loading="lazy"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/18 to-transparent" />
-                <div className="absolute inset-x-0 bottom-0 p-6">
+                <div
+                  className={`relative min-h-[18rem] overflow-hidden sm:w-[42%] ${
+                    index === 1 ? "sm:w-[52%]" : ""
+                  }`}
+                >
+                  <img
+                    src={story.coverImage}
+                    alt=""
+                    className="absolute inset-0 h-full w-full object-cover opacity-[0.76] transition duration-700 group-hover:scale-105 group-hover:opacity-95"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-ink/56 to-transparent" />
+                </div>
+                <div className="flex flex-1 flex-col justify-center p-7 sm:p-10">
                   <p className="text-xs uppercase tracking-[0.16em] text-sand">
                     {story.category}
                   </p>
-                  <h3 className="mt-4 font-serif text-4xl leading-tight text-foam">
+                  <h3 className="mt-4 max-w-3xl font-serif text-4xl leading-tight text-foam sm:text-5xl">
                     {story.title}
                   </h3>
+                  <p className="mt-5 max-w-2xl text-sm leading-7 text-mist">
+                    {story.excerpt}
+                  </p>
                 </div>
               </Link>
             ))}

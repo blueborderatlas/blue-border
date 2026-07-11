@@ -80,41 +80,57 @@ const categoryCards = [
     label: "Diving",
     href: "/destinations/dahab/diving",
     Icon: Waves,
+    image:
+      "/images/ai/dahab-diving/DJI_20260626_193515_Edit_Composited_Photo.jpg",
   },
   {
     label: "Stay",
     href: "/destinations/dahab/stay",
     Icon: BedDouble,
+    image:
+      "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1400&q=82",
   },
   {
     label: "Food",
     href: "/destinations/dahab/food",
     Icon: Utensils,
+    image:
+      "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1400&q=82",
   },
   {
     label: "Cafe",
     href: "/destinations/dahab/cafe",
     Icon: Coffee,
+    image:
+      "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=1400&q=82",
   },
   {
     label: "Transport",
     href: "/destinations/dahab/transport",
     Icon: Bus,
+    image:
+      "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1400&q=82",
   },
   {
     label: "Pharmacy",
     href: "/destinations/dahab/pharmacy",
     Icon: Pill,
+    image:
+      "https://images.unsplash.com/photo-1585435557343-3b092031a831?auto=format&fit=crop&w=1400&q=82",
   },
   {
     label: "Local Guide",
     href: "/destinations/dahab/local-guide",
     Icon: Map,
+    image:
+      "https://images.unsplash.com/photo-1527631746610-bca00a040d60?auto=format&fit=crop&w=1400&q=82",
   },
   {
     label: "Study",
     href: "/destinations/europe/study",
     Icon: GraduationCap,
+    image:
+      "https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&w=1400&q=82",
   },
 ];
 
@@ -229,21 +245,28 @@ export default function HomePage() {
           </div>
 
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {categoryCards.map(({ label, href, Icon }, index) => (
+            {categoryCards.map(({ label, href, Icon, image }, index) => (
               <Link
                 key={label}
                 href={href}
-                className={`group flex min-h-60 flex-col justify-between border border-white/10 bg-deep p-6 transition hover:border-sand/45 hover:bg-white/[0.045] ${
+                className={`group relative flex min-h-72 flex-col justify-between overflow-hidden bg-tide p-6 shadow-coast transition ${
                   index === 0 ? "lg:col-span-2 lg:min-h-72" : ""
                 }`}
               >
+                <img
+                  src={image}
+                  alt=""
+                  className="absolute inset-0 h-full w-full object-cover opacity-[0.32] transition duration-700 group-hover:scale-105 group-hover:opacity-[0.48]"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-ink/92 via-ink/52 to-transparent" />
                 <Icon
-                  className="text-sand transition group-hover:text-foam"
+                  className="relative text-sand transition group-hover:text-foam"
                   size={30}
                   strokeWidth={1.5}
                   aria-hidden="true"
                 />
-                <div>
+                <div className="relative">
                   <h3 className="font-serif text-4xl leading-none text-foam sm:text-5xl">
                     {label}
                   </h3>

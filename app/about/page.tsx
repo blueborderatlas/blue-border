@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowUpRight, CheckCircle2 } from "lucide-react";
+import { CheckCircle2 } from "lucide-react";
+import { EditorialLink, Eyebrow, PageHero } from "@/components/editorial";
 
 export const metadata: Metadata = {
   title: "About",
@@ -8,147 +9,156 @@ export const metadata: Metadata = {
     "About Blue Border, a personal coastal travel journal for hidden European islands, slow travel, low-cost routes and quiet seaside towns.",
 };
 
-const blueDoes = [
-  "Editorial travel stories that give places human context.",
-  "Practical guides for planning, moving, staying and adapting.",
-  "Trusted local recommendations for people, businesses and experiences.",
-  "Long-term quality review after a recommendation goes live.",
+const principles = [
+  "Curated before listed.",
+  "Trust is reviewed over time.",
+  "Local businesses stay independent.",
+  "Photography and field notes matter.",
 ];
 
 const notBlue = [
   "Not a booking platform.",
-  "Not Google Maps.",
-  "Not TripAdvisor.",
-  "Not Xiaohongshu.",
-  "Not a public review website.",
+  "Not paid rankings.",
+  "Not public reviews.",
+  "Not another SEO travel list.",
 ];
 
 const trustStatuses = [
-  "Recommended",
-  "Verified",
-  "Under Review",
-  "Paused",
+  ["Recommended", "A place Blue is comfortable surfacing after review."],
+  ["Verified", "A long-term partner with stronger trust signals."],
+  ["Under Review", "Useful, but still being checked."],
+  ["Paused", "Temporarily removed from active recommendation."],
 ];
 
 export default function AboutPage() {
   return (
     <main>
-      <section className="px-5 pb-24 pt-36 sm:px-8 lg:pb-32 lg:pt-44">
-        <div className="mx-auto max-w-7xl">
-          <p className="text-xs uppercase tracking-[0.24em] text-sand">
-            About Blue
-          </p>
-          <h1 className="mt-5 max-w-5xl font-serif text-6xl leading-[0.98] text-foam sm:text-8xl">
-            A trusted recommendation network for independent travelers
-            worldwide.
-          </h1>
-          <p className="mt-8 max-w-3xl text-xl leading-9 text-mist">
-            Blue helps people discover reliable local people, businesses and
-            experiences through editorial curation, practical knowledge and
-            long-term review.
-          </p>
-        </div>
-      </section>
+      <PageHero
+        eyebrow="About Blue"
+        title="Travel recommendations built on trust."
+        copy="Blue is a recommendation network for independent travelers who want local context before they commit time, money or attention."
+        image="/images/ai/dahab-diving/DJI_20260626_194018_Edit_Composited_Photo.jpg"
+      />
 
-      <section className="border-y border-white/10 bg-white/[0.025] px-5 py-20 sm:px-8">
-        <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.75fr_1.25fr]">
-          <p className="text-xs uppercase tracking-[0.22em] text-sand">
-            The problem
-          </p>
-          <div className="max-w-4xl">
-            <h2 className="font-serif text-4xl leading-tight text-foam sm:text-5xl">
-              Travel information is everywhere. Trust is harder to find.
+      <section className="px-5 py-24 sm:px-8 lg:py-32">
+        <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.85fr_1.15fr]">
+          <div>
+            <Eyebrow>Why Blue exists</Eyebrow>
+            <h2 className="mt-5 font-serif text-5xl leading-none text-foam sm:text-7xl">
+              Information is easy. Confidence is rare.
             </h2>
-            <p className="mt-6 text-lg leading-9 text-mist">
-              Modern travelers move through fake reviews, SEO articles,
-              sponsored influencers and unreliable recommendations. Blue exists
-              to reduce uncertainty before a trip begins.
-            </p>
-            <p className="mt-6 text-lg leading-9 text-mist">
-              The goal is simple: help people discover places and people they
-              can genuinely trust.
-            </p>
+          </div>
+          <div className="relative min-h-[34rem] overflow-hidden bg-tide p-7 sm:p-10">
+            <img
+              src="https://images.unsplash.com/photo-1527631746610-bca00a040d60?auto=format&fit=crop&w=1800&q=82"
+              alt=""
+              className="absolute inset-0 h-full w-full object-cover opacity-[0.52]"
+              loading="lazy"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-ink/94 via-ink/40 to-transparent" />
+            <div className="relative mt-48 max-w-3xl">
+              <p className="font-serif text-4xl leading-tight text-foam sm:text-5xl">
+                Fake reviews, sponsored posts and crowded platforms make simple
+                decisions feel strangely uncertain.
+              </p>
+              <p className="mt-6 max-w-2xl text-base leading-8 text-mist">
+                Blue exists to reduce that uncertainty with editorial curation,
+                human review and local recommendations that can change over
+                time.
+              </p>
+            </div>
           </div>
         </div>
       </section>
 
-      <section className="px-5 py-20 sm:px-8">
+      <section className="border-y border-white/10 bg-white/[0.025] px-5 py-24 sm:px-8 lg:py-32">
         <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.75fr_1.25fr]">
-          <p className="text-xs uppercase tracking-[0.22em] text-sand">
-            What Blue does
-          </p>
-          <div className="grid gap-px overflow-hidden border border-white/10 bg-white/10 sm:grid-cols-2">
-            {blueDoes.map((item) => (
-              <div key={item} className="flex gap-3 bg-deep p-6">
+          <div>
+            <Eyebrow>What Blue does</Eyebrow>
+            <h2 className="mt-5 font-serif text-5xl leading-none text-foam sm:text-7xl">
+              Stories, guides and local trust.
+            </h2>
+          </div>
+
+          <div className="grid gap-4 sm:grid-cols-2">
+            {principles.map((item) => (
+              <div key={item} className="min-h-44 bg-deep p-6">
                 <CheckCircle2
-                  className="mt-1 shrink-0 text-sand"
-                  size={17}
-                  strokeWidth={1.8}
+                  className="text-sand"
+                  size={18}
+                  strokeWidth={1.7}
                   aria-hidden="true"
                 />
-                <p className="text-base leading-7 text-foam/88">{item}</p>
+                <p className="mt-8 font-serif text-3xl leading-tight text-foam">
+                  {item}
+                </p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="border-y border-white/10 bg-white/[0.025] px-5 py-20 sm:px-8">
-        <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.75fr_1.25fr]">
-          <p className="text-xs uppercase tracking-[0.22em] text-sand">
-            What makes Blue different
-          </p>
-          <div>
-            <h2 className="max-w-4xl font-serif text-4xl leading-tight text-foam sm:text-5xl">
-              Blue is a curated recommendation network, not another noisy
-              listing site.
+      <section className="px-5 py-24 sm:px-8 lg:py-32">
+        <div className="mx-auto max-w-7xl">
+          <div className="mb-14 max-w-4xl">
+            <Eyebrow>What Blue is not</Eyebrow>
+            <h2 className="mt-5 font-serif text-5xl leading-none text-foam sm:text-7xl">
+              Smaller, calmer, more accountable.
             </h2>
-            <div className="mt-10 grid gap-px overflow-hidden border border-white/10 bg-white/10 sm:grid-cols-2">
-              {notBlue.map((item) => (
-                <div key={item} className="bg-deep p-6">
-                  <p className="text-lg leading-8 text-foam">{item}</p>
-                </div>
-              ))}
-            </div>
+          </div>
+
+          <div className="grid gap-4 md:grid-cols-4">
+            {notBlue.map((item) => (
+              <div key={item} className="flex min-h-56 items-end bg-deep p-6">
+                <p className="font-serif text-3xl leading-tight text-foam">
+                  {item}
+                </p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      <section className="px-5 py-20 sm:px-8">
+      <section
+        id="work-with-blue"
+        className="border-y border-white/10 bg-white/[0.025] px-5 py-24 sm:px-8 lg:py-32"
+      >
         <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.75fr_1.25fr]">
-          <p className="text-xs uppercase tracking-[0.22em] text-sand">
-            The Blue Trust System
-          </p>
           <div>
-            <h2 className="max-w-4xl font-serif text-4xl leading-tight text-foam sm:text-5xl">
-              Trust is earned over time, not purchased.
+            <Eyebrow>The Blue Trust System</Eyebrow>
+            <h2 className="mt-5 font-serif text-5xl leading-none text-foam sm:text-7xl">
+              Trust is earned over time.
             </h2>
-            <p className="mt-6 max-w-3xl text-lg leading-9 text-mist">
-              Recommendations are continuously reviewed. A local business can
-              move between trust stages as real feedback and long-term
-              observation accumulate.
+            <p className="mt-7 max-w-2xl text-base leading-8 text-mist">
+              Recommendations can be upgraded, maintained, reviewed or paused.
+              A listing is never permanent just because it went live once.
             </p>
-            <div className="mt-10 grid gap-px overflow-hidden border border-white/10 bg-white/10 sm:grid-cols-2 lg:grid-cols-4">
-              {trustStatuses.map((item) => (
-                <div key={item} className="bg-deep p-6">
-                  <p className="font-serif text-2xl leading-tight text-foam">
-                    {item}
-                  </p>
-                </div>
-              ))}
-            </div>
+          </div>
+
+          <div className="grid gap-4 sm:grid-cols-2">
+            {trustStatuses.map(([status, copy]) => (
+              <div key={status} className="min-h-48 bg-deep p-6">
+                <p className="font-serif text-3xl leading-tight text-foam">
+                  {status}
+                </p>
+                <p className="mt-5 text-sm leading-7 text-mist">{copy}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      <section className="px-5 pb-24 sm:px-8">
-        <div className="mx-auto max-w-7xl border-t border-white/10 pt-14">
+      <section className="px-5 py-24 sm:px-8">
+        <div className="mx-auto flex max-w-7xl flex-col gap-8 sm:flex-row sm:items-center sm:justify-between">
           <Link
             href="/destinations"
-            className="inline-flex items-center gap-2 font-serif text-4xl leading-tight text-foam transition hover:text-sand sm:text-5xl"
+            className="font-serif text-5xl leading-none text-foam transition hover:text-sand sm:text-7xl"
           >
-            Start exploring. <ArrowUpRight size={28} aria-hidden="true" />
+            Start exploring.
           </Link>
+          <EditorialLink href="/destinations">
+            Open destinations
+          </EditorialLink>
         </div>
       </section>
     </main>

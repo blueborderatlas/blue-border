@@ -35,7 +35,7 @@ export function RecommendationCollection({
 
   return (
     <>
-      <section className="px-5 pb-12 sm:px-8">
+      <section className="px-5 pb-12 pt-8 sm:px-8">
         <div className="mx-auto flex max-w-7xl flex-wrap gap-3">
           {filters.map((filter) => {
             const isActive = activeFilter === filter;
@@ -58,16 +58,22 @@ export function RecommendationCollection({
         </div>
       </section>
 
-      <section className="px-5 pb-24 sm:px-8">
+      <section className="px-5 pb-24 sm:px-8 lg:pb-32">
         {filteredRecommendations.length > 0 ? (
           <div className="mx-auto grid max-w-7xl gap-5 md:grid-cols-2 lg:grid-cols-3">
-            {filteredRecommendations.map((recommendation) => (
+            {filteredRecommendations.map((recommendation, index) => (
               <Link
                 key={recommendation.id}
                 href={`/places/${recommendation.slug}`}
-                className="group overflow-hidden border border-white/10 bg-white/[0.03] transition duration-500 hover:-translate-y-1 hover:border-sand/45 hover:bg-white/[0.05]"
+                className={`group overflow-hidden bg-white/[0.03] shadow-coast transition duration-500 hover:-translate-y-1 hover:bg-white/[0.05] ${
+                  index === 0 ? "lg:col-span-2" : ""
+                }`}
               >
-                <div className="relative h-72 overflow-hidden bg-tide">
+                <div
+                  className={`relative overflow-hidden bg-tide ${
+                    index === 0 ? "h-[34rem]" : "h-80"
+                  }`}
+                >
                   <img
                     src={recommendation.coverImage}
                     alt=""
@@ -77,7 +83,7 @@ export function RecommendationCollection({
                   <div className="absolute inset-0 bg-gradient-to-t from-ink/86 via-ink/12 to-transparent" />
                 </div>
 
-                <div className="p-6 sm:p-7">
+                <div className="p-6 sm:p-8">
                   <div className="flex flex-wrap items-center gap-3 text-xs uppercase tracking-[0.16em] text-sand">
                     <span>{recommendation.category}</span>
                     <span className="h-1 w-1 rounded-full bg-sand/70" />
@@ -86,7 +92,11 @@ export function RecommendationCollection({
                     </span>
                   </div>
 
-                  <h2 className="mt-5 font-serif text-4xl leading-tight text-foam group-hover:text-sand">
+                  <h2
+                    className={`mt-5 font-serif leading-tight text-foam group-hover:text-sand ${
+                      index === 0 ? "text-5xl sm:text-6xl" : "text-4xl"
+                    }`}
+                  >
                     {recommendation.name}
                   </h2>
 
@@ -112,7 +122,7 @@ export function RecommendationCollection({
             ))}
           </div>
         ) : (
-          <div className="mx-auto max-w-7xl border border-white/10 bg-white/[0.03] p-8 sm:p-10">
+          <div className="mx-auto max-w-7xl bg-white/[0.03] p-8 shadow-coast sm:p-10">
             <p className="text-xs uppercase tracking-[0.18em] text-sand">
               No recommendations yet
             </p>

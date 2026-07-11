@@ -5,7 +5,7 @@ const navItems = [
   { href: "/destinations", label: "Destinations" },
   { href: "/journal", label: "Journal" },
   { href: "/guides", label: "Guides" },
-  { href: "#", label: "Work With Blue" },
+  { href: "/about#work-with-blue", label: "Work With Blue" },
   { href: "/about", label: "About" },
 ];
 

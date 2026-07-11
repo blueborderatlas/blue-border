@@ -1,42 +1,60 @@
+import { EditorialCard, PageHero, SectionIntro } from "@/components/editorial";
+
 const guideCategories = [
-  "Travel Planning",
-  "Accommodation",
-  "Transportation",
-  "Local Tips",
+  {
+    title: "Travel Planning",
+    image:
+      "https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1600&q=82",
+  },
+  {
+    title: "Accommodation",
+    image:
+      "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1600&q=82",
+  },
+  {
+    title: "Transportation",
+    image:
+      "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1600&q=82",
+  },
+  {
+    title: "Local Tips",
+    image:
+      "https://images.unsplash.com/photo-1527631746610-bca00a040d60?auto=format&fit=crop&w=1600&q=82",
+  },
 ];
 
 export default function GuidesPage() {
   return (
-    <main className="px-5 pb-24 pt-32 sm:px-8">
-      <div className="mx-auto max-w-7xl">
-        <section className="max-w-4xl">
-          <p className="text-xs uppercase tracking-[0.24em] text-sand">
-            Guides
-          </p>
-          <h1 className="mt-4 font-serif text-5xl leading-tight text-foam sm:text-7xl">
-            Editorial guides for independent travelers.
-          </h1>
-          <p className="mt-6 max-w-2xl text-lg leading-8 text-mist">
-            Practical notes for planning, moving, staying and reading local
-            situations with more confidence.
-          </p>
-        </section>
+    <main>
+      <PageHero
+        eyebrow="Guides"
+        title="Practical knowledge, quietly edited."
+        copy="Planning notes for travelers who want fewer surprises and better local decisions."
+        image={guideCategories[0].image}
+      />
 
-        <section className="mt-14 grid gap-px overflow-hidden border border-white/10 bg-white/10 sm:grid-cols-2 lg:grid-cols-4">
-          {guideCategories.map((category) => (
-            <div key={category} className="bg-deep p-6 sm:p-7">
-              <h2 className="font-serif text-2xl text-foam">{category}</h2>
-              <p className="mt-4 text-sm leading-7 text-mist">
-                Coming soon.
-              </p>
-            </div>
-          ))}
-        </section>
+      <section className="px-5 py-24 sm:px-8 lg:py-32">
+        <div className="mx-auto max-w-7xl">
+          <SectionIntro
+            eyebrow="Coming soon"
+            title="Guides will grow with each destination."
+            copy="For now, these are the editorial shelves Blue will fill first."
+          />
 
-        <p className="mt-10 text-sm leading-7 text-mist">
-          More editorial guides are coming soon.
-        </p>
-      </div>
+          <div className="grid gap-5 md:grid-cols-2">
+            {guideCategories.map((category) => (
+              <EditorialCard
+                key={category.title}
+                href="/guides"
+                image={category.image}
+                eyebrow="Guide shelf"
+                title={category.title}
+                meta="Coming soon"
+              />
+            ))}
+          </div>
+        </div>
+      </section>
     </main>
   );
 }

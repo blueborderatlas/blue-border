@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { PageHero } from "@/components/editorial";
 import { recommendations } from "@/lib/recommendations";
 import { RecommendationCollection } from "./recommendation-collection";
 
@@ -11,20 +12,12 @@ export const metadata: Metadata = {
 export default function RecommendedPage() {
   return (
     <main>
-      <section className="px-5 pb-16 pt-36 sm:px-8 lg:pb-24 lg:pt-44">
-        <div className="mx-auto max-w-7xl">
-          <p className="text-xs uppercase tracking-[0.24em] text-sand">
-            Blue Recommended
-          </p>
-          <h1 className="mt-5 max-w-5xl font-serif text-6xl leading-[0.98] text-foam sm:text-8xl">
-            Trusted local recommendations.
-          </h1>
-          <p className="mt-7 max-w-3xl text-xl leading-9 text-mist">
-            A curated index of places, people and experiences reviewed through
-            Blue&apos;s editorial trust system.
-          </p>
-        </div>
-      </section>
+      <PageHero
+        eyebrow="Blue Recommended"
+        title="Places worth opening first."
+        copy="A curated collection of local businesses, people and experiences reviewed through Blue's trust layer."
+        image={recommendations[0]?.coverImage}
+      />
       <RecommendationCollection recommendations={recommendations} />
     </main>
   );

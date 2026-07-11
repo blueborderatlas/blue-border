@@ -3,7 +3,9 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import {
   ArrowUpRight,
+  BadgeCheck,
   CheckCircle2,
+  MapPin,
 } from "lucide-react";
 import {
   destinationCategoryGroups,
@@ -11,6 +13,7 @@ import {
   recommendations,
 } from "@/lib/recommendations";
 import { BlueTrustSystem } from "@/components/blue-trust-system";
+import { EditorialLink, Eyebrow } from "@/components/editorial";
 
 type PageProps = {
   params: Promise<{ slug: string }>;
@@ -144,33 +147,59 @@ export default async function RecommendationDetailPage({ params }: PageProps) {
           <p className="mt-6 text-lg leading-8 text-foam/88">
             {recommendation.city}, {recommendation.country}
           </p>
+          <div className="mt-10 grid max-w-4xl gap-px overflow-hidden bg-white/15 sm:grid-cols-3">
+            {[
+              ["Trust", recommendation.trustStatus],
+              ["Best for", recommendation.bestFor.slice(0, 2).join(", ")],
+              ["Languages", recommendation.languages.join(", ")],
+            ].map(([label, value]) => (
+              <div key={label} className="bg-ink/64 p-5 backdrop-blur">
+                <p className="text-xs uppercase tracking-[0.16em] text-sand">
+                  {label}
+                </p>
+                <p className="mt-3 text-base leading-7 text-foam/88">
+                  {value}
+                </p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
       {businessProfile ? (
-        <section className="border-y border-white/10 bg-white/[0.025] px-5 py-20 sm:px-8">
-          <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.75fr_1.25fr]">
+        <section className="px-5 py-24 sm:px-8 lg:py-32">
+          <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.85fr_1.15fr]">
             <div>
-              <p className="text-xs uppercase tracking-[0.22em] text-sand">
-                Business Profile
-              </p>
-              <h2 className="mt-5 font-serif text-4xl leading-tight text-foam sm:text-5xl">
+              <Eyebrow>Business Profile</Eyebrow>
+              <h2 className="mt-5 font-serif text-5xl leading-tight text-foam sm:text-7xl">
                 {businessProfile.name}
               </h2>
-              <p className="mt-5 text-sm leading-7 text-mist">
+              <p className="mt-7 text-base leading-8 text-mist">
                 {businessProfile.shortDescription}
               </p>
+              <div className="mt-9 flex flex-wrap gap-3">
+                <span className="inline-flex min-h-11 items-center gap-2 bg-white/[0.06] px-4 text-xs uppercase tracking-[0.16em] text-foam">
+                  <BadgeCheck size={15} strokeWidth={1.6} />
+                  {businessProfile.verified}
+                </span>
+                <span className="inline-flex min-h-11 items-center gap-2 bg-white/[0.06] px-4 text-xs uppercase tracking-[0.16em] text-foam">
+                  <MapPin size={15} strokeWidth={1.6} />
+                  {businessProfile.city}, {businessProfile.country}
+                </span>
+              </div>
             </div>
-            <div className="grid gap-px overflow-hidden border border-white/10 bg-white/10">
+            <div className="grid gap-3 sm:grid-cols-2">
               {businessProfileRows.map(([label, value]) => (
                 <div
                   key={label}
-                  className="grid gap-3 bg-deep p-5 sm:grid-cols-[0.32fr_0.68fr]"
+                  className="bg-deep p-5 transition hover:bg-white/[0.045]"
                 >
                   <p className="text-xs uppercase tracking-[0.16em] text-sand">
                     {label}
                   </p>
-                  <p className="text-base leading-7 text-foam/88">{value}</p>
+                  <p className="mt-3 text-base leading-7 text-foam/88">
+                    {value}
+                  </p>
                 </div>
               ))}
             </div>
@@ -179,32 +208,31 @@ export default async function RecommendationDetailPage({ params }: PageProps) {
       ) : null}
 
       {blueExperience ? (
-        <section className="px-5 py-20 sm:px-8">
-          <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.75fr_1.25fr]">
+        <section className="border-y border-white/10 bg-white/[0.025] px-5 py-24 sm:px-8 lg:py-32">
+          <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.85fr_1.15fr]">
             <div>
-              <p className="text-xs uppercase tracking-[0.22em] text-sand">
-                Blue Experience
-              </p>
-              <h2 className="mt-5 font-serif text-4xl leading-tight text-foam sm:text-5xl">
-                Human review, separated from AI output.
+              <Eyebrow>Blue Experience</Eyebrow>
+              <h2 className="mt-5 font-serif text-5xl leading-tight text-foam sm:text-6xl">
+                Human context before the details.
               </h2>
-              <p className="mt-5 text-sm leading-7 text-mist">
+              <p className="mt-6 text-base leading-8 text-mist">
                 {blueExperience.editorNotes}
               </p>
             </div>
-            <div className="grid gap-px overflow-hidden border border-white/10 bg-white/10">
-              {blueExperienceRows.map(([label, value]) => (
-                <div
-                  key={label}
-                  className="grid gap-3 bg-deep p-5 sm:grid-cols-[0.32fr_0.68fr]"
-                >
-                  <p className="text-xs uppercase tracking-[0.16em] text-sand">
-                    {label}
-                  </p>
-                  <p className="text-base leading-7 text-foam/88">{value}</p>
-                </div>
-              ))}
-              <div className="grid gap-px bg-white/10 lg:grid-cols-3">
+            <div>
+              <div className="grid gap-3 sm:grid-cols-2">
+                {blueExperienceRows.map(([label, value]) => (
+                  <div key={label} className="bg-deep p-5">
+                    <p className="text-xs uppercase tracking-[0.16em] text-sand">
+                      {label}
+                    </p>
+                    <p className="mt-3 text-base leading-7 text-foam/88">
+                      {value}
+                    </p>
+                  </div>
+                ))}
+              </div>
+              <div className="mt-3 grid gap-3 lg:grid-cols-3">
                 <div className="bg-deep p-6">
                   <p className="text-xs uppercase tracking-[0.16em] text-sand">
                     Highlights
@@ -305,16 +333,22 @@ export default async function RecommendationDetailPage({ params }: PageProps) {
 
       <section className="border-y border-white/10 bg-white/[0.025] px-5 py-20 sm:px-8">
         <div className="mx-auto max-w-7xl">
-          <p className="text-xs uppercase tracking-[0.22em] text-sand">
-            Gallery
-          </p>
-          <div className="mt-8 grid gap-4 md:grid-cols-3">
-            {recommendation.gallery.map((image) => (
-              <div key={image} className="h-80 overflow-hidden bg-tide">
+          <Eyebrow>Gallery</Eyebrow>
+          <h2 className="mt-5 max-w-4xl font-serif text-5xl leading-none text-foam sm:text-7xl">
+            Look before you decide.
+          </h2>
+          <div className="mt-12 grid gap-4 md:grid-cols-3">
+            {recommendation.gallery.map((image, index) => (
+              <div
+                key={image}
+                className={`overflow-hidden bg-tide ${
+                  index === 0 ? "h-[72vh] md:col-span-2" : "h-80"
+                }`}
+              >
                 <img
                   src={image}
                   alt=""
-                  className="h-full w-full object-cover opacity-90"
+                  className="h-full w-full object-cover opacity-90 transition duration-700 hover:opacity-100"
                   loading="lazy"
                 />
               </div>
@@ -422,6 +456,20 @@ export default async function RecommendationDetailPage({ params }: PageProps) {
           </div>
         </section>
       ) : null}
+
+      <section className="px-5 pb-24 sm:px-8">
+        <div className="mx-auto flex max-w-7xl flex-col gap-5 border-t border-white/10 pt-12 sm:flex-row sm:items-center sm:justify-between">
+          <div>
+            <Eyebrow>Keep browsing</Eyebrow>
+            <h2 className="mt-4 font-serif text-4xl leading-tight text-foam sm:text-5xl">
+              Return to {businessProfile?.destination || recommendation.city}.
+            </h2>
+          </div>
+          <EditorialLink href={`/destinations/${destinationSlug}`}>
+            Open destination
+          </EditorialLink>
+        </div>
+      </section>
     </main>
   );
 }

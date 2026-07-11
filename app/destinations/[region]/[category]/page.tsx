@@ -8,9 +8,32 @@ import {
   getDestinationCategoryBySlug,
   getRecommendationsForDestinationCategory,
 } from "@/lib/recommendations";
+import {
+  EditorialCard,
+  EditorialLink,
+  Eyebrow,
+  PageHero,
+} from "@/components/editorial";
 
 type PageProps = {
   params: Promise<{ region: string; category: string }>;
+};
+
+const categoryImages: Record<string, string> = {
+  diving:
+    "/images/ai/dahab-diving/DJI_20260626_193515_Edit_Composited_Photo.jpg",
+  stay:
+    "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1800&q=82",
+  food:
+    "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1800&q=82",
+  cafe:
+    "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=1800&q=82",
+  transport:
+    "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1800&q=82",
+  pharmacy:
+    "https://images.unsplash.com/photo-1585435557343-3b092031a831?auto=format&fit=crop&w=1800&q=82",
+  "local-guide":
+    "https://images.unsplash.com/photo-1527631746610-bca00a040d60?auto=format&fit=crop&w=1800&q=82",
 };
 
 export function generateStaticParams() {
@@ -52,10 +75,16 @@ export default async function DestinationCategoryPage({ params }: PageProps) {
     destination,
     category,
   );
+  const image = categoryImages[category.slug] || categoryImages["local-guide"];
 
   return (
-    <main className="px-5 pb-24 pt-32 sm:px-8">
-      <div className="mx-auto max-w-7xl">
+    <main>
+      <PageHero
+        eyebrow={`${destination.name} / ${category.label}`}
+        title={`${category.label} in ${destination.name}`}
+        copy={`A focused browsing path for ${category.label.toLowerCase()} recommendations, practical notes and trusted local context.`}
+        image={places[0]?.coverImage || image}
+      >
         <nav className="flex flex-wrap gap-3 text-xs uppercase tracking-[0.16em] text-mist">
           <Link href="/destinations" className="transition hover:text-sand">
             Destinations
@@ -70,80 +99,70 @@ export default async function DestinationCategoryPage({ params }: PageProps) {
           <span>/</span>
           <span className="text-sand">{category.label}</span>
         </nav>
+      </PageHero>
 
-        <section className="mt-8 max-w-5xl">
-          <p className="text-xs uppercase tracking-[0.24em] text-sand">
-            {destination.name}
-          </p>
-          <h1 className="mt-5 font-serif text-6xl leading-[0.98] text-foam sm:text-8xl">
-            {category.label}
-          </h1>
-          <p className="mt-7 max-w-3xl text-lg leading-8 text-mist">
-            Browse trusted {category.label.toLowerCase()} starting points in{" "}
-            {destination.name}. Details, trust status and observations live on
-            each place page.
-          </p>
-        </section>
-
-        <section className="mt-14">
+      <section className="px-5 py-24 sm:px-8 lg:py-32">
+        <div className="mx-auto max-w-7xl">
           {places.length > 0 ? (
-            <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-              {places.map((place) => (
-                <Link
+            <div className="grid gap-5 lg:grid-cols-3">
+              {places.map((place, index) => (
+                <EditorialCard
                   key={place.id}
                   href={`/places/${place.slug}`}
-                  className="group overflow-hidden border border-white/10 bg-white/[0.03] transition duration-500 hover:-translate-y-1 hover:border-sand/45 hover:bg-white/[0.05]"
-                >
-                  <div className="relative h-72 overflow-hidden bg-tide">
-                    <img
-                      src={place.coverImage}
-                      alt=""
-                      className="h-full w-full object-cover opacity-80 transition duration-700 group-hover:scale-105 group-hover:opacity-100"
-                      loading="lazy"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-ink/86 via-ink/12 to-transparent" />
-                  </div>
-
-                  <div className="p-6 sm:p-7">
-                    <p className="text-xs uppercase tracking-[0.16em] text-sand">
-                      {place.category} · {place.city}
-                    </p>
-                    <h2 className="mt-5 font-serif text-4xl leading-tight text-foam group-hover:text-sand">
-                      {place.name}
-                    </h2>
-                    <p className="mt-4 line-clamp-3 text-sm leading-7 text-mist">
-                      {place.summary}
-                    </p>
-                    <div className="mt-7 flex items-center justify-between gap-4">
-                      <span className="text-xs uppercase tracking-[0.14em] text-mist">
-                        {place.trustStatus}
-                      </span>
-                      <ArrowUpRight
-                        className="text-mist transition group-hover:text-sand"
-                        size={18}
-                        aria-hidden="true"
-                      />
-                    </div>
-                  </div>
-                </Link>
+                  image={place.coverImage}
+                  eyebrow={`${place.category} · ${place.city}`}
+                  title={place.businessProfile?.name || place.name}
+                  copy={place.summary}
+                  meta={place.trustStatus}
+                  large={index === 0}
+                />
               ))}
             </div>
           ) : (
-            <div className="border border-white/10 bg-white/[0.03] p-8 sm:p-10">
-              <p className="text-xs uppercase tracking-[0.18em] text-sand">
-                Under curation
-              </p>
-              <h2 className="mt-4 max-w-2xl font-serif text-4xl leading-tight text-foam sm:text-5xl">
-                No published places here yet.
-              </h2>
-              <p className="mt-5 max-w-2xl text-sm leading-7 text-mist">
-                Blue will add {category.label.toLowerCase()} places once enough
-                trust signals and local context are available.
-              </p>
+            <div className="relative min-h-[62vh] overflow-hidden bg-tide p-7 sm:p-10">
+              <img
+                src={image}
+                alt=""
+                className="absolute inset-0 h-full w-full object-cover opacity-[0.32]"
+                loading="lazy"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-ink/95 via-ink/54 to-transparent" />
+              <div className="relative mt-48 max-w-3xl">
+                <Eyebrow>Under curation</Eyebrow>
+                <h2 className="mt-5 font-serif text-5xl leading-tight text-foam sm:text-7xl">
+                  No published places here yet.
+                </h2>
+                <p className="mt-6 max-w-2xl text-base leading-8 text-mist">
+                  Blue will add {category.label.toLowerCase()} places once
+                  enough trust signals and local context are available.
+                </p>
+                <div className="mt-9">
+                  <EditorialLink href={`/destinations/${destination.slug}`}>
+                    Back to {destination.name}
+                  </EditorialLink>
+                </div>
+              </div>
             </div>
           )}
-        </section>
-      </div>
+        </div>
+      </section>
+
+      <section className="px-5 pb-24 sm:px-8">
+        <div className="mx-auto flex max-w-7xl flex-col gap-5 border-t border-white/10 pt-12 sm:flex-row sm:items-center sm:justify-between">
+          <div>
+            <Eyebrow>Next</Eyebrow>
+            <h2 className="mt-4 font-serif text-4xl leading-tight text-foam sm:text-5xl">
+              Browse the full destination.
+            </h2>
+          </div>
+          <Link
+            href={`/destinations/${destination.slug}`}
+            className="inline-flex items-center gap-2 text-sm uppercase tracking-[0.18em] text-foam transition hover:text-sand"
+          >
+            Open {destination.name} <ArrowUpRight size={16} aria-hidden="true" />
+          </Link>
+        </div>
+      </section>
     </main>
   );
 }

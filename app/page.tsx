@@ -76,7 +76,7 @@ const destinationCards = [
 
 const categoryCards = [
   {
-    label: "Diving",
+    label: "Dive",
     href: "/destinations/dahab/diving",
     Icon: Waves,
     image:
@@ -183,83 +183,10 @@ export default function HomePage() {
 
       <section className="px-5 py-28 sm:px-8 lg:py-40">
         <div className="mx-auto max-w-7xl">
-          <div className="mb-14 flex flex-col gap-6 lg:grid lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
-            <div>
-              <p className="text-xs uppercase tracking-[0.22em] text-sand">
-                Featured Stories
-              </p>
-              <h2 className="mt-5 max-w-3xl font-serif text-5xl leading-none text-foam sm:text-7xl">
-                Begin with a feeling.
-              </h2>
-            </div>
-            <p className="max-w-2xl text-base leading-8 text-mist lg:ml-auto">
-              Blue is a curated travel platform for discovering trusted places
-              around the world through stories, local context and human review.
-            </p>
-          </div>
-
-          {leadStory ? (
-            <div className="grid gap-5 lg:grid-cols-[1.25fr_0.75fr]">
-              <Link
-                href={`/journal/${leadStory.slug}`}
-                className="group relative min-h-[78vh] overflow-hidden bg-tide shadow-coast"
-              >
-                <img
-                  src={leadStory.coverImage}
-                  alt=""
-                  className="absolute inset-0 h-full w-full object-cover opacity-[0.78] transition duration-700 group-hover:scale-[1.025] group-hover:opacity-100"
-                  loading="lazy"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-ink/92 via-ink/18 to-transparent" />
-                <div className="absolute inset-x-0 bottom-0 p-7 sm:p-10">
-                  <p className="text-xs uppercase tracking-[0.16em] text-sand">
-                    {leadStory.category}
-                  </p>
-                  <h3 className="mt-5 max-w-4xl font-serif text-5xl leading-none text-foam sm:text-7xl">
-                    {leadStory.title}
-                  </h3>
-                  <p className="mt-6 max-w-2xl text-base leading-8 text-foam/78">
-                    {leadStory.excerpt}
-                  </p>
-                </div>
-              </Link>
-
-              <div className="grid gap-5">
-                {supportStories.slice(0, 2).map((story) => (
-                  <Link
-                    key={story.slug}
-                    href={`/journal/${story.slug}`}
-                    className="group relative min-h-[38vh] overflow-hidden bg-tide"
-                  >
-                    <img
-                      src={story.coverImage}
-                      alt=""
-                      className="absolute inset-0 h-full w-full object-cover opacity-[0.68] transition duration-700 group-hover:scale-105 group-hover:opacity-95"
-                      loading="lazy"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/26 to-transparent" />
-                    <div className="absolute inset-x-0 bottom-0 p-6">
-                      <p className="text-xs uppercase tracking-[0.16em] text-sand">
-                        {story.category}
-                      </p>
-                      <h3 className="mt-4 font-serif text-4xl leading-tight text-foam">
-                        {story.title}
-                      </h3>
-                    </div>
-                  </Link>
-                ))}
-              </div>
-            </div>
-          ) : null}
-        </div>
-      </section>
-
-      <section className="border-y border-white/10 bg-white/[0.025] px-5 py-28 sm:px-8 lg:py-40">
-        <div className="mx-auto max-w-7xl">
           <div className="mb-16 flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
             <div>
               <p className="text-xs uppercase tracking-[0.22em] text-sand">
-                Explore Destinations
+                Explore the World
               </p>
               <h2 className="mt-5 max-w-3xl font-serif text-5xl leading-none text-foam sm:text-7xl">
                 The world, opening slowly.
@@ -301,61 +228,6 @@ export default function HomePage() {
                   >
                     {destination.name}
                   </h3>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="px-5 py-28 sm:px-8 lg:py-40">
-        <div className="mx-auto max-w-7xl">
-          <div className="mb-16 grid gap-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
-            <div>
-              <p className="text-xs uppercase tracking-[0.22em] text-sand">
-                Explore by Interest
-              </p>
-              <h2 className="mt-5 max-w-3xl font-serif text-5xl leading-none text-foam sm:text-7xl">
-                Travel starts with a need.
-              </h2>
-            </div>
-            <p className="max-w-2xl text-base leading-8 text-mist lg:ml-auto">
-              Find the kind of local context that changes how a trip feels:
-              where to stay, who to trust, how to move and where to pause.
-            </p>
-          </div>
-
-          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-6">
-            {categoryCards.map(({ label, href, Icon, image }, index) => (
-              <Link
-                key={label}
-                href={href}
-                className={`group relative flex overflow-hidden bg-tide shadow-coast ${
-                  index === 0 || index === 4
-                    ? "min-h-[58vh] lg:col-span-3"
-                    : "min-h-[36vh] lg:col-span-2"
-                }`}
-              >
-                <img
-                  src={image}
-                  alt=""
-                  className="absolute inset-0 h-full w-full object-cover opacity-[0.54] transition duration-700 group-hover:scale-105 group-hover:opacity-[0.82]"
-                  loading="lazy"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-ink/94 via-ink/34 to-transparent" />
-                <div className="relative mt-auto w-full p-6 sm:p-8">
-                  <Icon
-                    className="mb-8 text-sand transition group-hover:text-foam"
-                    size={30}
-                    strokeWidth={1.5}
-                    aria-hidden="true"
-                  />
-                  <h3 className="font-serif text-4xl leading-none text-foam sm:text-6xl">
-                    {label}
-                  </h3>
-                  <p className="mt-5 text-xs uppercase tracking-[0.16em] text-mist">
-                    Explore
-                  </p>
                 </div>
               </Link>
             ))}
@@ -435,10 +307,138 @@ export default function HomePage() {
 
       <section className="px-5 py-28 sm:px-8 lg:py-40">
         <div className="mx-auto max-w-7xl">
+          <div className="mb-16 grid gap-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
+            <div>
+              <p className="text-xs uppercase tracking-[0.22em] text-sand">
+                Travel by Interest
+              </p>
+              <h2 className="mt-5 max-w-3xl font-serif text-5xl leading-none text-foam sm:text-7xl">
+                Travel starts with a need.
+              </h2>
+            </div>
+            <p className="max-w-2xl text-base leading-8 text-mist lg:ml-auto">
+              Find the kind of local context that changes how a trip feels:
+              where to stay, who to trust, how to move and where to pause.
+            </p>
+          </div>
+
+          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-6">
+            {categoryCards.map(({ label, href, Icon, image }, index) => (
+              <Link
+                key={label}
+                href={href}
+                className={`group relative flex overflow-hidden bg-tide shadow-coast ${
+                  index === 0 || index === 4
+                    ? "min-h-[58vh] lg:col-span-3"
+                    : "min-h-[36vh] lg:col-span-2"
+                }`}
+              >
+                <img
+                  src={image}
+                  alt=""
+                  className="absolute inset-0 h-full w-full object-cover opacity-[0.54] transition duration-700 group-hover:scale-105 group-hover:opacity-[0.82]"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-ink/94 via-ink/34 to-transparent" />
+                <div className="relative mt-auto w-full p-6 sm:p-8">
+                  <Icon
+                    className="mb-8 text-sand transition group-hover:text-foam"
+                    size={30}
+                    strokeWidth={1.5}
+                    aria-hidden="true"
+                  />
+                  <h3 className="font-serif text-4xl leading-none text-foam sm:text-6xl">
+                    {label}
+                  </h3>
+                  <p className="mt-5 text-xs uppercase tracking-[0.16em] text-mist">
+                    Explore
+                  </p>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="border-y border-white/10 bg-white/[0.025] px-5 py-28 sm:px-8 lg:py-40">
+        <div className="mx-auto max-w-7xl">
+          <div className="mb-14 flex flex-col gap-6 lg:grid lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
+            <div>
+              <p className="text-xs uppercase tracking-[0.22em] text-sand">
+                Featured Stories
+              </p>
+              <h2 className="mt-5 max-w-3xl font-serif text-5xl leading-none text-foam sm:text-7xl">
+                Stories give the place a pulse.
+              </h2>
+            </div>
+            <p className="max-w-2xl text-base leading-8 text-mist lg:ml-auto">
+              Blue uses field notes to support exploration, not replace the
+              destination and place layer.
+            </p>
+          </div>
+
+          {leadStory ? (
+            <div className="grid gap-5 lg:grid-cols-[1.25fr_0.75fr]">
+              <Link
+                href={`/journal/${leadStory.slug}`}
+                className="group relative min-h-[78vh] overflow-hidden bg-tide shadow-coast"
+              >
+                <img
+                  src={leadStory.coverImage}
+                  alt=""
+                  className="absolute inset-0 h-full w-full object-cover opacity-[0.78] transition duration-700 group-hover:scale-[1.025] group-hover:opacity-100"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-ink/92 via-ink/18 to-transparent" />
+                <div className="absolute inset-x-0 bottom-0 p-7 sm:p-10">
+                  <p className="text-xs uppercase tracking-[0.16em] text-sand">
+                    {leadStory.category}
+                  </p>
+                  <h3 className="mt-5 max-w-4xl font-serif text-5xl leading-none text-foam sm:text-7xl">
+                    {leadStory.title}
+                  </h3>
+                  <p className="mt-6 max-w-2xl text-base leading-8 text-foam/78">
+                    {leadStory.excerpt}
+                  </p>
+                </div>
+              </Link>
+
+              <div className="grid gap-5">
+                {supportStories.slice(0, 2).map((story) => (
+                  <Link
+                    key={story.slug}
+                    href={`/journal/${story.slug}`}
+                    className="group relative min-h-[38vh] overflow-hidden bg-tide"
+                  >
+                    <img
+                      src={story.coverImage}
+                      alt=""
+                      className="absolute inset-0 h-full w-full object-cover opacity-[0.68] transition duration-700 group-hover:scale-105 group-hover:opacity-95"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/26 to-transparent" />
+                    <div className="absolute inset-x-0 bottom-0 p-6">
+                      <p className="text-xs uppercase tracking-[0.16em] text-sand">
+                        {story.category}
+                      </p>
+                      <h3 className="mt-4 font-serif text-4xl leading-tight text-foam">
+                        {story.title}
+                      </h3>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          ) : null}
+        </div>
+      </section>
+
+      <section className="px-5 py-28 sm:px-8 lg:py-40">
+        <div className="mx-auto max-w-7xl">
           <div className="mb-16 flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
             <div>
               <p className="text-xs uppercase tracking-[0.22em] text-sand">
-                Latest Journal
+                Journal
               </p>
               <h2 className="mt-5 max-w-3xl font-serif text-5xl leading-none text-foam sm:text-7xl">
                 Recent field notes.

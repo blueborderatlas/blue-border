@@ -273,10 +273,10 @@ export default function HomePage() {
           </div>
 
           {primaryPlace ? (
-            <div className="flex flex-col gap-5 lg:min-h-[78vh] lg:flex-row">
+            <div className="flex flex-col gap-6 lg:flex-row lg:items-center">
               <Link
                 href={`/places/${primaryPlace.slug}`}
-                className="blue-card blue-card-hover group relative min-h-[62vh] bg-tide lg:flex-[1.25]"
+                className="blue-card blue-card-hover group relative min-h-[68vh] bg-tide lg:min-h-[78vh] lg:flex-[2.1]"
               >
                 <img
                   src={primaryPlace.coverImage}
@@ -298,37 +298,36 @@ export default function HomePage() {
                 </div>
               </Link>
 
-              <div className="blue-card flex min-h-[42vh] flex-col justify-between border border-white/10 bg-ink/74 p-7 sm:p-10 lg:flex-[0.75]">
+              <div className="blue-card border border-white/10 bg-ink/74 p-7 sm:p-10 lg:flex-1 lg:self-center">
                 <div>
                   <p className="text-xs uppercase tracking-[0.22em] text-sand">
                     Blue Recommended
                   </p>
-                  <h3 className="mt-6 font-serif text-5xl leading-none text-foam sm:text-6xl">
+                  <h3 className="mt-8 font-serif text-5xl leading-none text-foam sm:text-6xl">
                     One place can carry the whole chapter.
                   </h3>
-                  <p className="mt-7 max-w-xl text-base leading-8 text-mist">
-                    Published places sit at the center of Blue: human-curated,
-                    destination-linked and ready to expand as the collection
-                    grows.
+                  <p className="mt-9 max-w-md text-base leading-8 text-mist">
+                    Published places are carefully reviewed before becoming part
+                    of Blue.
                   </p>
                 </div>
-                <div className="mt-12 space-y-5 border-t border-white/10 pt-7">
-                  <p className="text-xs uppercase tracking-[0.16em] text-mist">
-                    Trust status
-                  </p>
-                  <p className="font-serif text-3xl text-foam">
+                <div className="mt-14 border-t border-white/10 pt-8">
+                  <div className="inline-flex items-center gap-3 border border-white/14 bg-white/[0.035] px-4 py-3 text-xs uppercase tracking-[0.16em] text-foam">
+                    <span className="h-2 w-2 rounded-full bg-sand" />
                     {primaryPlace.trustStatus}
-                  </p>
+                  </div>
                   {secondaryPlaces.length > 0 ? (
-                    <p className="text-sm leading-7 text-mist">
+                    <p className="mt-7 text-sm leading-7 text-mist">
                       More published places are ready to surface here as the
                       collection grows.
                     </p>
                   ) : null}
-                  <VisualLink
+                  <Link
                     href={`/places/${primaryPlace.slug}`}
-                    label="Open place"
-                  />
+                    className="mt-10 inline-flex items-center gap-2 border border-white/18 px-4 py-2 text-[0.68rem] uppercase tracking-[0.18em] text-mist transition hover:border-sand/70 hover:text-foam"
+                  >
+                    Open place <ArrowUpRight size={13} aria-hidden="true" />
+                  </Link>
                 </div>
               </div>
             </div>
